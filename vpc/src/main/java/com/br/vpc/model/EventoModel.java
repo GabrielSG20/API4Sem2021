@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Eventos")
+@Table(name = "evento")
 public class EventoModel {
 
     @Id

@@ -1,10 +1,11 @@
 package com.br.vpc.service;
 
-import com.br.vpc.controller.EventoController;
 import com.br.vpc.model.EventoModel;
 import com.br.vpc.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EventoService {
 
     @Autowired
