@@ -1,7 +1,7 @@
 <html>
 <body>
    
-  <p align="center"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white"> <img src= "https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D"> <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"> <img src= "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=black"> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> </p>
+  <p align="center"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white"> <img src= "https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"> <img src= "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=black"> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> </p>
     
   <p align="center"> <img src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/banner.png"></p>
   
@@ -9,10 +9,11 @@
   
   ---
   
-  <p align="center">
-    <a href="#-sobre-o-projeto">Sobre</a> •
-  <a href="#-a-equipe">A Equipe</a> •   
+ <p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-a-equipe">A Equipe</a> •
  <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-backlog-do-produto">Backlog</a> •
  <a href="#-layout">Layout</a> • 
  <a href="#-como-executar-o-projeto">Como executar</a> • 
  <a href="#-tecnologias">Tecnologias</a>
@@ -73,9 +74,49 @@
     <li>Extrair relatórios dos eventos.</li>
     </ul></li> 
 </ul>
-  
+   
   ---
+   
+  <h2 style="font-family:roboto;"> Backlog do Produto</h2>
+  
+  <table align="center">
+    <tr>
+    <td align="center">Sprint 1</td>
+    <td align="center">Sprint 2</td>
+    <td align="center">Sprint 3</td>
+    <td align="center">Sprint 4</td>
+  </tr>
+     <tr>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt1_card1.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt2_card1.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt3_card1.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt4_card1.png" width="300px;" alt=""/></td>
+  </tr>
+     <tr>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt1_card2.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt2_card2.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt3_card2.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt4_card2.png" width="300px;" alt=""/></td>
+  </tr>
+      <tr>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt1_card3.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt2_card3.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt3_card3.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt4_card3.png" width="300px;" alt=""/></td>
+  </tr>
+      <tr>
+    <td align="center">---</td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt2_card4.png" width="300px;" alt=""/></td>
+    <td align="center">---</td>
+    <td align="center">---</td>
+  </tr>
+ </table>
+      
+  ---
+   
 <h2 style="font-family:roboto;"> Layout</h2>
+<p align="justify" style="font-family:roboto;"> Para o desenvolvimento das wireframes foram utilizados conceitos de UX e UI design. Além disso, estamos seguindo os padrões do WCAG 2.1 com o objetivo de deixar nossa ferramenta acessível para pessoas com deficiência visual, cognitiva e auditiva. </p>
+   
   
   <table align="center">
     <tr>
@@ -95,6 +136,15 @@
     <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/org_fornecedores.png" width="500px;" alt=""/><br /><sub><b>Consultar Fornecedor</b></sub></td>
   </tr>
 </table>
+   
+   ---
+   
+   <h2 style="font-family:roboto;"> Como executar o projeto</h2>
+   <p align="justify" style="font-family:roboto;"> Em desenvolvimento. </p>
+   
+   ---
+   
+   <h2 style="font-family:roboto;"> Tecnologias</h2>
   
   
 
