@@ -78,9 +78,10 @@
   ---
    
   <h2 style="font-family:roboto;"> Backlog do Produto</h2>
+  <p align="justify" style="font-family:roboto;"> Para ampliar os cards e ver o detalhamento das User Stories e Criteria Acceptance, por favor clique na imagem.</p>
   
-  <table align="center">
-    <tr>
+ <table>
+   <tr>
     <td align="center">Sprint 1</td>
     <td align="center">Sprint 2</td>
     <td align="center">Sprint 3</td>
@@ -110,7 +111,7 @@
     <td align="center">---</td>
     <td align="center">---</td>
   </tr>
- </table>
+</table>
       
   ---
    
@@ -145,8 +146,14 @@
    ---
    
    <h2 style="font-family:roboto;"> Tecnologias</h2>
-  
-  
+   
+   * [Java](https://www.java.com/pt_BR/)
+   * [Spring Boot](https://spring.io/)
+   * [JavaScript](https://www.javascript.com/)
+   * [Angular](https://angular.io/)
+   * [Oracle SQL Developer](https://www.oracle.com/tools/downloads/sqldev-downloads.html)
+   * [Figma](https://www.figma.com/)
+   * [Jira](https://vempracasa.atlassian.net/) 
 
   
 </body>
