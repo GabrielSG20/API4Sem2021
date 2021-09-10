@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,4 +36,23 @@ public class OrganizadorController {
         }
     }
 
+    @PutMapping("/update-org")
+    public ResponseEntity<Void> atualizarOrganizador(@RequestBody OrganizadorModel organizadorModel){
+        try {
+            organizadorService.atualizar(organizadorModel);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
+    @DeleteMapping("/delete-org")
+    public ResponseEntity<Void> deletarOrganizador(@RequestBody OrganizadorModel organizadorModel){
+        try {
+            organizadorService.deletar(organizadorModel.getEmail());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
 }

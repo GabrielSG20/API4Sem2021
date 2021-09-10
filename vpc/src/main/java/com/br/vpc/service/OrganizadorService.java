@@ -18,4 +18,12 @@ public class OrganizadorService {
     }
 
     public List<OrganizadorModel> listar(){ return organizadorRepository.findAll(); }
+
+    public void atualizar(OrganizadorModel organizadorModel) {
+        organizadorRepository.save(organizadorModel);
+    }
+
+    public void deletar(String id){
+        organizadorRepository.deleteById(id);
+    }
 }
