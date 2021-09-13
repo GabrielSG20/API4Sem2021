@@ -1,5 +1,6 @@
 package com.br.vpc.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -21,7 +22,8 @@ public class EventoModel {
 
     public boolean status;
 
-    public String data;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    public Date data;
 
     public String getNome() {
         return nome;
@@ -47,11 +49,11 @@ public class EventoModel {
         this.status = status;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 }
