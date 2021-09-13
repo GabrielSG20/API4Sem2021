@@ -100,6 +100,8 @@ ALTER TABLE Usuario_Evento ADD CONSTRAINT fk_usuario_evento_usu_email
 ALTER TABLE Evento ADD CONSTRAINT fk_evento_usu_email 
     FOREIGN KEY (usu_email)
     REFERENCES Usuario (usu_email);
+
+CREATE SEQUENCE id_chave_seq;
     
 
 
