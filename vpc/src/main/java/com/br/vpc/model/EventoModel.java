@@ -15,11 +15,43 @@ import java.util.Date;
 public class EventoModel {
 
     @Id
-    private String nome;
+    public String nome;
 
-    private String descricao;
+    public String descricao;
 
-    private boolean status;
+    public boolean status;
 
-    private Date data;
+    public String data;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
 }
