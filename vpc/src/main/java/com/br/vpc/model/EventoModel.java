@@ -1,11 +1,15 @@
 package com.br.vpc.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.Check;
+import org.hibernate.annotations.GeneratorType;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.sql.Time;
 import java.util.Date;
 
 @Data
@@ -16,44 +20,33 @@ import java.util.Date;
 public class EventoModel {
 
     @Id
-    public String nome;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "idEvento")
+    private Integer idEvento;
 
-    public String descricao;
+    @NonNull
+    @Column(name = "nome")
+    private String nome;
 
-    public boolean status;
+    @Size(max = 250)
+    @Column(name = "descricao")
+    private String descricao;
+
+    @NonNull
+    @Column(name = "status")
+    private boolean status;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-    public Date data;
+    @Column(name = "data")
+    private Date data;
 
-    public String getNome() {
-        return nome;
-    }
+    @NotBlank
+    @Column(name = "hora_inicio")
+    private Time hora_inicio;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    @NotBlank
+    @Column(name = "hora_encerramento")
+    private Time hora_encerramento;
 
-    public String getDescricao() {
-        return descricao;
-    }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
 }

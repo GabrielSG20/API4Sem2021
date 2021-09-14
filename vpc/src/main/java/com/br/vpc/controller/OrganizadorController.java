@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -17,7 +18,7 @@ public class OrganizadorController {
     OrganizadorService organizadorService;
 
     @PostMapping("/create-org")
-    public ResponseEntity<Void> cadastroOrganizador(@RequestBody OrganizadorModel organizadorModel){
+    public ResponseEntity<Void> cadastroOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.cadastrar(organizadorModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -37,7 +38,7 @@ public class OrganizadorController {
     }
 
     @PutMapping("/update-org")
-    public ResponseEntity<Void> atualizarOrganizador(@RequestBody OrganizadorModel organizadorModel){
+    public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.atualizar(organizadorModel);
             return new ResponseEntity<>(HttpStatus.OK);

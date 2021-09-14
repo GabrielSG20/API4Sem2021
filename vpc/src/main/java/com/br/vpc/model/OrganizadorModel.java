@@ -4,9 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
@@ -14,14 +19,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "organizador")
 public class OrganizadorModel {
-    @Id
-    String email;
+   @Id
+   @Email
+   @Column(name = "email")
+   private String email;
 
-    String nomeCompleto;
+   @Column(name = "nomeCompleto")
+   private String nomeCompleto;
 
-    Integer cpf;
+   @Max(11) @Min(11)
+   @Column(name = "cpf")
+   private Integer cpf;
 
-    Integer idOracle;
+   @Column(name = "idOracle")
+   private Integer idOracle;
 
-    Integer contato;
+   @Column(name = "contato")
+   private Integer contato;
 }
