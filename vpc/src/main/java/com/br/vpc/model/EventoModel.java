@@ -1,11 +1,7 @@
 package com.br.vpc.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.annotations.Check;
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
