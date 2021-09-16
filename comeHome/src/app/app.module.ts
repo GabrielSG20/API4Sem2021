@@ -11,12 +11,16 @@ import { AppComponent } from './app.component';
 import { MenuTopComponent } from './shared/menu-top/menu-top.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideMenuComponent } from './shared/side-menu/side-menu.component';
+import { ViewLoginComponent } from './view-login/view-login.component';
+import { ViewRegisterOrgComponent } from './view-register-org/view-register-org.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuTopComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    ViewLoginComponent,
+    ViewRegisterOrgComponent,
   ],
   imports: [
     BrowserModule,
