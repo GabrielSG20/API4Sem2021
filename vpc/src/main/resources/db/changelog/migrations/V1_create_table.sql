@@ -108,3 +108,7 @@ ALTER TABLE Evento ADD CONSTRAINT fk_evento_usu_email
 
 CREATE SEQUENCE id_chave_seq;
 
+--changeset Gabriel:3
+ALTER TABLE Usuario ADD usu_cargo varchar2(30);
+
+
