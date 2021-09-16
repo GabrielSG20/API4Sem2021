@@ -8,16 +8,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/company-user")
 public class OrganizadorController {
 
     @Autowired
     OrganizadorService organizadorService;
 
-    @PostMapping("/create-org")
-    public ResponseEntity<Void> cadastroOrganizador(@RequestBody OrganizadorModel organizadorModel){
+    @PostMapping
+    public ResponseEntity<Void> cadastroOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.cadastrar(organizadorModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -26,7 +28,7 @@ public class OrganizadorController {
         }
     }
 
-    @GetMapping("/get-orgs")
+    @GetMapping
     public ResponseEntity<List<OrganizadorModel>> listarOrganizador(){
         try {
             List<OrganizadorModel> listOrgs = organizadorService.listar();
@@ -36,8 +38,8 @@ public class OrganizadorController {
         }
     }
 
-    @PutMapping("/update-org")
-    public ResponseEntity<Void> atualizarOrganizador(@RequestBody OrganizadorModel organizadorModel){
+    @PutMapping
+    public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.atualizar(organizadorModel);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -46,7 +48,7 @@ public class OrganizadorController {
         }
     }
 
-    @DeleteMapping("/delete-org")
+    @DeleteMapping
     public ResponseEntity<Void> deletarOrganizador(@RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.deletar(organizadorModel.getEmail());

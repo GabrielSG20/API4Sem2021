@@ -18,4 +18,8 @@ public class EventoService {
     public void atualizar(EventoModel eventoModel){
         eventoRepository.save(eventoModel);
     }
+
+    public void deletar(String titulo){
+        eventoRepository.deleteByTitulo(titulo);
+    }
 }
