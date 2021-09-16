@@ -1,7 +1,6 @@
 package com.br.vpc.controller;
 
 import com.br.vpc.model.EventoModel;
-import com.br.vpc.model.OrganizadorModel;
 import com.br.vpc.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-//@RestController
 @RequestMapping(value = "/eventos")
 public class EventoController {
 
@@ -41,10 +39,10 @@ public class EventoController {
 
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletar(@RequestBody EventoModel eventoModel){
+    @DeleteMapping("/delete/{titulo}")
+    public ResponseEntity<Void> deletar(@PathVariable(name = "titulo") String titulo){
         try {
-            eventoService.deletar(eventoModel);
+            eventoService.deletar(titulo);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);

@@ -1,52 +1,57 @@
 package com.br.vpc.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.NotNull;
-import lombok.*;
-import org.hibernate.annotations.Check;
-import org.hibernate.annotations.GeneratorType;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.sql.Time;
+import java.sql.Blob;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "evento")
+@Table(name = "Evento")
 public class EventoModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "idEvento")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_generator")
+    @SequenceGenerator(name = "id_generator", sequenceName = "id_chave_seq", allocationSize = 1)
+    @Column(name = "evt_id")
     private Integer idEvento;
 
     @NonNull
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "evt_titulo")
+    private String titulo;
 
     @Size(max = 250)
-    @Column(name = "descricao")
+    @Column(name = "evt_descricao")
     private String descricao;
 
-    @NonNull
-    @Column(name = "status")
-    private boolean status;
+    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
+    @Column(name = "evt_data_inicio")
+    private Date dataInicio;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-    @Column(name = "data")
-    private Date data;
+    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
+    @Column(name = "evt_data_fim")
+    private Date dataEncerramento;
 
-    @NotBlank
-    @Column(name = "hora_inicio")
-    private Time hora_inicio;
+    @Column(name = "evt_tipo")
+    private String tipoEvento;
 
-    @NotBlank
-    @Column(name = "hora_encerramento")
-    private Time hora_encerramento;
+    @Size(max = 4)
+    @Column(name = "evt_status")
+    private Integer status;
 
+    @Column(name = "evt_imagem")
+    private Blob imagemDivulgacao;
 
+    @Email
+    @Column(name = "usu_email")
+    private String emailOrg;
 }
