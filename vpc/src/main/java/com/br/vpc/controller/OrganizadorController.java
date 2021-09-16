@@ -12,12 +12,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/company-user")
 public class OrganizadorController {
 
     @Autowired
     OrganizadorService organizadorService;
 
-    @PostMapping("/create-org")
+    @PostMapping
     public ResponseEntity<Void> cadastroOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.cadastrar(organizadorModel);
@@ -27,7 +28,7 @@ public class OrganizadorController {
         }
     }
 
-    @GetMapping("/get-orgs")
+    @GetMapping
     public ResponseEntity<List<OrganizadorModel>> listarOrganizador(){
         try {
             List<OrganizadorModel> listOrgs = organizadorService.listar();
@@ -37,7 +38,7 @@ public class OrganizadorController {
         }
     }
 
-    @PutMapping("/update-org")
+    @PutMapping
     public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.atualizar(organizadorModel);
@@ -47,7 +48,7 @@ public class OrganizadorController {
         }
     }
 
-    @DeleteMapping("/delete-org")
+    @DeleteMapping
     public ResponseEntity<Void> deletarOrganizador(@RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.deletar(organizadorModel.getEmail());
