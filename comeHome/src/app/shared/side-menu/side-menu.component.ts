@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-menu.component.scss']
 })
 export class SideMenuComponent implements OnInit {
-
-  constructor() { }
+  public submenu: boolean;
 
   ngOnInit(): void {
+    this.submenu = false;
   }
-
+  openSub() {
+    if(this.submenu == false) {
+      this.submenu = true;
+    } else {
+      this.submenu = false;
+    }
+  }
 }

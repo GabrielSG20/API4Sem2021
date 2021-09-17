@@ -7,22 +7,30 @@
         <p>Nome do usuário</p>
         <div class="menu-options">
           <div class="option-div">
-          <a><img class="img-avatar" src="/assets/img/icons/icons_schedule.png">Meus eventos</a>
+          <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/icons_schedule.png">Meus eventos</a>
+          </div>
+          <div class="option-div" (click)="openSub()">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/organization.png">Organizar Evento</a>
+          </div>
+          <div *ngIf="submenu == true">
+            <div class="submenu-option">
+              <a>Sou Organizador</a>
+            </div>
+            <div class="submenu-option" [routerLink]="['/resOrg']">
+              <a>Quero ser Organizador</a>
+            </div>
           </div>
           <div class="option-div">
-            <a><img class="img-avatar" src="/assets/img/icons/organization.png">Organizar Evento</a>
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/calendar.png">Calendário</a>
           </div>
           <div class="option-div">
-            <a><img class="img-avatar" src="/assets/img/icons/calendar.png">Calendário</a>
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/report.png">Extrair Relatório</a>
           </div>
           <div class="option-div">
-            <a><img class="img-avatar" src="/assets/img/icons/report.png">Extrair Relatório</a>
-          </div>
-          <div class="option-div">
-            <a><img class="img-avatar" src="/assets/img/icons/tool-kit.png">Fornecedores</a>
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/tool-kit.png">Fornecedores</a>
           </div>
           <div class="user-edit">
-            <a><img class="img-avatar" src="/assets/img/icons/user-avatar.png">Editar Perfil</a>
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/user-avatar.png">Editar Perfil</a>
           </div>
         </div>
       </div>

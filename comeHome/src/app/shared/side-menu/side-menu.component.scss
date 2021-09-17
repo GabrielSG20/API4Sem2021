@@ -23,13 +23,13 @@
         width: 45%;
       }
       .menu-content{
-        margin-top: 20%;
+        margin-top: 15%;
 
         .menu-options {
           align-items: flex-start;
-          margin-top: 30%;
+          margin-top: 25%;
 
-          a {
+          .menu-option {
             font-size: medium;
             font-weight: bolder;
             color: #4F4F4F;
@@ -39,9 +39,24 @@
             text-align: left !important;
             padding-left: 10%;
           }
+          .submenu-option {
+            text-align: left !important;
+            font-size: 14px;
+            padding-left: 30%;
+            margin-bottom: 2.5%;
+            margin-top: 2.5%;
+            font-weight: bolder;
+            height: 18px;
+            color: #4F4F4F;
+            &:hover {
+              background-color: #969696;
+              cursor: pointer;
+            }
+          }
 
           .option-div:hover {
             background-color: #969696;
+            cursor: pointer;
           }
 
           img {
