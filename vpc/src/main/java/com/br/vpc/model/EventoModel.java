@@ -33,11 +33,11 @@ public class EventoModel {
     @Column(name = "evt_descricao")
     private String descricao;
 
-    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
+    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
     @Column(name = "evt_data_inicio")
     private Date dataInicio;
 
-    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
+    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
     @Column(name = "evt_data_fim")
     private Date dataEncerramento;
 
@@ -53,5 +53,5 @@ public class EventoModel {
 
     @Email
     @Column(name = "usu_email")
-    private String emailOrg;
+    private String email;
 }
