@@ -5,6 +5,9 @@
   .logo {
     height: 100%;
     margin-left: 10px;
+    &:hover {
+      cursor: pointer;
+    }
   }
   .spacer {
     flex: 1 1 auto;
