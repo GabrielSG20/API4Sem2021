@@ -17,7 +17,9 @@ public class OrganizadorService {
         organizadorRepository.save(organizadorModel);
     }
 
-    public List<OrganizadorModel> listar(){ return organizadorRepository.findAll(); }
+    public List<OrganizadorModel> listar(){
+        return organizadorRepository.findAll();
+    }
 
     public void atualizar(OrganizadorModel organizadorModel) {
         organizadorRepository.save(organizadorModel);
