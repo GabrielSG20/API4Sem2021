@@ -1,18 +1,21 @@
+--liquibase formatted sql
+--changeset Gabriel:1
+
 CREATE TABLE Categoria (
     cat_id INTEGER CONSTRAINT pk_categoria PRIMARY KEY,
     cat_categoria Varchar2(30) NOT NULL,
-    cat_descricao Varchar2(30) 
+    cat_descricao Varchar2(30)
 
 ) ;
 
 CREATE TABLE Espaco (
-    esp_id Integer CONSTRAINT pk_espaco PRIMARY KEY, 
+    esp_id Integer CONSTRAINT pk_espaco PRIMARY KEY,
     esp_nome Varchar2(30)  NOT NULL,
-    esp_capacidade Integer  NOT NULL   
+    esp_capacidade Integer  NOT NULL
 ) ;
 
 CREATE TABLE Evento (
-    evt_id Integer CONSTRAINT pk_evento PRIMARY KEY, 
+    evt_id Integer CONSTRAINT pk_evento PRIMARY KEY,
     evt_titulo Varchar2(30)  NOT NULL,
     evt_descricao Varchar2(80),
     evt_data_inicio Date NOT NULL,
@@ -24,13 +27,13 @@ CREATE TABLE Evento (
 ) ;
 
 CREATE TABLE Fornecedor (
-    for_cnpj Integer CONSTRAINT pk_fornecedor PRIMARY KEY, 
+    for_cnpj Integer CONSTRAINT pk_fornecedor PRIMARY KEY,
     for_nome Varchar2(30) NOT NULL,
     for_telefone Integer NOT NULL
 ) ;
 
 CREATE TABLE Usuario (
-    usu_email Varchar2(80) CONSTRAINT pk_usuario PRIMARY KEY, 
+    usu_email Varchar2(80) CONSTRAINT pk_usuario PRIMARY KEY,
     usu_nome Varchar2(80) NOT NULL,
     usu_cpf Integer CONSTRAINT uk_usuario_cpf UNIQUE,
     usu_telefone Integer NOT NULL,
@@ -38,30 +41,30 @@ CREATE TABLE Usuario (
     usu_nome_empresa Varchar2(50),
     usu_id_oracle Integer,
     usu_comprovante_vacinacao Blob NOT NULL,
-    usu_tipo Varchar2(10) NOT NULL 
+    usu_tipo Varchar2(10) NOT NULL
 ) ;
 
 CREATE TABLE Evento_Espaco (
     esp_id Integer,
-    evt_id Integer, 
+    evt_id Integer,
     CONSTRAINT pk_evento_espaco PRIMARY KEY (esp_id,evt_id)
 );
 
 CREATE TABLE Evento_Fornecedor (
-    evt_id Integer, 
-    for_cnpj Integer, 
+    evt_id Integer,
+    for_cnpj Integer,
     CONSTRAINT pk_evento_fornecedor PRIMARY KEY (evt_id,for_cnpj)
 ) ;
 
 CREATE TABLE Fornecedor_Categoria (
-    for_cnpj Integer, 
-    cat_id Integer, 
+    for_cnpj Integer,
+    cat_id Integer,
     CONSTRAINT pk_fornecedor_categoria PRIMARY KEY (for_cnpj,cat_id)
 ) ;
 
 CREATE TABLE Usuario_Evento (
-    evt_id Integer, 
-    usu_email Varchar2(80), 
+    evt_id Integer,
+    usu_email Varchar2(80),
     CONSTRAINT pk_usuario_evento PRIMARY KEY (evt_id,usu_email)
 ) ;
 
@@ -96,13 +99,16 @@ ALTER TABLE Usuario_Evento ADD CONSTRAINT fk_usuario_evento_evt_id
 ALTER TABLE Usuario_Evento ADD CONSTRAINT fk_usuario_evento_usu_email
     FOREIGN KEY (usu_email)
     REFERENCES Usuario (usu_email);
-    
-ALTER TABLE Evento ADD CONSTRAINT fk_evento_usu_email 
+
+ALTER TABLE Evento ADD CONSTRAINT fk_evento_usu_email
     FOREIGN KEY (usu_email)
     REFERENCES Usuario (usu_email);
 
-CREATE SEQUENCE id_chave_seq;
-    
+--changeset Gabriel:2
 
+CREATE SEQUENCE id_chave_seq;
+
+--changeset Gabriel:3
+ALTER TABLE Usuario ADD usu_cargo varchar2(30);
 
 

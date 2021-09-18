@@ -1,5 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { ReactiveFormsModule} from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
@@ -19,6 +20,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { MenuTopComponent } from './shared/menu-top/menu-top.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,6 +56,8 @@ import { ViewCreateEventComponent } from './view-create-event/view-create-event.
     MatSelectModule,
     MatRadioModule,
     MatCheckboxModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
