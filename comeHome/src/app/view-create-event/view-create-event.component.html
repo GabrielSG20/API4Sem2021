@@ -1,0 +1,86 @@
+<div class="container">
+  <form class="form-event" [formGroup]="formGroup" (ngSubmit)="ngSubmit()">
+      <mat-form-field class="title-input" appearance="fill">
+        <mat-label>Adicionar título</mat-label>
+        <input matInput formControlName="HOS_EVENT">
+      </mat-form-field>
+    <div class="form-components">
+      <div class="form-right">
+        <mat-form-field class="item" appearance="fill">
+          <mat-label>Escolha a data</mat-label>
+          <input matInput [matDatepicker]="picker" [formControl]="date" (change)="onClose()">
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker #picker (closed)="onClose()"></mat-datepicker>
+        </mat-form-field>
+        <p class="p-item">
+          <mat-icon class="schedule-icon">
+            location_on
+            </mat-icon>
+            Selecione o(s) Espaço(s)
+        </p>
+        <mat-radio-group aria-label="Select an option">
+          <mat-checkbox class="item" color="primary">Open Space</mat-checkbox>
+          <mat-checkbox class="item" color="primary">Lounge on Hall</mat-checkbox>
+        </mat-radio-group>
+      </div>
+
+      <div class="form-left">
+        <p class="day-event">
+          <mat-icon class="schedule-icon">
+          schedule
+          </mat-icon>
+          {{labelPicker}}
+        </p>
+        <mat-form-field class="select-hour" appearance="fill">
+          <mat-label>Início</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let hour of hours" value="hour">{{hour}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="select-hour" appearance="fill">
+          <mat-label>Término</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let hour of hours" value="hour">{{hour}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p class="p-item">
+          <mat-icon class="schedule-icon">
+            supervisor_account
+            </mat-icon>
+            Selecione o Tipo de Evento
+        </p>
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button class="item" color="primary" value="1">Público</mat-radio-button>
+          <mat-radio-button class="item" color="primary" value="2">Privado</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div class="form-down">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Digite o Nome ou Email para adicionar convidados</mat-label>
+        <input matInput value="">
+      </mat-form-field>
+      <p class="p-item">
+        <mat-icon class="schedule-icon">
+          article
+          </mat-icon>
+          Adicionar Descrição
+      </p>
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Digite os detalhes do evento.</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <p class="photo-title">
+        <mat-icon class="schedule-icon">
+          image
+          </mat-icon>
+          Selecione imagem de divulgação do evento
+      </p>
+      <label for="file-upload" class="custom-file-upload">
+        Clique para Selecionar o Arquivo
+      </label>
+      <input id="file-upload" type="file"/>
+    </div>
+    <button mat-button color="primary" class="btn-submit">Solicitar Evento</button>
+  </form>
+</div>
