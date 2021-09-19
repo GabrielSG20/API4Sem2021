@@ -10,6 +10,10 @@ export class AppService {
 
   url = 'http://localhost:8081';
   private mockedUrl = '/api/results';
+  protected mockedHead = new HttpHeaders({
+    'Content-Type': 'application/json;odata.metadata=minimal',
+    Accept: 'application/json',
+  });
 
   constructor(private httpClient: HttpClient) { }
 
@@ -29,5 +33,11 @@ export class AppService {
   }
   closeMirage(): Observable<any> {
     return this.httpClient.get<any>(`${this.mockedUrl}/close`);
+  }
+  insertResult(result: any): Observable<any> {
+    console.log(result);
+    return this.httpClient
+      .post<any>(this.mockedUrl, result, { headers: this.mockedHead })
+      .pipe(catchError(async (res) => this.handleError(res)));
   }
 }
