@@ -1,6 +1,6 @@
 .container {
   text-align: center;
-  margin-top: 1%;
+  
   
   .btn-submit{
     float: right;
@@ -10,9 +10,15 @@
     width: 20%;
     background-color: #197278;
   }
-
+  .sucess {
+    background-color: rgb(131, 214, 49);
+  }
+  .error {
+    background-color: crimson;
+  }
   .form-event{
     display: block;
+    margin-top: 1%;
   }
 
   .title-input {

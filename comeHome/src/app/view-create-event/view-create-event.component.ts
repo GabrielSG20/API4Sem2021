@@ -13,13 +13,14 @@ import AppMockedService from '../app.mocked.service';
 export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public labelPicker: String;
   public data: any;
+  public showSucss: boolean;
+  public showError: boolean;
   public formGroup: FormGroup;
   public hours: string[];
   public HOS_EVENT: any;
   public HOS_DATE_EVENT: any;
   public HOS_OPEN_SPACE: any;
   public HOS_PRIVATE_ESPACE: any;
-  public HOS_LOCATE: any;
   public HOS_START: any;
   public HOS_END: any;
   public HOS_EVENT_TYPE: any;
@@ -77,7 +78,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       return ['Open Space'];
     }
     else {
-      console.log(this.HOS_OPEN_SPACE.value);
       return null;
     }
   }
@@ -94,6 +94,11 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   }
   public insertResult() {
     this.appService.insertResult(this.formGroup.value).subscribe((res) => {
+      if(!res['_subscribe']){
+        this.showSucss = true;
+      } else{
+        this.showError = true;
+      }
       return res;
     });
     this.getAllResults();
@@ -102,5 +107,24 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.closeConnection();
   }
-  ngSubmit() {}
+  ngSubmit() {
+    if (  this.formGroup.value.HOS_EVENT && this.formGroup.value.HOS_DATE_EVENT &&
+      this.formGroup.value.HOS_START && this.formGroup.value.HOS_END && this.formGroup.value.HOS_EVENT_TYPE && this.formGroup.value.HOS_DESCRIPTION) {
+        console.log('chegou');
+        this.appService.insertResult(this.formGroup.value).subscribe((res) => {
+          if(!res['_subscribe']){
+            this.showSucss = true;
+            this.showError = false;
+          } else{
+            this.showError = true;
+            this.showSucss = false;          }
+          return res;
+        });
+        this.getAllResults();
+        this.formGroup.reset();
+      } else {
+        this.showError = true;
+        this.showSucss = false;
+      }
+  }
 }

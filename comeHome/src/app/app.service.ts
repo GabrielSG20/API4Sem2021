@@ -35,7 +35,6 @@ export class AppService {
     return this.httpClient.get<any>(`${this.mockedUrl}/close`);
   }
   insertResult(result: any): Observable<any> {
-    console.log(result);
     return this.httpClient
       .post<any>(this.mockedUrl, result, { headers: this.mockedHead })
       .pipe(catchError(async (res) => this.handleError(res)));
