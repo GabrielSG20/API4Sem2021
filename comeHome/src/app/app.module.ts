@@ -29,6 +29,7 @@ import { SideMenuComponent } from './shared/side-menu/side-menu.component';
 import { ViewLoginComponent } from './view-login/view-login.component';
 import { ViewRegisterOrgComponent } from './view-register-org/view-register-org.component';
 import { ViewCreateEventComponent } from './view-create-event/view-create-event.component';
+import AppMockedService from './app.mocked.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ViewCreateEventComponent } from './view-create-event/view-create-event.
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
     { provide: LOCALE_ID, useValue: 'pt'},
+    AppMockedService,
   ],
   bootstrap: [AppComponent]
 })

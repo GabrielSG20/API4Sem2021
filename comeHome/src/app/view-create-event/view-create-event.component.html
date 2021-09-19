@@ -1,14 +1,28 @@
 <div class="container">
+  <div class="sucess"  *ngIf="showSucss">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+          <strong>Registration Success!</strong>
+      </p>
+    </div>
+  </div>
+  <div class="error"  *ngIf="showError">
+    <div class="col-xs-12">
+      <p class="alert alert-success">
+          <strong>Something got wrong, please try again!</strong>
+      </p>
+    </div>
+  </div>
   <form class="form-event" [formGroup]="formGroup" (ngSubmit)="ngSubmit()">
       <mat-form-field class="title-input" appearance="fill">
         <mat-label>Adicionar título</mat-label>
-        <input matInput formControlName="HOS_EVENT">
+        <input matInput formControlName="HOS_EVENT" required>
       </mat-form-field>
     <div class="form-components">
       <div class="form-right">
         <mat-form-field class="item" appearance="fill">
           <mat-label>Escolha a data</mat-label>
-          <input matInput [matDatepicker]="picker" [formControl]="date" (change)="onClose()">
+          <input matInput [matDatepicker]="picker" formControlName="HOS_DATE_EVENT" (change)="onClose()" required>
           <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
           <mat-datepicker #picker (closed)="onClose()"></mat-datepicker>
         </mat-form-field>
@@ -18,10 +32,8 @@
             </mat-icon>
             Selecione o(s) Espaço(s)
         </p>
-        <mat-radio-group aria-label="Select an option">
-          <mat-checkbox class="item" color="primary">Open Space</mat-checkbox>
-          <mat-checkbox class="item" color="primary">Lounge on Hall</mat-checkbox>
-        </mat-radio-group>
+          <mat-checkbox class="item" color="primary" formControlName="HOS_OPEN_SPACE" (click)="checkLocate()">Open Space</mat-checkbox>
+          <mat-checkbox class="item" color="primary" formControlName="HOS_PRIVATE_ESPACE" (click)="checkLocate()">Lounge on Hall</mat-checkbox>
       </div>
 
       <div class="form-left">
@@ -33,14 +45,14 @@
         </p>
         <mat-form-field class="select-hour" appearance="fill">
           <mat-label>Início</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let hour of hours" value="hour">{{hour}}</mat-option>
+          <mat-select required formControlName="HOS_START">
+            <mat-option  *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="select-hour" appearance="fill">
           <mat-label>Término</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let hour of hours" value="hour">{{hour}}</mat-option>
+          <mat-select required formControlName="HOS_END">
+            <mat-option  *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
           </mat-select>
         </mat-form-field>
         <p class="p-item">
@@ -49,16 +61,16 @@
             </mat-icon>
             Selecione o Tipo de Evento
         </p>
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button class="item" color="primary" value="1">Público</mat-radio-button>
-          <mat-radio-button class="item" color="primary" value="2">Privado</mat-radio-button>
+        <mat-radio-group aria-label="Select an option" formControlName="HOS_EVENT_TYPE" required>
+          <mat-radio-button class="item" color="primary" value="Public">Público</mat-radio-button>
+          <mat-radio-button class="item" color="primary" value="Private">Privado</mat-radio-button>
         </mat-radio-group>
       </div>
     </div>
     <div class="form-down">
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Digite o Nome ou Email para adicionar convidados</mat-label>
-        <input matInput value="">
+        <input matInput formControlName="HOS_GUESTS">
       </mat-form-field>
       <p class="p-item">
         <mat-icon class="schedule-icon">
@@ -68,7 +80,7 @@
       </p>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Digite os detalhes do evento.</mat-label>
-        <textarea matInput></textarea>
+        <textarea matInput formControlName="HOS_DESCRIPTION" required></textarea>
       </mat-form-field>
       <p class="photo-title">
         <mat-icon class="schedule-icon">
@@ -81,6 +93,6 @@
       </label>
       <input id="file-upload" type="file"/>
     </div>
-    <button mat-button color="primary" class="btn-submit">Solicitar Evento</button>
+    <button mat-button type="submit" color="primary" class="btn-submit">Solicitar Evento</button>
   </form>
 </div>
