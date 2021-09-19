@@ -48,4 +48,7 @@ public class OrganizadorModel {
 
    @Column(name = "usu_tipo")
    private String tipoUsuario;
+
+   @Column(name = "usu_cargo")
+   private String cargoUsuario;
 }

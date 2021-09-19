@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrganizadorService {
@@ -19,7 +20,10 @@ public class OrganizadorService {
 
     public List<OrganizadorModel> listar(){ return organizadorRepository.findAll(); }
 
-    public void atualizar(OrganizadorModel organizadorModel) {
+    public void aprovarOrg(String email) {
+        Optional<OrganizadorModel> org = organizadorRepository.findById(email);
+        OrganizadorModel organizadorModel = org.get();
+        organizadorModel.setTipoUsuario("org");
         organizadorRepository.save(organizadorModel);
     }
 
