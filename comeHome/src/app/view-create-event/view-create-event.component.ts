@@ -1,22 +1,32 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+import { AppService } from '../app.service';
+import AppMockedService from '../app.mocked.service';
 
 @Component({
   selector: 'app-view-create-event',
   templateUrl: './view-create-event.component.html',
   styleUrls: ['./view-create-event.component.scss']
 })
-export class ViewCreateEventComponent implements OnInit {
+export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public date: FormControl;
   public labelPicker: String;
+  public data: any;
   public formGroup: FormGroup;
   public hours: string[];
   public HOS_EVENT: any;
   public HOS_DATE_EVENT: any;
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private appService: AppService,
+    private appMockedService: AppMockedService,
+    ) { }
 
   ngOnInit(): void {
+    this.appMockedService.mirageJsServer();
+    console.log(this.getAllResults());
     this.hours = [
       '08:00',
       '09:00',
@@ -29,7 +39,6 @@ export class ViewCreateEventComponent implements OnInit {
       '16:00',
       '17:00',
     ]
-    console.log(this.hours);
     this.date = new FormControl();
     this.formGroup = this.createForm();
   }
@@ -41,6 +50,19 @@ export class ViewCreateEventComponent implements OnInit {
       HOS_EVENT: [this.HOS_EVENT],
       HOS_DATE_EVENT: [this.date.value],
     });
+  }
+  private getAllResults() {
+    this.appService.getAllResults().subscribe((values) => {
+      this.data = values;
+    });
+  }
+  private closeConnection() {
+    this.appService.closeMirage().subscribe((res) => {
+      return res;
+    });
+  }
+  ngOnDestroy(): void {
+    this.closeConnection();
   }
   ngSubmit() {}
 }

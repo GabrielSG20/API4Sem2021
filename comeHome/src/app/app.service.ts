@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class AppService {
 
   url = 'http://localhost:8081';
+  private mockedUrl = '/api/results';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,5 +23,11 @@ export class AppService {
   }
   protected handleError(error: any): Observable<any> {
     return throwError(error);
+  }
+  getAllResults(): Observable<any[]> {
+    return this.httpClient.get<any[]>(this.mockedUrl);
+  }
+  closeMirage(): Observable<any> {
+    return this.httpClient.get<any>(`${this.mockedUrl}/close`);
   }
 }
