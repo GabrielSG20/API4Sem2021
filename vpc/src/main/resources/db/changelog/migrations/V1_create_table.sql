@@ -111,4 +111,8 @@ CREATE SEQUENCE id_chave_seq;
 --changeset Gabriel:3
 ALTER TABLE Usuario ADD usu_cargo varchar2(30);
 
+--changeset Soares:1
+ALTER TABLE Evento MODIFY evt_data_inicio VARCHAR2(20);
+ALTER TABLE Evento MODIFY evt_data_fim VARCHAR2(20);
+
 
