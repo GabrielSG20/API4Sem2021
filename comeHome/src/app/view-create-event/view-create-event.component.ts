@@ -5,9 +5,6 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { AppService } from '../app.service';
 import AppMockedService from '../app.mocked.service';
 
-import { AppService } from '../app.service';
-import AppMockedService from '../app.mocked.service';
-
 @Component({
   selector: 'app-view-create-event',
   templateUrl: './view-create-event.component.html',
@@ -40,8 +37,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.HOS_OPEN_SPACE = new FormControl();
     this.HOS_PRIVATE_ESPACE = new FormControl();
-    this.appMockedService.mirageJsServer();
-    this.getAllResults();
+    this.getOrgs();
     this.hours = [
       '08:00',
       '09:00',
@@ -83,7 +79,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       HOS_GUESTS: [this.HOS_GUESTS],
       descricao: [this.HOS_DESCRIPTION, Validators.required],
       imagemDivulgacao: this.HOS_EVENT_IMAGE,
-      emailOrg: 'teste@hotmail.com',
+      email: 'ramon@oracle.com',
     });
   }
   checkLocate() {
@@ -111,31 +107,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       this.data = values;
       console.log(this.data['results']);
     });
-    this.getAllResults();
-    this.formGroup.reset();
-  }
-  ngOnDestroy(): void {
-    this.closeConnection();
-  }
-  ngSubmit() {
-    if (  this.formGroup.value.HOS_EVENT && this.formGroup.value.HOS_DATE_EVENT &&
-      this.formGroup.value.HOS_START && this.formGroup.value.HOS_END && this.formGroup.value.HOS_EVENT_TYPE && this.formGroup.value.HOS_DESCRIPTION) {
-        console.log('chegou');
-        this.appService.insertResult(this.formGroup.value).subscribe((res) => {
-          if(!res['_subscribe']){
-            this.showSucss = true;
-            this.showError = false;
-          } else{
-            this.showError = true;
-            this.showSucss = false;          }
-          return res;
-        });
-        this.getAllResults();
-        this.formGroup.reset();
-      } else {
-        this.showError = true;
-        this.showSucss = false;
-      }
   }
   private closeConnection() {
     this.appService.closeMirage().subscribe((res) => {
@@ -155,28 +126,28 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
     this.formGroup.reset();
   }
   ngOnDestroy(): void {
-    this.closeConnection();
   }
   ngSubmit() {
     this.checkLocate();
     this.dateFormat();
     if (this.formGroup.valid) {
+      console.log(this.appService.insertResult(this.formGroup.value));
         this.appService.insertResult(this.formGroup.value).subscribe((res) => {
-          if(!res['_subscribe']){
-            
-            this.showSucss = true;
-            this.showError = false;
-          } else{
-            this.showError = true;
-            this.showSucss = false;
-          }
+          this.showSucss = true;
+          this.showError = false;
+          this.formGroup.reset();
           return res;
         });
-        this.getAllResults();
-        this.formGroup.reset();
       } else {
         this.showError = true;
         this.showSucss = false;
       }
+  }
+
+  private getOrgs(){
+    this.appService.getOrgs().subscribe((values) => {
+      this.data = values;
+      console.log(this.data);
+    });
   }
 }
