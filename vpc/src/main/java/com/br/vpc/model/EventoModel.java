@@ -10,7 +10,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.sql.Blob;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -33,13 +32,13 @@ public class EventoModel {
     @Column(name = "evt_descricao")
     private String descricao;
 
-    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
+    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
     @Column(name = "evt_data_inicio")
-    private Date dataInicio;
+    private String dataInicio;
 
-    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
+    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
     @Column(name = "evt_data_fim")
-    private Date dataEncerramento;
+    private String dataEncerramento;
 
     @Column(name = "evt_tipo")
     private String tipoEvento;
@@ -53,5 +52,5 @@ public class EventoModel {
 
     @Email
     @Column(name = "usu_email")
-    private String emailOrg;
+    private String email;
 }

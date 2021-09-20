@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/eventos")
@@ -28,19 +28,18 @@ public class EventoController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizaEvento(@Valid @RequestBody EventoModel eventoModel){
+    @PutMapping("/aprovar/{titulo}")
+    public ResponseEntity<Void> aprovarEvento(@PathVariable String titulo){
         try {
-            eventoService.atualizar(eventoModel);
+            eventoService.aprovarEvento(titulo);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
-
     }
 
     @DeleteMapping("/delete/{titulo}")
-    public ResponseEntity<Void> deletar(@PathVariable(name = "titulo") String titulo){
+    public ResponseEntity<Void> deletar(@PathVariable String titulo){
         try {
             eventoService.deletar(titulo);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -49,4 +48,13 @@ public class EventoController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<List<EventoModel>> listarEventos(){
+        try {
+            List<EventoModel> listEvents = eventoService.listar();
+            return new ResponseEntity<>(listEvents, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
 }

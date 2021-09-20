@@ -38,10 +38,10 @@ public class OrganizadorController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
+    @PutMapping("/org/{email}")
+    public ResponseEntity<Void> atualizarOrganizador(@PathVariable String email){
         try {
-            organizadorService.atualizar(organizadorModel);
+            organizadorService.aprovarOrg(email);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
