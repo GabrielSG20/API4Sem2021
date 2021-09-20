@@ -36,7 +36,7 @@ export class AppService {
   }
   insertResult(result: any): Observable<any> {
     return this.httpClient
-      .post<any>(this.mockedUrl, result, { headers: this.mockedHead })
+      .post<any>(`${this.mockedUrl}/eventos`, result, { headers: this.head })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
 }

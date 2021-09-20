@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
 import AppMockedService from '../app.mocked.service';
@@ -20,11 +20,13 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public HOS_EVENT: any;
   public HOS_DATE_EVENT: any;
   public HOS_OPEN_SPACE: any;
+  public HOS_SPACE: any;
   public HOS_PRIVATE_ESPACE: any;
   public HOS_START: any;
   public HOS_END: any;
   public HOS_EVENT_TYPE: any;
   public HOS_GUESTS: any;
+  public HOS_EVENT_IMAGE: any;
   public HOS_DESCRIPTION: any;
   constructor(
     public formBuilder: FormBuilder,
@@ -54,31 +56,51 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   onClose() {
     this.labelPicker = (formatDate(this.formGroup.value.HOS_DATE_EVENT, 'fullDate', 'pt'));
   }
+  dateFormat() {
+    let eventDate = (formatDate(this.formGroup.value.HOS_DATE_EVENT, 'shortDate', 'pt'));
+    const dateHourStart = eventDate.concat(' ',this.formGroup.value.dataInicio);
+    const dateHoursEnd = eventDate.concat(' ', this.formGroup.value.dataEncerramento);
+    this.formGroup.patchValue({
+      dataInicio: dateHourStart,
+      dataEncerramento: dateHoursEnd,
+    });  
+
+    
+  }
   createForm(): FormGroup {
     return this.formBuilder.group({
-      HOS_EVENT: [this.HOS_EVENT],
-      HOS_DATE_EVENT: [this.HOS_DATE_EVENT],
+      titulo: [this.HOS_EVENT, Validators.required],
+      HOS_DATE_EVENT: [this.HOS_DATE_EVENT, Validators.required],
       HOS_OPEN_SPACE: this.HOS_OPEN_SPACE,
       HOS_PRIVATE_ESPACE: this.HOS_PRIVATE_ESPACE,
-      HOS_START: this.HOS_START,
-      HOS_END: this.HOS_END,
-      HOS_EVENT_TYPE: this.HOS_EVENT_TYPE,
-      HOS_GUESTS: this.HOS_GUESTS,
-      HOS_DESCRIPTION: this.HOS_DESCRIPTION,
+      nomeEspaco: [this.HOS_SPACE, Validators.required],
+      dataEncerramento: [this.HOS_END, Validators.required],
+      dataInicio: [this.HOS_START, Validators.required],
+      tipoEvento: [this.HOS_EVENT_TYPE, Validators.required],
+      HOS_GUESTS: [this.HOS_GUESTS],
+      descricao: [this.HOS_DESCRIPTION, Validators.required],
+      imagemDivulgacao: this.HOS_EVENT_IMAGE,
+      emailOrg: 'teste@hotmail.com',
     });
   }
   checkLocate() {
     if(this.formGroup.value.HOS_OPEN_SPACE == true && this.formGroup.value.HOS_PRIVATE_ESPACE == true) {
-      return ['Open Space', 'Lounge on Hall'];
+      this.formGroup.patchValue({
+        nomeEspaco: ['Open Space', 'Lounge on Hall'],
+      });  
     } 
     else if (this.formGroup.value.HOS_OPEN_SPACE != true && this.formGroup.value.HOS_PRIVATE_ESPACE == true) {
-      return ['Lounge on Hall'];
+      this.formGroup.patchValue({
+        nomeEspaco: ['Lounge on Hall'],
+      }); 
     }
     else if (this.formGroup.value.HOS_OPEN_SPACE == true && this.formGroup.value.HOS_PRIVATE_ESPACE != true) {
-      return ['Open Space'];
+      this.formGroup.patchValue({
+        nomeEspaco: ['Open Space'],
+      }); 
     }
     else {
-      return null;
+      this.formGroup.value.HOS_SPACE.se = null;
     }
   }
   private getAllResults() {
@@ -108,16 +130,18 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
     this.closeConnection();
   }
   ngSubmit() {
-    if (  this.formGroup.value.HOS_EVENT && this.formGroup.value.HOS_DATE_EVENT &&
-      this.formGroup.value.HOS_START && this.formGroup.value.HOS_END && this.formGroup.value.HOS_EVENT_TYPE && this.formGroup.value.HOS_DESCRIPTION) {
-        console.log('chegou');
+    this.checkLocate();
+    this.dateFormat();
+    if (this.formGroup.valid) {
         this.appService.insertResult(this.formGroup.value).subscribe((res) => {
           if(!res['_subscribe']){
+            
             this.showSucss = true;
             this.showError = false;
           } else{
             this.showError = true;
-            this.showSucss = false;          }
+            this.showSucss = false;
+          }
           return res;
         });
         this.getAllResults();
