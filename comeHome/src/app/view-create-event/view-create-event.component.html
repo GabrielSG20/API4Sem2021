@@ -2,27 +2,27 @@
   <div class="sucess"  *ngIf="showSucss">
     <div class="col-xs-12">
       <p class="alert alert-success">
-          <strong>Registration Success!</strong>
+          <strong>Registro salvo com sucesso!</strong>
       </p>
     </div>
   </div>
   <div class="error"  *ngIf="showError">
     <div class="col-xs-12">
       <p class="alert alert-success">
-          <strong>Something got wrong, please try again!</strong>
+          <strong>O registro não pode ser salvo, contate o administrador!</strong>
       </p>
     </div>
   </div>
   <form class="form-event" [formGroup]="formGroup" (ngSubmit)="ngSubmit()">
       <mat-form-field class="title-input" appearance="fill">
         <mat-label>Adicionar título</mat-label>
-        <input matInput formControlName="HOS_EVENT" required>
+        <input matInput formControlName="titulo">
       </mat-form-field>
     <div class="form-components">
       <div class="form-right">
         <mat-form-field class="item" appearance="fill">
           <mat-label>Escolha a data</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="HOS_DATE_EVENT" (change)="onClose()" required>
+          <input matInput [matDatepicker]="picker" formControlName="HOS_DATE_EVENT" (change)="onClose()">
           <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
           <mat-datepicker #picker (closed)="onClose()"></mat-datepicker>
         </mat-form-field>
@@ -32,8 +32,8 @@
             </mat-icon>
             Selecione o(s) Espaço(s)
         </p>
-          <mat-checkbox class="item" color="primary" formControlName="HOS_OPEN_SPACE" (click)="checkLocate()">Open Space</mat-checkbox>
-          <mat-checkbox class="item" color="primary" formControlName="HOS_PRIVATE_ESPACE" (click)="checkLocate()">Lounge on Hall</mat-checkbox>
+          <mat-checkbox class="item" color="primary" formControlName="HOS_OPEN_SPACE">Open Space</mat-checkbox>
+          <mat-checkbox class="item" color="primary" formControlName="HOS_PRIVATE_ESPACE">Lounge on Hall</mat-checkbox>
       </div>
 
       <div class="form-left">
@@ -45,13 +45,13 @@
         </p>
         <mat-form-field class="select-hour" appearance="fill">
           <mat-label>Início</mat-label>
-          <mat-select required formControlName="HOS_START">
+          <mat-select formControlName="dataInicio">
             <mat-option  *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="select-hour" appearance="fill">
           <mat-label>Término</mat-label>
-          <mat-select required formControlName="HOS_END">
+          <mat-select formControlName="dataEncerramento">
             <mat-option  *ngFor="let hour of hours" value="{{hour}}">{{hour}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -61,7 +61,7 @@
             </mat-icon>
             Selecione o Tipo de Evento
         </p>
-        <mat-radio-group aria-label="Select an option" formControlName="HOS_EVENT_TYPE" required>
+        <mat-radio-group aria-label="Select an option" formControlName="tipoEvento">
           <mat-radio-button class="item" color="primary" value="Public">Público</mat-radio-button>
           <mat-radio-button class="item" color="primary" value="Private">Privado</mat-radio-button>
         </mat-radio-group>
@@ -80,7 +80,7 @@
       </p>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Digite os detalhes do evento.</mat-label>
-        <textarea matInput formControlName="HOS_DESCRIPTION" required></textarea>
+        <textarea matInput formControlName="descricao"></textarea>
       </mat-form-field>
       <p class="photo-title">
         <mat-icon class="schedule-icon">
@@ -88,10 +88,10 @@
           </mat-icon>
           Selecione imagem de divulgação do evento
       </p>
-      <label for="file-upload" class="custom-file-upload">
+      <label for="file-upload" class="custom-file-upload" >
         Clique para Selecionar o Arquivo
       </label>
-      <input id="file-upload" type="file"/>
+      <input id="file-upload" accept="image/png, image/jpg, image/jpeg" formControlName="imagemDivulgacao" type="file"/>
     </div>
     <button mat-button type="submit" color="primary" class="btn-submit">Solicitar Evento</button>
   </form>
