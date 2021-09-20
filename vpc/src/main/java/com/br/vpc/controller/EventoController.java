@@ -1,6 +1,9 @@
 package com.br.vpc.controller;
 
+import com.br.vpc.model.EventoDTO;
 import com.br.vpc.model.EventoModel;
+import com.br.vpc.service.EspacoService;
+import com.br.vpc.service.EventoEspacoService;
 import com.br.vpc.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +20,14 @@ public class EventoController {
     @Autowired
     EventoService eventoService;
 
+    @Autowired
+    EventoEspacoService eventoEspacoService;
+
     @PostMapping
-    public ResponseEntity<Void> cadastroEvento(@Valid @RequestBody EventoModel eventoModel){
+    public ResponseEntity<Void> cadastroEvento(@Valid @RequestBody EventoDTO eventoDTO){
         try {
-            eventoService.cadastrar(eventoModel);
+            eventoService.cadastrar(eventoDTO);
+            eventoEspacoService.cadastrar(eventoDTO.getNomeEspaco(), eventoService.findEventByTitle(eventoDTO.getTitulo()));
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (Exception e){
             e.printStackTrace();

@@ -111,8 +111,10 @@ CREATE SEQUENCE id_chave_seq;
 --changeset Gabriel:3
 ALTER TABLE Usuario ADD usu_cargo varchar2(30);
 
---changeset Soares:1
+--changeset Soares:4
 ALTER TABLE Evento MODIFY evt_data_inicio VARCHAR2(20);
 ALTER TABLE Evento MODIFY evt_data_fim VARCHAR2(20);
 
-
+--changeset Soares:5
+INSERT INTO Espaco VALUES (ID_CHAVE_SEQ.nextval, 'Open Space', 50);
+INSERT INTO Espaco VALUES (ID_CHAVE_SEQ.nextval, 'Lounge on Hall', 20);
