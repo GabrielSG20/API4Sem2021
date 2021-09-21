@@ -141,7 +141,30 @@
    ---
    
    <h2 style="font-family:roboto;"> Como executar o projeto</h2>
-   <p align="justify" style="font-family:roboto;"> Em desenvolvimento. </p>
+   
+   <b> Clone essa branch para sua máquina por meio do GIT.</b>
+   
+   <b> Criando o usuário Admin no Banco Oracle: </b>
+   Rode os seguintes comandos no SQLDeveloper ou SQLPlus conectado ao usuário sys ou system da database padrão (xe):
+   create user admin identified by admin; </br>
+   grant dba to admin with admin option;
+   
+   <b> Instalação das dependências necessárias: </b>
+   Baixar node.js (v14.17.6 LTS): https://nodejs.org/en/
+   
+   Abra um prompt de comando no caminho de pastas: C:\YourLocal\API4Sem2021\comeHome.</br>
+   E rode os seguintes comandos: </br>
+   npm install -g @angular/cli </br>
+   npm install
+   
+   <b> Uso: </b>
+   No mesmo prompt de comando da instalação dependências, rode o comando: </br>
+   ng serve
+   Abra outro prompt de comando no caminho de pastas: C:\YourLocal\API4Sem2021. </br>
+   E rode o seguinte comando: </br>
+   java -jar vpc.jar
+   
+   Com esses dois prompts rodando, abra o seguinte link no navegador de sua preferência: http://localhost:4200/
    
    ---
    
