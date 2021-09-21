@@ -2,7 +2,6 @@ package com.br.vpc.controller;
 
 import com.br.vpc.model.EventoDTO;
 import com.br.vpc.model.EventoModel;
-import com.br.vpc.service.EspacoService;
 import com.br.vpc.service.EventoEspacoService;
 import com.br.vpc.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class EventoController {
     @Autowired
     EventoEspacoService eventoEspacoService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Void> cadastroEvento(@Valid @RequestBody EventoDTO eventoDTO){
         try {
             eventoService.cadastrar(eventoDTO);

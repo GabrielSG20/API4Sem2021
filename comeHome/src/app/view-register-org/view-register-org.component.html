@@ -1,10 +1,17 @@
+<div class="sucess"  *ngIf="showSucss">
+  <div class="col-xs-12">
+    <p class="alert alert-success">
+        <strong>Registro salvo com sucesso!</strong>
+    </p>
+  </div>
+</div>
 <div class="resOrg">
   <h1>Preencha as informações para se cadastrar como Organizador</h1>
-  <form id="register-as-organizer">
+  <form id="register-as-organizer" [formGroup]="formGroup">
     <div class="body">
     <label for="role">Função ou Cargo:</label>
-    <input type="text" id="role" placeholder="Digite sua função ou cargo">
-    <input type="submit" id="btn-submit" value="Quero ser Organizador">
+    <input type="text" id="role" placeholder="Digite sua função ou cargo" formControlName="cargoUsuario">
+    <input type="submit" id="btn-submit" value="Quero ser Organizador" (click)="ngSubmit()">
     </div>                    
   </form>
 </div>
