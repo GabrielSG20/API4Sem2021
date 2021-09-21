@@ -3,7 +3,7 @@
    
   <p align="center"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white"> <img src= "https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"> <img src= "https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=black"> <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> </p>
     
-  <p align="center"> <img src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/banner.png"></p>
+  <p align="center"> <img src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/banner.png"></p>
   
   <h4 align="center"> 🚧 #VEMPRACASA :calendar:  Sprint 1 🚀 🚧 </h4>
   
@@ -28,14 +28,14 @@
 <h2 style="font-family:roboto;"> A Equipe</h2>
   <table align="center">
   <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/gabrielsoaresgoncalves/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/GabrielSoares.jfif" width="100px;" alt=""/><br /><sub><b>Gabriel Soares</b></sub></a><br/><sub><b>Scrum Master</b></sub></td>
-     <td align="center"><a href="https://www.linkedin.com/in/guilhermeftavares/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/GuilhermeTavares.png" width="100px;" alt=""/><br/><sub><b>Guilherme Tavares</b></sub></a><br/><sub><b>Product Owner</b></sub></td>
-    <td align="center"><a href="https://www.linkedin.com/in/mike-barcelos-b4648016a/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/MikeBarcelos.jfif" width="100px;" alt=""/><br /><sub><b>Mike Barcelos</b></sub></a><br/><sub><b>Desenvolvedor</b></sub></td>    
+    <td align="center"><a href="https://www.linkedin.com/in/gabrielsoaresgoncalves/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/GabrielSoares.jfif" width="100px;" alt=""/><br /><sub><b>Gabriel Soares</b></sub></a><br/><sub><b>Scrum Master</b></sub></td>
+     <td align="center"><a href="https://www.linkedin.com/in/guilhermeftavares/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/GuilhermeTavares.png" width="100px;" alt=""/><br/><sub><b>Guilherme Tavares</b></sub></a><br/><sub><b>Product Owner</b></sub></td>
+    <td align="center"><a href="https://www.linkedin.com/in/mike-barcelos-b4648016a/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/MikeBarcelos.jfif" width="100px;" alt=""/><br /><sub><b>Mike Barcelos</b></sub></a><br/><sub><b>Desenvolvedor</b></sub></td>    
   </tr>
   <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/ramon-fernandes-19244a1ab/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/RamonFernandes.jfif" width="100px;" alt=""/><br /><sub><b>Ramon Fernandes</b></sub></a><br/><sub><b>Desenvolvedor</b></sub></td>
-    <td align="center"><a href="https://www.linkedin.com/in/gabriel-henrique-de-souza-ferraz-4873581b2/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/GabrielFerraz.jfif" width="100px;" alt=""/><br /><sub><b>Gabriel Ferraz</b></sub></a><br/><sub><b>Desenvolvedor</b></sub></td>
-   <td align="center"><a href="https://www.linkedin.com/in/abra%C3%A3o-vasconcelos-492524187/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/AbraaoVasconcelos.jfif" width="100px;" alt=""/><br /><sub><b>Abraão Vasconcelos</b></sub></a><br/><sub><b>Desenvolvedor</b></sub></td>    
+    <td align="center"><a href="https://www.linkedin.com/in/ramon-fernandes-19244a1ab/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/RamonFernandes.jfif" width="100px;" alt=""/><br /><sub><b>Ramon Fernandes</b></sub></a><br/><sub><b>Desenvolvedor</b></sub></td>
+    <td align="center"><a href="https://www.linkedin.com/in/gabriel-henrique-de-souza-ferraz-4873581b2/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/GabrielFerraz.jfif" width="100px;" alt=""/><br /><sub><b>Gabriel Ferraz</b></sub></a><br/><sub><b>Desenvolvedor</b></sub></td>
+   <td align="center"><a href="https://www.linkedin.com/in/abra%C3%A3o-vasconcelos-492524187/"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/AbraaoVasconcelos.jfif" width="100px;" alt=""/><br /><sub><b>Abraão Vasconcelos</b></sub></a><br/><sub><b>Desenvolvedor</b></sub></td>    
   </tr>
 </table>
   
@@ -88,26 +88,26 @@
     <td align="center">Sprint 4</td>
   </tr>
      <tr>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt1_card1.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt2_card1.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt3_card1.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt4_card1.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt1_card1.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt2_card1.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt3_card1.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt4_card1.png" width="300px;" alt=""/></td>
   </tr>
      <tr>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt1_card2.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt2_card2.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt3_card2.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt4_card2.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt1_card2.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt2_card2.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt3_card2.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt4_card2.png" width="300px;" alt=""/></td>
   </tr>
       <tr>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt1_card3.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt2_card3.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt3_card3.png" width="300px;" alt=""/></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt4_card3.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt1_card3.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt2_card3.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt3_card3.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt4_card3.png" width="300px;" alt=""/></td>
   </tr>
       <tr>
     <td align="center">---</td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/spt2_card4.png" width="300px;" alt=""/></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/spt2_card4.png" width="300px;" alt=""/></td>
     <td align="center">---</td>
     <td align="center">---</td>
   </tr>
@@ -121,20 +121,20 @@
   
   <table align="center">
     <tr>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/home_page.png" width="500px;" alt=""/><br /><sub><b>Home Page</b></sub></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/login.png" width="500px;" alt=""/><br /><sub><b>Login</b></sub></td>  
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/home_page.png" width="500px;" alt=""/><br /><sub><b>Home Page</b></sub></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/login.png" width="500px;" alt=""/><br /><sub><b>Login</b></sub></td>  
   </tr>
   <tr>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/recup_senha.png" width="500px;" alt=""/><br /><sub><b>Recuperar Senha</b></sub></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/cadastro_ext.png" width="500px;" alt=""/><br /><sub><b>Tela Cadastro</b></sub></td>       
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/recup_senha.png" width="500px;" alt=""/><br /><sub><b>Recuperar Senha</b></sub></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/cadastro_ext.png" width="500px;" alt=""/><br /><sub><b>Tela Cadastro</b></sub></td>       
   </tr>
   <tr>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/org_eventos.png" width="500px;" alt=""/><br /><sub><b>Meus Eventos</b></sub></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/org_criar.png" width="500px;" alt=""/><br /><sub><b>Criar Evento</b></sub></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/org_eventos.png" width="500px;" alt=""/><br /><sub><b>Meus Eventos</b></sub></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/org_criar.png" width="500px;" alt=""/><br /><sub><b>Criar Evento</b></sub></td>
   </tr>
   <tr>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/org_criar2.png" width="500px;" alt=""/><br /><sub><b>Detalhes Evento</b></sub></td>
-    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/org_fornecedores.png" width="500px;" alt=""/><br /><sub><b>Consultar Fornecedor</b></sub></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/org_criar2.png" width="500px;" alt=""/><br /><sub><b>Detalhes Evento</b></sub></td>
+    <td align="center"><img style="border-radius: 50%;" src="https://github.com/GabrielSG20/API4Sem2021/blob/documentation/images/org_fornecedores.png" width="500px;" alt=""/><br /><sub><b>Consultar Fornecedor</b></sub></td>
   </tr>
 </table>
    
