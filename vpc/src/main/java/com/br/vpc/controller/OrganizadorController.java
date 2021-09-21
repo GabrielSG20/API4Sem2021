@@ -38,10 +38,10 @@ public class OrganizadorController {
         }
     }
 
-    @PutMapping("/org/{email}")
-    public ResponseEntity<Void> atualizarOrganizador(@PathVariable String email){
+    @PutMapping("/org")
+    public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
         try {
-            organizadorService.aprovarOrg(email);
+            organizadorService.aprovarOrg(organizadorModel);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
@@ -49,7 +49,7 @@ public class OrganizadorController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deletarOrganizador(@RequestBody OrganizadorModel organizadorModel){
+    public ResponseEntity<Void> deletarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
         try {
             organizadorService.deletar(organizadorModel.getEmail());
             return new ResponseEntity<>(HttpStatus.OK);

@@ -39,4 +39,9 @@ export class AppService {
       .post<any>(`${this.url}/eventos/create`, result, { headers: this.head })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
+  updateOrg(result: any): Observable<any> {
+    return this.httpClient
+      .put<any>(`${this.url}/company-user/org`, result, { headers: this.head })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
 }

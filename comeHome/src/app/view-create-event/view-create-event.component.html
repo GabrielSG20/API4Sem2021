@@ -82,16 +82,13 @@
         <mat-label>Digite os detalhes do evento.</mat-label>
         <textarea matInput formControlName="descricao"></textarea>
       </mat-form-field>
-      <p class="photo-title">
+      <!--<p class="photo-title">
         <mat-icon class="schedule-icon">
           image
           </mat-icon>
           Selecione imagem de divulgação do evento
-      </p>
-      <label for="file-upload" class="custom-file-upload" >
-        Clique para Selecionar o Arquivo
-      </label>
-      <input id="file-upload" accept="image/png, image/jpg, image/jpeg" formControlName="imagemDivulgacao" type="file"/>
+      </p> -->
+      <input class="custom-file-upload" accept="image/png, image/jpg, image/jpeg" formControlName="imagemDivulgacao" type="file"/>
     </div>
     <button mat-button type="submit" color="primary" class="btn-submit">Solicitar Evento</button>
   </form>

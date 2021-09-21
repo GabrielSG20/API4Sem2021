@@ -20,11 +20,12 @@ public class OrganizadorService {
 
     public List<OrganizadorModel> listar(){ return organizadorRepository.findAll(); }
 
-    public void aprovarOrg(String email) {
-        Optional<OrganizadorModel> org = organizadorRepository.findById(email);
-        OrganizadorModel organizadorModel = org.get();
-        organizadorModel.setTipoUsuario("org");
-        organizadorRepository.save(organizadorModel);
+    public void aprovarOrg(OrganizadorModel organizadorModel) {
+        Optional<OrganizadorModel> org = organizadorRepository.findById(organizadorModel.getEmail());
+        OrganizadorModel usuario = org.get();
+        usuario.setCargoUsuario(organizadorModel.getCargoUsuario());
+        usuario.setTipoUsuario("org");
+        organizadorRepository.save(usuario);
     }
 
     public void deletar(String id){

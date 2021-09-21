@@ -79,7 +79,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       HOS_GUESTS: [this.HOS_GUESTS],
       descricao: [this.HOS_DESCRIPTION, Validators.required],
       imagemDivulgacao: this.HOS_EVENT_IMAGE,
-      email: 'ramon@oracle.com',
+      email: 'gabisgoncalves20@gmail.com',
     });
   }
   checkLocate() {
@@ -130,18 +130,27 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   ngSubmit() {
     this.checkLocate();
     this.dateFormat();
+    console.log(this.formGroup.value);
     if (this.formGroup.valid) {
-      console.log(this.appService.insertResult(this.formGroup.value));
-        this.appService.insertResult(this.formGroup.value).subscribe((res) => {
-          this.showSucss = true;
-          this.showError = false;
-          this.formGroup.reset();
-          return res;
-        });
-      } else {
+        this.appService.insertResult(this.formGroup.value).subscribe(response => {
+            console.log(response);
+          },
+          error => {
+            console.log(error);
+            this.showError = true;
+            this.showSucss = false;
+            this.formGroup.reset();
+          }, 
+          () => {
+            this.showSucss = true;
+            this.showError = false;
+            this.formGroup.reset();
+          });
+        this.formGroup.reset();
+    } else {
         this.showError = true;
         this.showSucss = false;
-      }
+    }
   }
 
   private getOrgs(){
