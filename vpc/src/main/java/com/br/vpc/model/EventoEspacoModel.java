@@ -1,4 +1,4 @@
-package com.br.vpc.model;
+/*package com.br.vpc.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "Evento_Espaco")
 public class EventoEspacoModel implements Serializable {
     @EmbeddedId
     private EventoEspacoID eventoEspacoID;
 }
+*/

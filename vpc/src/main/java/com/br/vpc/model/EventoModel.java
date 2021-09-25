@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -24,33 +25,28 @@ public class EventoModel {
     @Column(name = "evt_id")
     private Integer idEvento;
 
-    @NonNull
-    @Column(name = "evt_titulo")
+    @Column(name = "evt_titulo", nullable = false, length = 30)
     private String titulo;
 
-    @Size(max = 250)
-    @Column(name = "evt_descricao")
+    @Column(name = "evt_descricao", length = 80)
     private String descricao;
 
-    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
-    @Column(name = "evt_data_inicio")
+    @Column(name = "evt_data_inicio", nullable = false, length = 100)
     private String dataInicio;
 
-    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
-    @Column(name = "evt_data_fim")
+    @Column(name = "evt_data_fim", nullable = false, length = 100)
     private String dataEncerramento;
 
-    @Column(name = "evt_tipo")
+    @Column(name = "evt_tipo", nullable = false, length = 10)
     private String tipoEvento;
 
-    @Size(max = 4)
-    @Column(name = "evt_status")
-    private Integer status;
+    @Column(name = "evt_status", columnDefinition = "number default NULL")
+    private Integer status;//DEFAULT NULL
 
     @Column(name = "evt_imagem")
     private Blob imagemDivulgacao;
 
-    @Email
     @Column(name = "usu_email")
     private String email;
+
 }

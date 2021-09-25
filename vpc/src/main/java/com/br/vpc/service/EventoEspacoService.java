@@ -1,4 +1,4 @@
-package com.br.vpc.service;
+/*package com.br.vpc.service;
 
 import com.br.vpc.model.EventoEspacoID;
 import com.br.vpc.model.EventoEspacoModel;
@@ -22,3 +22,4 @@ public class EventoEspacoService {
         }
     }
 }
+*/

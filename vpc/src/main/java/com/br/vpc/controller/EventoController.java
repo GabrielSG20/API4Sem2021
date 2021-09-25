@@ -1,5 +1,5 @@
 package com.br.vpc.controller;
-
+/*
 import com.br.vpc.model.EventoDTO;
 import com.br.vpc.model.EventoModel;
 import com.br.vpc.service.EventoEspacoService;
@@ -64,3 +64,4 @@ public class EventoController {
         }
     }
 }
+*/

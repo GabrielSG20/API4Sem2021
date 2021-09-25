@@ -18,9 +18,9 @@ public class EspacoModel {
     @Column(name = "esp_id")
     private Integer idEspaco;
 
-    @Column(name = "esp_nome")
+    @Column(name = "esp_nome", nullable = false, length = 30)
     private String nomeEspaco;
 
-    @Column(name = "esp_capacidade")
+    @Column(name = "esp_capacidade", nullable = false)
     private Integer capEspaco;
 }
