@@ -87,11 +87,13 @@
           image
           </mat-icon>
           Selecione imagem de divulgação do evento
-      <input class="custom-file-upload"
-      (change)="onFileSelected($event)" 
-      accept="image/png, image/jpg, image/jpeg" 
-      formControlName="imagemDivulgacao" 
-      type="file"/>
+      </p>
+      <input id="file-upload" 
+      formControlName="imagemDivulgacao"
+      type="file" 
+      class=" custom-file-upload" 
+      accept="image/png, image/jpeg" 
+      (change)="onFileSelected($event)"/>
     </div>
     <button mat-button type="submit" color="primary" class="btn-submit">Solicitar Evento</button>
   </form>

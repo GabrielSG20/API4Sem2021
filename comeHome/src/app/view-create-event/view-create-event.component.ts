@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Reacti
 
 import { AppService } from '../app.service';
 import AppMockedService from '../app.mocked.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-create-event',
@@ -28,12 +29,12 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public HOS_END: any;
   public HOS_EVENT_TYPE: any;
   public HOS_GUESTS: any;
-  public HOS_EVENT_IMAGE: any;
+  public HOS_EVENT_IMAGE: File;
   public HOS_DESCRIPTION: any;
   constructor(
     public formBuilder: FormBuilder,
     private appService: AppService,
-    private appMockedService: AppMockedService,
+    private http: HttpClient,
     ) { }
 
   ngOnInit(): void {
@@ -70,7 +71,8 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   }
   
   onFileSelected(event: any) {
-    console.log(event);
+    this.HOS_EVENT_IMAGE = event.target.files[0];
+    console.log(this.HOS_EVENT_IMAGE);
   }
   
   createForm(): FormGroup {
@@ -109,6 +111,13 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       this.formGroup.value.HOS_SPACE.se = null;
     }
   }
+
+  getImage() {
+    console.log(this.HOS_EVENT_IMAGE);
+    this.formGroup.patchValue({
+      nomeEspaco: this.HOS_EVENT_IMAGE,
+    });
+  }
   private getAllResults() {
     this.appService.getAllResults().subscribe((values) => {
       this.data = values;
@@ -135,6 +144,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
   ngSubmit() {
+    this.getImage();
     this.checkLocate();
     this.dateFormat();
     console.log(this.formGroup.value);
