@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
 import AppMockedService from '../app.mocked.service';
@@ -12,6 +12,8 @@ import AppMockedService from '../app.mocked.service';
 })
 export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public labelPicker: String;
+  @ViewChild('formDirective') 
+  private formDirective: NgForm;
   public data: any;
   public showSucss: boolean;
   public showError: boolean;
@@ -66,6 +68,11 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
 
     
   }
+  
+  onFileSelected(event: any) {
+    console.log(event);
+  }
+  
   createForm(): FormGroup {
     return this.formBuilder.group({
       titulo: [this.HOS_EVENT, Validators.required],
@@ -136,21 +143,21 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
             console.log(response);
           },
           error => {
-            console.log(error);
+            console.log('chegou');
             this.showError = true;
             this.showSucss = false;
-            this.formGroup.reset();
           }, 
           () => {
             this.showSucss = true;
+            setTimeout(() =>{this.showSucss = false;}, 4000);
             this.showError = false;
-            this.formGroup.reset();
           });
-        this.formGroup.reset();
     } else {
         this.showError = true;
         this.showSucss = false;
     }
+    this.formDirective.resetForm();
+    this.formGroup.reset();
   }
 
   private getOrgs(){
