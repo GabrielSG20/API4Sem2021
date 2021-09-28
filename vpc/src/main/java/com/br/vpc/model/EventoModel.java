@@ -4,13 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.sql.Blob;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -31,9 +29,11 @@ public class EventoModel {
     @Column(name = "evt_descricao", length = 80)
     private String descricao;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
     @Column(name = "evt_data_inicio", nullable = false, length = 100)
     private String dataInicio;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
     @Column(name = "evt_data_fim", nullable = false, length = 100)
     private String dataEncerramento;
 
@@ -41,12 +41,18 @@ public class EventoModel {
     private String tipoEvento;
 
     @Column(name = "evt_status", columnDefinition = "number default NULL")
-    private Integer status;//DEFAULT NULL
+    private Integer status;
 
     @Column(name = "evt_imagem")
     private Blob imagemDivulgacao;
 
-    @Column(name = "usu_email")
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "usu_email")
+    private OrganizadorModel org;
+
+    @ManyToMany
+    @JoinTable(name = "evento_espaco",joinColumns = @JoinColumn(name = "evt_id"),
+                               inverseJoinColumns = @JoinColumn(name = "esp_id"))
+    private Set<EspacoModel> espacos = new HashSet<>();
 
 }

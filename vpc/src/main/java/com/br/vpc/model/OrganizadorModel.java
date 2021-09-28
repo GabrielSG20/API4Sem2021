@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -52,4 +51,7 @@ public class OrganizadorModel {
 
     @Column(name = "usu_senha", unique = true, nullable = false, length = 100)
     private String senhaUsuario;
+
+    @OneToMany(mappedBy = "org")
+    private List<EventoModel> eventos =  new ArrayList<>();
 }

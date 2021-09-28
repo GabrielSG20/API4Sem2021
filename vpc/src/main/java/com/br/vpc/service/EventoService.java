@@ -1,5 +1,5 @@
 package com.br.vpc.service;
-
+/*
 import com.br.vpc.model.EventoDTO;
 import com.br.vpc.model.EventoModel;
 import com.br.vpc.repository.EventoRepository;
@@ -23,7 +23,7 @@ public class EventoService {
         event.setTipoEvento(eventoDTO.getTipoEvento());
         event.setStatus(eventoDTO.getStatus());
         event.setImagemDivulgacao(eventoDTO.getImagemDivulgacao());
-        event.setEmail(eventoDTO.getEmail());
+        event.setEmail(eventoDTO.getEmail());/*
         eventoRepository.save(event);
     }
 
@@ -46,3 +46,4 @@ public class EventoService {
 
     public List<EventoModel> listar(){ return eventoRepository.findAll(); }
 }
+*/
