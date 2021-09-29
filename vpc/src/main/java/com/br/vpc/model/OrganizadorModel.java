@@ -25,11 +25,11 @@ public class OrganizadorModel {
     @Column(name = "usu_nome", nullable = false, length = 80)
     private String nomeCompleto;
 
-    @Column(name = "usu_cpf", unique = true, nullable = false)
-    private Integer cpf;
+    @Column(name = "usu_cpf", unique = true, nullable = false, length = 15)
+    private String cpf;
 
     @Column(name = "usu_telefone", nullable = false)
-    private Integer telefone;
+    private String telefone;
 
     @Column(name = "usu_departamento", length = 30)
     private String departamento;
@@ -54,4 +54,5 @@ public class OrganizadorModel {
 
     @OneToMany(mappedBy = "org")
     private List<EventoModel> eventos =  new ArrayList<>();
+
 }

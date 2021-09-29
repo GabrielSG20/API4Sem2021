@@ -5,8 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
-    @Data
+@Data
     @NoArgsConstructor
     @AllArgsConstructor
     @Entity
@@ -23,5 +24,8 @@ import javax.persistence.*;
 
         @Column(name = "cat_descricao", length = 30)
         private String descCategoria;
+
+        @ManyToMany(mappedBy = "categorias")
+        private List<FornecedorModel> fornecedores;
     }
 
