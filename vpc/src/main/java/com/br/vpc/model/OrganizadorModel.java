@@ -41,7 +41,7 @@ public class OrganizadorModel {
     private Integer idOracle;
 
     @Column(name = "usu_comprovante_vacinacao", nullable = false)
-    private Blob comprovanteVacinacao;
+    private String comprovanteVacinacao;
 
     @Column(name = "usu_tipo", nullable = false, length = 20)
     private String tipoUsuario;

@@ -44,7 +44,7 @@ public class EventoModel {
     private Integer status;
 
     @Column(name = "evt_imagem")
-    private Blob imagemDivulgacao;
+    private String imagemDivulgacao;
 
     @ManyToOne
     @JoinColumn(name = "usu_email")
