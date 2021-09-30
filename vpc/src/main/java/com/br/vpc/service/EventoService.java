@@ -1,7 +1,9 @@
 package com.br.vpc.service;
-/*
-import com.br.vpc.model.EventoDTO;
+
+import com.br.vpc.model.EspacoModel;
 import com.br.vpc.model.EventoModel;
+import com.br.vpc.model.OrganizadorModel;
+import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,16 +16,20 @@ public class EventoService {
     @Autowired
     EventoRepository eventoRepository;
 
-    public void cadastrar(EventoDTO eventoDTO) {
-        EventoModel event = new EventoModel();
-        event.setTitulo(eventoDTO.getTitulo());
-        event.setDescricao(eventoDTO.getDescricao());
-        event.setDataInicio(eventoDTO.getDataInicio());
-        event.setDataEncerramento(eventoDTO.getDataEncerramento());
-        event.setTipoEvento(eventoDTO.getTipoEvento());
-        event.setStatus(eventoDTO.getStatus());
-        event.setImagemDivulgacao(eventoDTO.getImagemDivulgacao());
-        event.setEmail(eventoDTO.getEmail());/*
+    @Autowired
+    EspacoRepository espacoRepository;
+
+    public void cadastrar(EventoModel event) {
+        OrganizadorModel org = new OrganizadorModel();
+        org.setEmail("teste@gmail.com");
+        event.setOrg(org);
+
+        /*for(EspacoModel espaco:event.getNomeEspaco()){
+            event.getNomeEspaco().remove(espaco);
+            espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));
+            event.getNomeEspaco().add(espaco);
+        }*/
+
         eventoRepository.save(event);
     }
 
@@ -46,4 +52,3 @@ public class EventoService {
 
     public List<EventoModel> listar(){ return eventoRepository.findAll(); }
 }
-*/

@@ -1,15 +1,12 @@
 package com.br.vpc.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "Usuario")
 public class OrganizadorModel {
+    @Email
     @Id
     @Column(name = "usu_email", length = 80)
     private String email;
@@ -52,6 +50,7 @@ public class OrganizadorModel {
     @Column(name = "usu_senha", unique = true, nullable = false, length = 100)
     private String senhaUsuario;
 
-    @OneToMany(mappedBy = "org")
-    private List<EventoModel> eventos =  new ArrayList<>();
+    @OneToMany(mappedBy = "org", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("org")
+    private List<EventoModel> eventos;
 }

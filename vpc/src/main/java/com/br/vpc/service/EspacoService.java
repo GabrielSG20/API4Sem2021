@@ -9,7 +9,7 @@ public class EspacoService {
     @Autowired
     EspacoRepository espacoRepository;
 
-    public Integer findEspacoByName(String espacoName){
+    /*public Integer findEspacoByName(String espacoName){
         return espacoRepository.findEspacoByName(espacoName);
-    }
+    }*/
 }

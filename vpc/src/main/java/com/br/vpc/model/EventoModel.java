@@ -1,10 +1,10 @@
 package com.br.vpc.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.sql.Blob;
 import java.util.HashSet;
@@ -46,6 +46,7 @@ public class EventoModel {
     @Column(name = "evt_imagem")
     private Blob imagemDivulgacao;
 
+    @JsonIgnoreProperties("eventos")
     @ManyToOne
     @JoinColumn(name = "usu_email")
     private OrganizadorModel org;
@@ -53,6 +54,6 @@ public class EventoModel {
     @ManyToMany
     @JoinTable(name = "evento_espaco",joinColumns = @JoinColumn(name = "evt_id"),
                                inverseJoinColumns = @JoinColumn(name = "esp_id"))
-    private Set<EspacoModel> espacos = new HashSet<>();
+    private Set<EspacoModel> nomeEspaco = new HashSet<>();
 
 }
