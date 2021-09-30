@@ -24,11 +24,7 @@ public class EventoService {
         org.setEmail("teste@gmail.com");
         event.setOrg(org);
 
-        /*for(EspacoModel espaco:event.getNomeEspaco()){
-            event.getNomeEspaco().remove(espaco);
-            espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));
-            event.getNomeEspaco().add(espaco);
-        }*/
+        for(EspacoModel espaco:event.getNomeEspaco()){ espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));}
 
         eventoRepository.save(event);
     }
@@ -44,10 +40,6 @@ public class EventoService {
     public void deletar(String title){
         Integer id = eventoRepository.findEventoByTitle(title);
         eventoRepository.deleteById(id);
-    }
-
-    public Integer findEventByTitle(String title){
-        return eventoRepository.findEventoByTitle(title);
     }
 
     public List<EventoModel> listar(){ return eventoRepository.findAll(); }
