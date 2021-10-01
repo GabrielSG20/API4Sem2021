@@ -44,7 +44,7 @@ public class EventoModel {
     private Integer status;
 
     @Column(name = "evt_imagem")
-    private Blob imagemDivulgacao;
+    private String imagemDivulgacao;
 
     @JsonIgnoreProperties("eventos")
     @ManyToOne
@@ -56,4 +56,13 @@ public class EventoModel {
                                inverseJoinColumns = @JoinColumn(name = "esp_id"))
     private Set<EspacoModel> nomeEspaco = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "evento_fornecedor",joinColumns = @JoinColumn(name = "evt_id"),
+                                        inverseJoinColumns = @JoinColumn(name = "for_cnpj"))
+    private Set<FornecedorModel> fornecedores = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "evento_usuario",joinColumns = @JoinColumn(name = "evt_id"),
+            inverseJoinColumns = @JoinColumn(name = "usu_email"))
+    private Set<OrganizadorModel> convidados = new HashSet<>();
 }

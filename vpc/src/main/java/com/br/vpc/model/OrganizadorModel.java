@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.sql.Blob;
 import java.util.List;
 
 @Data
@@ -23,11 +22,11 @@ public class OrganizadorModel {
     @Column(name = "usu_nome", nullable = false, length = 80)
     private String nomeCompleto;
 
-    @Column(name = "usu_cpf", unique = true, nullable = false)
-    private Integer cpf;
+    @Column(name = "usu_cpf", unique = true, nullable = false, length = 15)
+    private String cpf;
 
     @Column(name = "usu_telefone", nullable = false)
-    private Integer telefone;
+    private String telefone;
 
     @Column(name = "usu_departamento", length = 30)
     private String departamento;
@@ -39,7 +38,7 @@ public class OrganizadorModel {
     private Integer idOracle;
 
     @Column(name = "usu_comprovante_vacinacao", nullable = false)
-    private Blob comprovanteVacinacao;
+    private String comprovanteVacinacao;
 
     @Column(name = "usu_tipo", nullable = false, length = 20)
     private String tipoUsuario;
