@@ -1,12 +1,10 @@
 package com.br.vpc.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -46,7 +44,6 @@ public class EventoModel {
     @Column(name = "evt_imagem")
     private String imagemDivulgacao;
 
-    @JsonIgnoreProperties("eventos")
     @ManyToOne
     @JoinColumn(name = "usu_email")
     private OrganizadorModel org;

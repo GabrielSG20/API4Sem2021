@@ -76,26 +76,27 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       dataEncerramento: [this.HOS_END, Validators.required],
       dataInicio: [this.HOS_START, Validators.required],
       tipoEvento: [this.HOS_EVENT_TYPE, Validators.required],
-      HOS_GUESTS: [this.HOS_GUESTS],
+      convidados: [this.HOS_GUESTS],
       descricao: [this.HOS_DESCRIPTION, Validators.required],
       imagemDivulgacao: this.HOS_EVENT_IMAGE,
-      email: 'gabisgoncalves20@gmail.com',
+      email: 'teste@gmail.com',
     });
   }
   checkLocate() {
     if(this.formGroup.value.HOS_OPEN_SPACE == true && this.formGroup.value.HOS_PRIVATE_ESPACE == true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Open Space', 'Lounge on Hall'],
+        nomeEspaco: [{nomeEspaco: 'Open Space'},
+                      {nomeEspaco: 'Lounge on Hall'}],
       });  
     } 
     else if (this.formGroup.value.HOS_OPEN_SPACE != true && this.formGroup.value.HOS_PRIVATE_ESPACE == true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Lounge on Hall'],
+        nomeEspaco: [{nomeEspaco: 'Lounge on Hall'}],
       }); 
     }
     else if (this.formGroup.value.HOS_OPEN_SPACE == true && this.formGroup.value.HOS_PRIVATE_ESPACE != true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Open Space'],
+        nomeEspaco: [{nomeEspaco: 'Open Space'}],
       }); 
     }
     else {
