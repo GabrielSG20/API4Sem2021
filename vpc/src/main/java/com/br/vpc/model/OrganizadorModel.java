@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Data
@@ -14,17 +15,21 @@ import java.util.List;
 @Entity
 @Table(name = "Usuario")
 public class OrganizadorModel {
-    @Email
+    @NotBlank(message = "{email.not.blank}")
+    @Email(message = "{email.not.valid}")
     @Id
     @Column(name = "usu_email", length = 80)
     private String email;
 
+    @NotBlank(message = "{nome.not.blank}")
     @Column(name = "usu_nome", nullable = false, length = 80)
     private String nomeCompleto;
 
+    @NotBlank(message = "{cpf.not.blank}")
     @Column(name = "usu_cpf", unique = true, nullable = false, length = 15)
     private String cpf;
 
+    @NotBlank(message = "{telefone.not.blank}")
     @Column(name = "usu_telefone", nullable = false)
     private String telefone;
 
@@ -40,12 +45,14 @@ public class OrganizadorModel {
     @Column(name = "usu_comprovante_vacinacao", nullable = false)
     private String comprovanteVacinacao;
 
+    @NotBlank(message = "{tipo.not.blank}")
     @Column(name = "usu_tipo", nullable = false, length = 20)
     private String tipoUsuario;
 
     @Column(name = "usu_cargo", length = 50)
     private String cargoUsuario;
 
+    @NotBlank(message = "{senha.not.blank}")
     @Column(name = "usu_senha", unique = true, nullable = false, length = 100)
     private String senhaUsuario;
 
