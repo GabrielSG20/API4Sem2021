@@ -1,15 +1,12 @@
 package com.br.vpc.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.sql.Blob;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -24,33 +21,45 @@ public class EventoModel {
     @Column(name = "evt_id")
     private Integer idEvento;
 
-    @NonNull
-    @Column(name = "evt_titulo")
+    @Column(name = "evt_titulo", nullable = false, length = 30)
     private String titulo;
 
-    @Size(max = 250)
-    @Column(name = "evt_descricao")
+    @Column(name = "evt_descricao", length = 80)
     private String descricao;
 
-    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
-    @Column(name = "evt_data_inicio")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
+    @Column(name = "evt_data_inicio", nullable = false, length = 100)
     private String dataInicio;
 
-    @NotBlank @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
-    @Column(name = "evt_data_fim")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
+    @Column(name = "evt_data_fim", nullable = false, length = 100)
     private String dataEncerramento;
 
-    @Column(name = "evt_tipo")
+    @Column(name = "evt_tipo", nullable = false, length = 10)
     private String tipoEvento;
 
-    @Size(max = 4)
-    @Column(name = "evt_status")
+    @Column(name = "evt_status", columnDefinition = "number default NULL")
     private Integer status;
 
     @Column(name = "evt_imagem")
-    private Blob imagemDivulgacao;
+    private String imagemDivulgacao;
 
-    @Email
-    @Column(name = "usu_email")
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "usu_email")
+    private OrganizadorModel org;
+
+    @ManyToMany
+    @JoinTable(name = "evento_espaco",joinColumns = @JoinColumn(name = "evt_id"),
+                               inverseJoinColumns = @JoinColumn(name = "esp_id"))
+    private Set<EspacoModel> nomeEspaco = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "evento_fornecedor",joinColumns = @JoinColumn(name = "evt_id"),
+                                        inverseJoinColumns = @JoinColumn(name = "for_cnpj"))
+    private Set<FornecedorModel> fornecedores = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "evento_usuario",joinColumns = @JoinColumn(name = "evt_id"),
+            inverseJoinColumns = @JoinColumn(name = "usu_email"))
+    private Set<OrganizadorModel> convidados = new HashSet<>();
 }
