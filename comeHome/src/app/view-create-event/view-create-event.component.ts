@@ -31,6 +31,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public HOS_GUESTS: any;
   public HOS_EVENT_IMAGE: File;
   public HOS_DESCRIPTION: any;
+  public emails: Object[];
   constructor(
     public formBuilder: FormBuilder,
     private appService: AppService,
@@ -84,26 +85,27 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       dataEncerramento: [this.HOS_END, Validators.required],
       dataInicio: [this.HOS_START, Validators.required],
       tipoEvento: [this.HOS_EVENT_TYPE, Validators.required],
-      HOS_GUESTS: [this.HOS_GUESTS],
+      convidados: [this.HOS_GUESTS],
       descricao: [this.HOS_DESCRIPTION, Validators.required],
       imagemDivulgacao: this.HOS_EVENT_IMAGE,
-      email: 'gabisgoncalves20@gmail.com',
+      email: 'teste@gmail.com',
     });
   }
   checkLocate() {
     if(this.formGroup.value.HOS_OPEN_SPACE == true && this.formGroup.value.HOS_PRIVATE_ESPACE == true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Open Space', 'Lounge on Hall'],
+        nomeEspaco: [{nomeEspaco: 'Open Space'},
+                      {nomeEspaco: 'Lounge on Hall'}],
       });  
     } 
     else if (this.formGroup.value.HOS_OPEN_SPACE != true && this.formGroup.value.HOS_PRIVATE_ESPACE == true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Lounge on Hall'],
+        nomeEspaco: [{nomeEspaco: 'Lounge on Hall'}],
       }); 
     }
     else if (this.formGroup.value.HOS_OPEN_SPACE == true && this.formGroup.value.HOS_PRIVATE_ESPACE != true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Open Space'],
+        nomeEspaco: [{nomeEspaco: 'Open Space'}],
       }); 
     }
     else {
@@ -120,7 +122,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   private getAllResults() {
     this.appService.getAllResults().subscribe((values) => {
       this.data = values;
-      console.log(this.data['results']);
     });
   }
   private closeConnection() {
@@ -145,11 +146,10 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   ngSubmit() {
     this.getImage();
     this.checkLocate();
+    this.getAllEmails();
     this.dateFormat();
-    console.log(this.formGroup.value);
     if (this.formGroup.valid) {
         this.appService.insertResult(this.formGroup.value).subscribe(response => {
-            console.log(response);
           },
           error => {
             console.log('chegou');
@@ -172,7 +172,13 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   private getOrgs(){
     this.appService.getOrgs().subscribe((values) => {
       this.data = values;
-      console.log(this.data);
+    });
+  }
+  private getAllEmails() {
+    this.HOS_GUESTS = this.formGroup.value.convidados.split(", ");
+    this.emails = this.HOS_GUESTS.map((str: string) => ({email: str}));
+    this.formGroup.patchValue({
+      convidados: this.emails,
     });
   }
 }
