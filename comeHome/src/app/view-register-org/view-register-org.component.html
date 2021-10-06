@@ -7,7 +7,7 @@
 </div>
 <div class="resOrg">
   <h1>Preencha as informações para se cadastrar como Organizador</h1>
-  <form id="register-as-organizer" [formGroup]="formGroup">
+  <form id="register-as-organizer" [formGroup]="formGroup" #formDirective="ngForm">
     <div class="body">
     <label for="role">Função ou Cargo:</label>
     <input type="text" id="role" placeholder="Digite sua função ou cargo" formControlName="cargoUsuario">

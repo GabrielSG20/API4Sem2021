@@ -1,9 +1,10 @@
 import { formatDate } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
 import AppMockedService from '../app.mocked.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-create-event',
@@ -12,6 +13,8 @@ import AppMockedService from '../app.mocked.service';
 })
 export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public labelPicker: String;
+  @ViewChild('formDirective') 
+  private formDirective: NgForm;
   public data: any;
   public showSucss: boolean;
   public showError: boolean;
@@ -26,13 +29,13 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public HOS_END: any;
   public HOS_EVENT_TYPE: any;
   public HOS_GUESTS: any;
-  public HOS_EVENT_IMAGE: any;
+  public HOS_EVENT_IMAGE: File;
   public HOS_DESCRIPTION: any;
   public emails: Object[];
   constructor(
     public formBuilder: FormBuilder,
     private appService: AppService,
-    private appMockedService: AppMockedService,
+    private http: HttpClient,
     ) { }
 
   ngOnInit(): void {
@@ -67,6 +70,11 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
 
     
   }
+  
+  onFileSelected(event: any) {
+    this.HOS_EVENT_IMAGE = event.target.result.split('base64,')[0];
+  }
+  
   createForm(): FormGroup {
     return this.formBuilder.group({
       titulo: [this.HOS_EVENT, Validators.required],
@@ -104,6 +112,13 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       this.formGroup.value.HOS_SPACE.se = null;
     }
   }
+
+  getImage() {
+    console.log(this.HOS_EVENT_IMAGE);
+    this.formGroup.patchValue({
+      nomeEspaco: this.HOS_EVENT_IMAGE,
+    });
+  }
   private getAllResults() {
     this.appService.getAllResults().subscribe((values) => {
       this.data = values;
@@ -129,6 +144,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
   ngSubmit() {
+    this.getImage();
     this.checkLocate();
     this.getAllEmails();
     this.dateFormat();
@@ -136,21 +152,21 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
         this.appService.insertResult(this.formGroup.value).subscribe(response => {
           },
           error => {
-            console.log(error);
+            console.log('chegou');
             this.showError = true;
             this.showSucss = false;
-            this.formGroup.reset();
           }, 
           () => {
             this.showSucss = true;
+            setTimeout(() =>{this.showSucss = false;}, 4000);
             this.showError = false;
-            this.formGroup.reset();
           });
-        this.formGroup.reset();
     } else {
         this.showError = true;
         this.showSucss = false;
     }
+    this.formDirective.resetForm();
+    this.formGroup.reset();
   }
 
   private getOrgs(){
