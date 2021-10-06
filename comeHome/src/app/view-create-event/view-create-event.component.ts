@@ -28,6 +28,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public HOS_GUESTS: any;
   public HOS_EVENT_IMAGE: any;
   public HOS_DESCRIPTION: any;
+  public emails: Object[];
   constructor(
     public formBuilder: FormBuilder,
     private appService: AppService,
@@ -106,7 +107,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   private getAllResults() {
     this.appService.getAllResults().subscribe((values) => {
       this.data = values;
-      console.log(this.data['results']);
     });
   }
   private closeConnection() {
@@ -130,11 +130,10 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   }
   ngSubmit() {
     this.checkLocate();
+    this.getAllEmails();
     this.dateFormat();
-    console.log(this.formGroup.value);
     if (this.formGroup.valid) {
         this.appService.insertResult(this.formGroup.value).subscribe(response => {
-            console.log(response);
           },
           error => {
             console.log(error);
@@ -157,7 +156,13 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   private getOrgs(){
     this.appService.getOrgs().subscribe((values) => {
       this.data = values;
-      console.log(this.data);
+    });
+  }
+  private getAllEmails() {
+    this.HOS_GUESTS = this.formGroup.value.convidados.split(", ");
+    this.emails = this.HOS_GUESTS.map((str: string) => ({email: str}));
+    this.formGroup.patchValue({
+      convidados: this.emails,
     });
   }
 }
