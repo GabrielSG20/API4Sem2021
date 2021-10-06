@@ -27,6 +27,7 @@ import {
 } from 'angular-calendar';
 import { formatDate } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AppService } from '../app.service';
 
 const colors: any = {
   red: {
@@ -59,6 +60,7 @@ export class ViewEventsComponent implements OnInit {
     action: string;
     event: CalendarEvent;
   };
+  public data: any;
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -106,9 +108,10 @@ export class ViewEventsComponent implements OnInit {
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private modal: NgbModal, public formBuilder: FormBuilder,) {}
+  constructor(private modal: NgbModal, public formBuilder: FormBuilder, private appService: AppService,) {}
 
   ngOnInit(): void {
+    this.getAllResults();
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -157,5 +160,12 @@ export class ViewEventsComponent implements OnInit {
   }
   onClose() {
     this.viewDate = this.date.value;
+  }
+
+  private getAllResults() {
+    this.appService.getOrgs().subscribe((values) => {
+      this.data = values;
+      console.log(this.data)
+    });
   }
 }
