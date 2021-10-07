@@ -57,7 +57,7 @@ public class UsuarioController {
 
 
 
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<List<UsuarioModel>> listarUsuarios(){
         try {
             List<UsuarioModel> usuarios = usuarioService.listar();
