@@ -1,16 +1,13 @@
 package com.br.vpc.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.sql.Blob;
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,51 +15,42 @@ import java.sql.Blob;
 @Entity
 @Table(name = "Usuario")
 public class UsuarioModel {
-
-    @Id
     @Email
-    @Size(max = 80)
-    @Column(name = "usu_email")
+    @Id
+    @Column(name = "usu_email", length = 80)
     private String email;
 
-    @NonNull
-    @Column(name = "usu_nome")
-    @Size(max = 80)
-    public String nome;
+    @Column(name = "usu_nome", nullable = false, length = 80)
+    private String nomeCompleto;
 
-    @NonNull
-    @Column(name = "usu_cpf ",unique=true)
+    @Column(name = "usu_cpf", unique = true, nullable = false, length = 15)
     private String cpf;
 
-    @NonNull
-    @Column(name = "usu_telefone")
+    @Column(name = "usu_telefone", nullable = false)
     private String telefone;
 
-
-    @Column(name = "usu_departamento")
-    @Size(max = 30)
+    @Column(name = "usu_departamento", length = 30)
     private String departamento;
 
-    @Column(name = "usu_nome_empresa")
-    @Size(max = 50)
-    private String nome_empresa;
+    @Column(name = "usu_nome_empresa", length = 50)
+    private String nomeEmpresa;
 
     @Column(name = "usu_id_oracle")
-    private Integer id_oracle;
+    private Integer idOracle;
 
-    @NonNull
-    @Column(name = "usu_comprovante_vacinacao")
-    private String comprovante_vacinacao;
+    @Column(name = "usu_comprovante_vacinacao", nullable = false)
+    private String comprovanteVacinacao;
 
-    @NonNull
-    @Column(name = "usu_tipo")
-    @Size(max = 10)
-    private String tipo;
+    @Column(name = "usu_tipo", nullable = false, length = 20)
+    private String tipoUsuario;
 
+    @Column(name = "usu_cargo", length = 50)
+    private String cargoUsuario;
 
-    @Column(name = "usu_cargo")
-    @Size(max = 50)
-    private String cargo;
+    @Column(name = "usu_senha", unique = true, nullable = false, length = 100)
+    private String senhaUsuario;
 
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "org")
+    private List<EventoModel> eventos_solicitados = new ArrayList<>();
 }

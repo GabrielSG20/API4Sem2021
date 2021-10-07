@@ -8,8 +8,4 @@ import org.springframework.stereotype.Service;
 public class EspacoService {
     @Autowired
     EspacoRepository espacoRepository;
-
-    public Integer findEspacoByName(String espacoName){
-        return espacoRepository.findEspacoByName(espacoName);
-    }
 }

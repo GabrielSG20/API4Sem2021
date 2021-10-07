@@ -1,9 +1,10 @@
 import { formatDate } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
 import AppMockedService from '../app.mocked.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-create-event',
@@ -12,6 +13,8 @@ import AppMockedService from '../app.mocked.service';
 })
 export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public labelPicker: String;
+  @ViewChild('formDirective') 
+  private formDirective: NgForm;
   public data: any;
   public showSucss: boolean;
   public showError: boolean;
@@ -26,12 +29,13 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public HOS_END: any;
   public HOS_EVENT_TYPE: any;
   public HOS_GUESTS: any;
-  public HOS_EVENT_IMAGE: any;
+  public HOS_EVENT_IMAGE: File;
   public HOS_DESCRIPTION: any;
+  public emails: Object[];
   constructor(
     public formBuilder: FormBuilder,
     private appService: AppService,
-    private appMockedService: AppMockedService,
+    private http: HttpClient,
     ) { }
 
   ngOnInit(): void {
@@ -49,6 +53,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       '15:00',
       '16:00',
       '17:00',
+      '18:00',
     ]
     this.formGroup = this.createForm();
   }
@@ -66,6 +71,12 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
 
     
   }
+  
+  onFileSelected(event: any) {
+    this.HOS_EVENT_IMAGE = event.target.files[0];
+    console.log(this.HOS_EVENT_IMAGE);
+  }
+  
   createForm(): FormGroup {
     return this.formBuilder.group({
       titulo: [this.HOS_EVENT, Validators.required],
@@ -76,36 +87,43 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       dataEncerramento: [this.HOS_END, Validators.required],
       dataInicio: [this.HOS_START, Validators.required],
       tipoEvento: [this.HOS_EVENT_TYPE, Validators.required],
-      HOS_GUESTS: [this.HOS_GUESTS],
+      convidados: [this.HOS_GUESTS],
       descricao: [this.HOS_DESCRIPTION, Validators.required],
       imagemDivulgacao: this.HOS_EVENT_IMAGE,
-      email: 'gabisgoncalves20@gmail.com',
+      email: 'teste@gmail.com',
     });
   }
   checkLocate() {
     if(this.formGroup.value.HOS_OPEN_SPACE == true && this.formGroup.value.HOS_PRIVATE_ESPACE == true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Open Space', 'Lounge on Hall'],
+        nomeEspaco: [{nomeEspaco: 'Open Space'},
+                      {nomeEspaco: 'Lounge on Hall'}],
       });  
     } 
     else if (this.formGroup.value.HOS_OPEN_SPACE != true && this.formGroup.value.HOS_PRIVATE_ESPACE == true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Lounge on Hall'],
+        nomeEspaco: [{nomeEspaco: 'Lounge on Hall'}],
       }); 
     }
     else if (this.formGroup.value.HOS_OPEN_SPACE == true && this.formGroup.value.HOS_PRIVATE_ESPACE != true) {
       this.formGroup.patchValue({
-        nomeEspaco: ['Open Space'],
+        nomeEspaco: [{nomeEspaco: 'Open Space'}],
       }); 
     }
     else {
       this.formGroup.value.HOS_SPACE.se = null;
     }
   }
+
+  getImage() {
+    console.log(this.HOS_EVENT_IMAGE);
+    this.formGroup.patchValue({
+      nomeEspaco: this.HOS_EVENT_IMAGE,
+    });
+  }
   private getAllResults() {
     this.appService.getAllResults().subscribe((values) => {
       this.data = values;
-      console.log(this.data['results']);
     });
   }
   private closeConnection() {
@@ -128,35 +146,41 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
   ngSubmit() {
+    this.getImage();
     this.checkLocate();
+    this.getAllEmails();
     this.dateFormat();
-    console.log(this.formGroup.value);
     if (this.formGroup.valid) {
         this.appService.insertResult(this.formGroup.value).subscribe(response => {
-            console.log(response);
           },
           error => {
-            console.log(error);
+            console.log('chegou');
             this.showError = true;
             this.showSucss = false;
-            this.formGroup.reset();
           }, 
           () => {
             this.showSucss = true;
+            setTimeout(() =>{this.showSucss = false;}, 4000);
             this.showError = false;
-            this.formGroup.reset();
           });
-        this.formGroup.reset();
     } else {
         this.showError = true;
         this.showSucss = false;
     }
+    this.formDirective.resetForm();
+    this.formGroup.reset();
   }
 
   private getOrgs(){
     this.appService.getOrgs().subscribe((values) => {
       this.data = values;
-      console.log(this.data);
+    });
+  }
+  private getAllEmails() {
+    this.HOS_GUESTS = this.formGroup.value.convidados.split(", ");
+    this.emails = this.HOS_GUESTS.map((str: string) => ({email: str}));
+    this.formGroup.patchValue({
+      convidados: this.emails,
     });
   }
 }
