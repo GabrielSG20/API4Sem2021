@@ -27,6 +27,7 @@ import {
 } from 'angular-calendar';
 import { formatDate } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AppService } from '../app.service';
 
 const colors: any = {
   red: {
@@ -61,131 +62,7 @@ export class ViewEventsComponent implements OnInit {
   };
   public elemento: any;
   refresh: Subject<any> = new Subject();
-  public data: Array<any> = [
-    {
-      "idEvento": 9,
-      "titulo": "Evento1",
-      "descricao": "Desc 1",
-      "dataInicio": "17/09/2021 08:00",
-      "dataEncerramento": "17/09/2021 12:00",
-      "tipoEvento": "fechado",
-      "status": null,
-      "imagemDivulgacao": null,
-      "org": {
-        "email": "teste@gmail.com",
-        "nomeCompleto": "Teste Name",
-        "cpf": "56781",
-        "telefone": "78961",
-        "departamento": null,
-        "nomeEmpresa": null,
-        "idOracle": null,
-        "comprovanteVacinacao": null,
-        "tipoUsuario": "interno",
-        "cargoUsuario": null,
-        "senhaUsuario": "pass123"
-      },
-      "nomeEspaco": [
-        {
-          "idEspaco": 2,
-          "nomeEspaco": "Open Space",
-          "capEspaco": 50
-        },
-        {
-          "idEspaco": 3,
-          "nomeEspaco": "Lounge on Hall",
-          "capEspaco": 20
-        }
-      ],
-      "fornecedores": [],
-      "convidados": [
-        {
-          "email": "mike@gmail.com",
-          "nomeCompleto": "Teste Name",
-          "cpf": "567815",
-          "telefone": "789615",
-          "departamento": null,
-          "nomeEmpresa": null,
-          "idOracle": null,
-          "comprovanteVacinacao": null,
-          "tipoUsuario": "interno",
-          "cargoUsuario": null,
-          "senhaUsuario": "pass1235"
-        },
-        {
-          "email": "ferraz@gmail.com",
-          "nomeCompleto": "Teste Name",
-          "cpf": "567812",
-          "telefone": "789612",
-          "departamento": null,
-          "nomeEmpresa": null,
-          "idOracle": null,
-          "comprovanteVacinacao": null,
-          "tipoUsuario": "interno",
-          "cargoUsuario": null,
-          "senhaUsuario": "pass1232"
-        }
-      ]
-    },
-    {
-      "idEvento": 10,
-      "titulo": "Evento1",
-      "descricao": "Desc 1",
-      "dataInicio": "17/09/2021 08:00",
-      "dataEncerramento": "17/09/2021 12:00",
-      "tipoEvento": "fechado",
-      "status": null,
-      "imagemDivulgacao": null,
-      "org": {
-        "email": "teste@gmail.com",
-        "nomeCompleto": "Teste Name",
-        "cpf": "56781",
-        "telefone": "78961",
-        "departamento": null,
-        "nomeEmpresa": null,
-        "idOracle": null,
-        "comprovanteVacinacao": null,
-        "tipoUsuario": "interno",
-        "cargoUsuario": null,
-        "senhaUsuario": "pass123"
-      },
-      "nomeEspaco": [
-        {
-          "idEspaco": 2,
-          "nomeEspaco": "Open Space",
-          "capEspaco": 50
-        },
-      ],
-      "fornecedores": [],
-      "convidados": [
-        {
-          "email": "mike@gmail.com",
-          "nomeCompleto": "Teste Name",
-          "cpf": "567815",
-          "telefone": "789615",
-          "departamento": null,
-          "nomeEmpresa": null,
-          "idOracle": null,
-          "comprovanteVacinacao": null,
-          "tipoUsuario": "interno",
-          "cargoUsuario": null,
-          "senhaUsuario": "pass1235"
-        },
-        {
-          "email": "ferraz@gmail.com",
-          "nomeCompleto": "Teste Name",
-          "cpf": "567812",
-          "telefone": "789612",
-          "departamento": null,
-          "nomeEmpresa": null,
-          "idOracle": null,
-          "comprovanteVacinacao": null,
-          "tipoUsuario": "interno",
-          "cargoUsuario": null,
-          "senhaUsuario": "pass1232"
-        }
-      ]
-    },
-  ]  
+  public data: any;
   events: CalendarEvent[] = [
     {
       start: setHours(setMinutes(new Date('2021-10-04'), 45), 12),
@@ -215,7 +92,7 @@ export class ViewEventsComponent implements OnInit {
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private modal: NgbModal, public formBuilder: FormBuilder,) {}
+  constructor(private modal: NgbModal, public formBuilder: FormBuilder, private appService: AppService,) {}
 
   ngOnInit(): void {
     this.eventPlot();
@@ -254,6 +131,7 @@ export class ViewEventsComponent implements OnInit {
     return number
   }
   eventPlot() {
+    this.getAllResults();
     for (var element of this.data) {
       this.elemento = element;
       var newEvent = {
@@ -314,5 +192,11 @@ export class ViewEventsComponent implements OnInit {
   }
   onClose() {
     this.viewDate = this.date.value;
+  }
+
+  private getAllResults() {
+    this.appService.getOrgs().subscribe((values) => {
+      this.data = values;
+    });
   }
 }
