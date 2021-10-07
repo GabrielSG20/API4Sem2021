@@ -2,7 +2,7 @@ package com.br.vpc.service;
 
 import com.br.vpc.model.EspacoModel;
 import com.br.vpc.model.EventoModel;
-import com.br.vpc.model.OrganizadorModel;
+import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class EventoService {
     EspacoRepository espacoRepository;
 
     public void cadastrar(EventoModel event) {
-        OrganizadorModel org = new OrganizadorModel();
+        UsuarioModel org = new UsuarioModel();
         org.setEmail("teste@gmail.com");
         event.setOrg(org);
 

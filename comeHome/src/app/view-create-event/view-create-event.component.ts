@@ -53,6 +53,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       '15:00',
       '16:00',
       '17:00',
+      '18:00',
     ]
     this.formGroup = this.createForm();
   }
@@ -72,7 +73,8 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   }
   
   onFileSelected(event: any) {
-    this.HOS_EVENT_IMAGE = event.target.result.split('base64,')[0];
+    this.HOS_EVENT_IMAGE = event.target.files[0];
+    console.log(this.HOS_EVENT_IMAGE);
   }
   
   createForm(): FormGroup {

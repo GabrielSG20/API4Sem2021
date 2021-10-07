@@ -46,7 +46,7 @@ public class EventoModel {
 
     @ManyToOne
     @JoinColumn(name = "usu_email")
-    private OrganizadorModel org;
+    private UsuarioModel org;
 
     @ManyToMany
     @JoinTable(name = "evento_espaco",joinColumns = @JoinColumn(name = "evt_id"),
@@ -61,5 +61,5 @@ public class EventoModel {
     @ManyToMany
     @JoinTable(name = "evento_usuario",joinColumns = @JoinColumn(name = "evt_id"),
             inverseJoinColumns = @JoinColumn(name = "usu_email"))
-    private Set<OrganizadorModel> convidados = new HashSet<>();
+    private Set<UsuarioModel> convidados = new HashSet<>();
 }

@@ -1,6 +1,6 @@
 package com.br.vpc.controller;
 
-import com.br.vpc.model.OrganizadorModel;
+import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.service.OrganizadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,9 +19,9 @@ public class OrganizadorController {
     OrganizadorService organizadorService;
 
     @PostMapping
-    public ResponseEntity<Void> cadastroOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
+    public ResponseEntity<Void> cadastroOrganizador(@Valid @RequestBody UsuarioModel usuarioModel){
         try {
-            organizadorService.cadastrar(organizadorModel);
+            organizadorService.cadastrar(usuarioModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
@@ -29,9 +29,9 @@ public class OrganizadorController {
     }
 
     @GetMapping
-    public ResponseEntity<List<OrganizadorModel>> listarOrganizador(){
+    public ResponseEntity<List<UsuarioModel>> listarOrganizador(){
         try {
-            List<OrganizadorModel> listOrgs = organizadorService.listar();
+            List<UsuarioModel> listOrgs = organizadorService.listar();
             return new ResponseEntity<>(listOrgs, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
@@ -39,9 +39,9 @@ public class OrganizadorController {
     }
 
     @PutMapping("/org")
-    public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
+    public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody UsuarioModel usuarioModel){
         try {
-            organizadorService.aprovarOrg(organizadorModel);
+            organizadorService.aprovarOrg(usuarioModel);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
@@ -49,9 +49,9 @@ public class OrganizadorController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deletarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
+    public ResponseEntity<Void> deletarOrganizador(@Valid @RequestBody UsuarioModel usuarioModel){
         try {
-            organizadorService.deletar(organizadorModel.getEmail());
+            organizadorService.deletar(usuarioModel.getEmail());
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
