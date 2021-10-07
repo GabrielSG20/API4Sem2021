@@ -118,3 +118,7 @@ ALTER TABLE Evento MODIFY evt_data_fim VARCHAR2(20);
 --changeset Soares:5
 INSERT INTO Espaco VALUES (ID_CHAVE_SEQ.nextval, 'Open Space', 50);
 INSERT INTO Espaco VALUES (ID_CHAVE_SEQ.nextval, 'Lounge on Hall', 20);
+
+--changeset Abraao:6
+ALTER TABLE Usuario DROP COLUMN usu_comprovante_vacinacao;
+ALTER TABLE Usuario ADD usu_comprovante_vacinacao VARCHAR2(500) NOT NULL;
