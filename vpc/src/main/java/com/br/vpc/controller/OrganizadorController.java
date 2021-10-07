@@ -2,7 +2,6 @@ package com.br.vpc.controller;
 
 import com.br.vpc.model.EventoModel;
 import com.br.vpc.model.OrganizadorModel;
-import com.br.vpc.model.exceptions.ResourceExceptionHandler;
 import com.br.vpc.service.OrganizadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,13 +20,9 @@ public class OrganizadorController {
     OrganizadorService organizadorService;
 
     @PostMapping
-    public ResponseEntity<Void> cadastroOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
-        try {
+    public ResponseEntity<Void> cadastroOrganizador(@RequestBody @Valid OrganizadorModel organizadorModel){
             organizadorService.cadastrar(organizadorModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @GetMapping

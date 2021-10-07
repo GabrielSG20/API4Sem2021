@@ -1,7 +1,6 @@
 package com.br.vpc.controller;
 
 import com.br.vpc.model.EventoModel;
-import com.br.vpc.model.exceptions.ResourceExceptionHandler;
 import com.br.vpc.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

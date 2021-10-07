@@ -1,4 +1,4 @@
-package com.br.vpc.model.exceptions;
+/*package com.br.vpc.model.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -19,3 +19,6 @@ public class StandardError {
     private String message;
     private String path;
 }
+
+
+ */

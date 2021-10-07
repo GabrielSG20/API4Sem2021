@@ -1,4 +1,4 @@
-package com.br.vpc.model.exceptions;
+/*package com.br.vpc.model.exceptions;
 
 import com.br.vpc.service.exceptions.DataBaseException;
 import com.br.vpc.service.exceptions.ResourceNotFoundException;
@@ -30,3 +30,5 @@ public class ResourceExceptionHandler extends Throwable {
         return ResponseEntity.status(status).body(err);
     }
 }
+
+ */
