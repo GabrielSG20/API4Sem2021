@@ -1,5 +1,4 @@
-/*package com.br.vpc.model.exceptions;
-
+package com.br.vpc.model.exceptions;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +19,3 @@ public class StandardError {
     private String path;
 }
 
-
- */

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -32,8 +33,8 @@ public class OrganizadorService {
             usuario.setCargoUsuario(organizadorModel.getCargoUsuario());
             usuario.setTipoUsuario("org");
             organizadorRepository.save(usuario);
-        } catch (EntityNotFoundException e){
-            throw new ResourceNotFoundException(organizadorModel);
+        } catch (NoSuchElementException e){
+            throw new ResourceNotFoundException(e);
         }
     }
 

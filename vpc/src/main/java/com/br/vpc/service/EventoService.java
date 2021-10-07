@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -43,7 +44,7 @@ public class EventoService {
             EventoModel eventoModel = evento.get();
             eventoModel.setStatus(1);
             eventoRepository.save(eventoModel);
-        } catch (EntityNotFoundException e){
+        } catch (NoSuchElementException e){
             throw new ResourceNotFoundException(title);
         }
     }

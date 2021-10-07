@@ -19,7 +19,7 @@ public class OrganizadorController {
     @Autowired
     OrganizadorService organizadorService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Void> cadastroOrganizador(@RequestBody @Valid OrganizadorModel organizadorModel){
             organizadorService.cadastrar(organizadorModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -30,28 +30,21 @@ public class OrganizadorController {
         try {
             List<OrganizadorModel> listOrgs = organizadorService.listar();
             return new ResponseEntity<>(listOrgs, HttpStatus.OK);
-        }catch (Exception e){
+        }catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
+
     }
 
     @PutMapping("/org")
     public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
-        try {
             organizadorService.aprovarOrg(organizadorModel);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deletarOrganizador(@Valid @RequestBody OrganizadorModel organizadorModel){
-        try {
+    public ResponseEntity<Void> deletarOrganizador(@RequestBody @Valid OrganizadorModel organizadorModel){
             organizadorService.deletar(organizadorModel.getEmail());
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 }

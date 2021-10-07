@@ -42,7 +42,7 @@ public class OrganizadorModel {
     @Column(name = "usu_id_oracle")
     private Integer idOracle;
 
-    @Column(name = "usu_comprovante_vacinacao", nullable = false)
+    @Column(name = "usu_comprovante_vacinacao")
     private String comprovanteVacinacao;
 
     @NotBlank(message = "{tipo.not.blank}")

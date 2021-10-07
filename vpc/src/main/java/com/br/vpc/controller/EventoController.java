@@ -18,34 +18,21 @@ public class EventoController {
     EventoService eventoService;
 
     @PostMapping("/create")
-    public ResponseEntity<Void> cadastroEvento(@Valid @RequestBody EventoModel eventoModel){
-        try {
+    public ResponseEntity<Void> cadastroEvento(@RequestBody @Valid EventoModel eventoModel){
             eventoService.cadastrar(eventoModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @PutMapping("/aprovar/{titulo}")
     public ResponseEntity<Void> aprovarEvento(@PathVariable String titulo){
-        try {
             eventoService.aprovarEvento(titulo);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @DeleteMapping("/delete/{titulo}")
     public ResponseEntity<Void> deletar(@PathVariable String titulo){
-        try {
             eventoService.deletar(titulo);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @GetMapping
