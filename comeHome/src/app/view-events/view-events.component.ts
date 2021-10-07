@@ -63,39 +63,15 @@ export class ViewEventsComponent implements OnInit {
   public elemento: any;
   refresh: Subject<any> = new Subject();
   public data: any;
-  events: CalendarEvent[] = [
-    {
-      start: setHours(setMinutes(new Date('2021-10-04'), 45), 12),
-      end: setHours(new Date('2021-10-04'), 18),
-      title: 'Evento de teste',
-      color: colors.red,
-    },
-    {
-      start: setHours(setMinutes(new Date('2021-10-04'), 45), 12),
-      end: setHours(new Date('2021-10-04'), 18),
-      title: 'Evento de teste1',
-      color: colors.blue,
-    },
-    {
-      start: setHours(setMinutes(new Date('2021-10-06'), 45), 12),
-      end: setHours(new Date('2021-10-06'), 18),
-      title: 'Evento de teste2',
-      color: colors.blue,
-    },
-    {
-      start: setHours(setMinutes(new Date('2021-12-05'), 45), 12),
-      end: setHours(new Date('2021-12-05'), 18),
-      title: 'Evento de teste3',
-      color: colors.red,
-    },
-  ];
+  public events: CalendarEvent[];
 
   activeDayIsOpen: boolean = false;
 
   constructor(private modal: NgbModal, public formBuilder: FormBuilder, private appService: AppService,) {}
 
   ngOnInit(): void {
-    this.eventPlot();
+    this.events = [];
+    this.getAllResults();
   }
 
   colorEvent(element: any) {
@@ -131,7 +107,6 @@ export class ViewEventsComponent implements OnInit {
     return number
   }
   eventPlot() {
-    this.getAllResults();
     for (var element of this.data) {
       this.elemento = element;
       var newEvent = {
@@ -141,7 +116,7 @@ export class ViewEventsComponent implements OnInit {
         color: this.colorEvent(this.elemento),
       };
       this.events.push(newEvent);
-      console.log(this.elemento);
+      this.refresh.next();
     }
   }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -197,6 +172,7 @@ export class ViewEventsComponent implements OnInit {
   private getAllResults() {
     this.appService.getOrgs().subscribe((values) => {
       this.data = values;
+      this.eventPlot();
     });
   }
 }

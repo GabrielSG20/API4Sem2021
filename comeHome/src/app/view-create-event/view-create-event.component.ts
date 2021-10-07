@@ -53,6 +53,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       '15:00',
       '16:00',
       '17:00',
+      '18:00',
     ]
     this.formGroup = this.createForm();
   }
