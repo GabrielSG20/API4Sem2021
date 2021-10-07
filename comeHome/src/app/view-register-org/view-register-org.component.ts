@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
 
@@ -9,6 +9,8 @@ import { AppService } from '../app.service';
   styleUrls: ['./view-register-org.component.scss']
 })
 export class ViewRegisterOrgComponent implements OnInit {
+  @ViewChild('formDirective') 
+  private formDirective: NgForm;
   public formGroup: FormGroup;
   public userFunction: any;
   public showSucss: boolean;
@@ -30,8 +32,9 @@ export class ViewRegisterOrgComponent implements OnInit {
 
   ngSubmit() {
     this.appService.updateOrg(this.formGroup.value).subscribe((res) => {
+      this.formDirective.resetForm();
       this.formGroup.reset();
-      this.showSucss = true;
+      setTimeout(() =>{this.showSucss = false;}, 4000);
     });
   }
 }
