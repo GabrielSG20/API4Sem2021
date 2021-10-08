@@ -2,7 +2,7 @@ package com.br.vpc.service;
 
 import com.br.vpc.model.EspacoModel;
 import com.br.vpc.model.EventoModel;
-import com.br.vpc.model.OrganizadorModel;
+import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
 import com.br.vpc.service.exceptions.DataBaseException;
@@ -25,15 +25,12 @@ public class EventoService {
 
     @Autowired
     EspacoRepository espacoRepository;
-    private List Id;
 
     public void cadastrar(EventoModel event) {
-        OrganizadorModel org = new OrganizadorModel();
+        UsuarioModel org = new UsuarioModel();
         org.setEmail("teste@gmail.com");
         event.setOrg(org);
-
         for(EspacoModel espaco:event.getNomeEspaco()){ espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));}
-
         eventoRepository.save(event);
     }
 
@@ -48,7 +45,6 @@ public class EventoService {
             throw new ResourceNotFoundException(title);
         }
     }
-
     public void deletar(String title){
         Integer id = eventoRepository.findEventoByTitle(title);
         try {
@@ -60,10 +56,6 @@ public class EventoService {
         }
     }
 
-    public List<EventoModel> listar(){
-        return eventoRepository.findAll();
-    }
-
     public void listarId(Integer id){
         try {
             eventoRepository.findById(id);
@@ -71,5 +63,5 @@ public class EventoService {
             throw new ResourceNotFoundException(id);
         }
     }
-
+    public List<EventoModel> listar(){ return eventoRepository.findAll(); }
 }

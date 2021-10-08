@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "Usuario")
-public class OrganizadorModel {
+public class UsuarioModel {
     @NotBlank(message = "{email.not.blank}")
     @Email(message = "{email.not.valid}")
     @Id

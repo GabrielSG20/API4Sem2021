@@ -1,0 +1,70 @@
+<section class="view-events">
+  <section class="header">
+    <h2 class="title">Lista de Eventos</h2>
+      <mat-form-field class="date-event" appearance="fill">
+        <mat-label>Escolha a data</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date" (change)="onClose()">
+        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+        <mat-datepicker #picker (closed)="onClose()"></mat-datepicker>
+      </mat-form-field>
+  </section>
+  <div class="text-center">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'pt' }}</h3>
+    <div class="float-right">
+      <button mat-button 
+      color="primary" 
+      class="btn-submit"
+      (click)="setView(CalendarView.Month)"
+      [class.active]="view === CalendarView.Month"
+      >Mês</button>
+      <button mat-button 
+      color="primary" 
+      class="btn-submit"
+      (click)="setView(CalendarView.Week)"
+      [class.active]="view === CalendarView.Week"
+      >Semana</button>
+      <button mat-button 
+      color="primary" 
+      class="btn-submit"
+      (click)="setView(CalendarView.Day)"
+      [class.active]="view === CalendarView.Day"
+      >
+      Dia
+      </button>
+    </div>
+  </div>
+  <br />
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="CalendarView.Month"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)"
+    >
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view
+      *ngSwitchCase="CalendarView.Week"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      [dayStartHour]="8"
+      [dayEndHour]="18"
+      [hourSegments]="2"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)"
+    >
+    </mwl-calendar-week-view>
+    <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [dayStartHour]="8"
+    [dayEndHour]="18"
+  >
+  </mwl-calendar-day-view>
+  </div>
+</section>

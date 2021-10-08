@@ -1,7 +1,7 @@
 package com.br.vpc.service;
 
-import com.br.vpc.model.OrganizadorModel;
-import com.br.vpc.repository.OrganizadorRepository;
+import com.br.vpc.model.UsuarioModel;
+import com.br.vpc.repository.UsuarioRepository;
 import com.br.vpc.service.exceptions.DataBaseException;
 import com.br.vpc.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,24 +15,24 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class OrganizadorService {
+public class UsuarioService {
 
     @Autowired
-    OrganizadorRepository organizadorRepository;
+    UsuarioRepository usuarioRepository;
 
-    public void cadastrar(OrganizadorModel organizadorModel) {
-        organizadorRepository.save(organizadorModel);
+    public void cadastrar(UsuarioModel usuarioModel) {
+        usuarioRepository.save(usuarioModel);
     }
 
-    public List<OrganizadorModel> listar(){ return organizadorRepository.findAll(); }
+    public List<UsuarioModel> listar(){ return usuarioRepository.findAll(); }
 
-    public void aprovarOrg(OrganizadorModel organizadorModel) {
+    public void aprovarOrg(UsuarioModel usuarioModel) {
         try {
-            Optional<OrganizadorModel> org = organizadorRepository.findById(organizadorModel.getEmail());
-            OrganizadorModel usuario = org.get();
-            usuario.setCargoUsuario(organizadorModel.getCargoUsuario());
+            Optional<UsuarioModel> org = usuarioRepository.findById(usuarioModel.getEmail());
+            UsuarioModel usuario = org.get();
+            usuario.setCargoUsuario(usuarioModel.getCargoUsuario());
             usuario.setTipoUsuario("org");
-            organizadorRepository.save(usuario);
+            usuarioRepository.save(usuario);
         } catch (NoSuchElementException e){
             throw new ResourceNotFoundException(e);
         }
@@ -40,7 +40,7 @@ public class OrganizadorService {
 
     public void listarId(String id){
         try {
-            organizadorRepository.findById(id);
+            usuarioRepository.findById(id);
         } catch (EntityNotFoundException e){
             throw new ResourceNotFoundException(id);
         }
@@ -48,7 +48,7 @@ public class OrganizadorService {
 
     public void deletar(String id){
         try {
-            organizadorRepository.deleteById(id);
+            usuarioRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException(id);
         } catch (DataIntegrityViolationException e){
