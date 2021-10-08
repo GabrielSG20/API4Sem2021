@@ -11,7 +11,6 @@ export class AppComponent implements OnInit {
   public teste: any;
   constructor(private appService: AppService) { }
   ngOnInit(): void {
-    this.getOrgs();
   }
 
   private getOrgs(){

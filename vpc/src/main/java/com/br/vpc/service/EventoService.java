@@ -1,9 +1,14 @@
 package com.br.vpc.service;
 
+import com.br.vpc.model.EspacoModel;
 import com.br.vpc.model.EventoModel;
+import com.br.vpc.model.UsuarioModel;
+import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventoService {
@@ -11,15 +16,31 @@ public class EventoService {
     @Autowired
     EventoRepository eventoRepository;
 
-    public void cadastrar(EventoModel eventoModel) {
+    @Autowired
+    EspacoRepository espacoRepository;
+
+    public void cadastrar(EventoModel event) {
+        UsuarioModel org = new UsuarioModel();
+        org.setEmail("teste@gmail.com");
+        event.setOrg(org);
+
+        for(EspacoModel espaco:event.getNomeEspaco()){ espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));}
+
+        eventoRepository.save(event);
+    }
+
+    public void aprovarEvento(String title){
+        Integer id = eventoRepository.findEventoByTitle(title);
+        Optional<EventoModel> evento = eventoRepository.findById(id);
+        EventoModel eventoModel = evento.get();
+        eventoModel.setStatus(1);
         eventoRepository.save(eventoModel);
     }
 
-    public void atualizar(EventoModel eventoModel){
-        eventoRepository.save(eventoModel);
+    public void deletar(String title){
+        Integer id = eventoRepository.findEventoByTitle(title);
+        eventoRepository.deleteById(id);
     }
 
-    public void deletar(String titulo){
-        eventoRepository.deleteByTitulo(titulo);
-    }
+    public List<EventoModel> listar(){ return eventoRepository.findAll(); }
 }
