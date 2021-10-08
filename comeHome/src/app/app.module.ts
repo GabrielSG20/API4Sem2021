@@ -6,12 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ViewLoginComponent } from './view-login/view-login.component';
 import { ViewRegisterOrgComponent } from './view-register-org/view-register-org.component';
+import { ViewRegisterUserComponent } from './view-register-user/view-register-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewLoginComponent,
-    ViewRegisterOrgComponent
+    ViewRegisterOrgComponent,
+    ViewRegisterUserComponent
   ],
   imports: [
     BrowserModule,
