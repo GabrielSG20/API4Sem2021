@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideMenuComponent } from './shared/side-menu/side-menu.component';
 import { ViewLoginComponent } from './view-login/view-login.component';
 import { ViewRegisterOrgComponent } from './view-register-org/view-register-org.component';
+import { ViewRegisterUserComponent } from './view-register-user/view-register-user.component';
 import { ViewCreateEventComponent } from './view-create-event/view-create-event.component';
 import AppMockedService from './app.mocked.service';
 import { ViewEventsComponent } from './view-events/view-events.component';
@@ -43,6 +44,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     SideMenuComponent,
     ViewLoginComponent,
     ViewRegisterOrgComponent,
+    ViewRegisterUserComponent
     ViewCreateEventComponent,
     ViewEventsComponent,
   ],
