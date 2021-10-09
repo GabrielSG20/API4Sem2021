@@ -18,13 +18,9 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @PostMapping("/create")
-    public ResponseEntity<Void> cadastroUsuario(@Valid @RequestBody UsuarioModel usuarioModel){
-        try {
+    public ResponseEntity<Void> cadastroUsuario(@Valid @RequestBody UsuarioModel usuarioModel) {
             usuarioService.cadastrar(usuarioModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @GetMapping("/listar")
@@ -32,28 +28,21 @@ public class UsuarioController {
         try {
             List<UsuarioModel> listOrgs = usuarioService.listar();
             return new ResponseEntity<>(listOrgs, HttpStatus.OK);
-        }catch (Exception e){
+        }catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
+
     }
 
     @PutMapping("/org")
     public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody UsuarioModel usuarioModel){
-        try {
             usuarioService.aprovarOrg(usuarioModel);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<Void> deletarUsuario(@Valid @RequestBody UsuarioModel usuarioModel){
-        try {
-            usuarioService.deletar(usuarioModel.getEmail());
-            return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
+    public ResponseEntity<Void> deletarUsuario(@Valid @RequestBody UsuarioModel usuarioModel) {
+        usuarioService.deletar(usuarioModel.getEmail());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
