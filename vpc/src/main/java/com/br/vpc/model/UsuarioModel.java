@@ -1,6 +1,6 @@
 package com.br.vpc.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,7 +45,7 @@ public class UsuarioModel {
     @Column(name = "usu_comprovante_vacinacao")
     private String comprovanteVacinacao;
 
-    @NotBlank(message = "{tipo.not.blank}")
+    @NotBlank(message = "{tipo_u.not.blank}")
     @Column(name = "usu_tipo", nullable = false, length = 20)
     private String tipoUsuario;
 
@@ -56,7 +56,7 @@ public class UsuarioModel {
     @Column(name = "usu_senha", unique = true, nullable = false, length = 100)
     private String senhaUsuario;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "org", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("org")
     private List<EventoModel> eventos;
 }

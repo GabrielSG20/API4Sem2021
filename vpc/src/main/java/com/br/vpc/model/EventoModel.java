@@ -1,7 +1,6 @@
 package com.br.vpc.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,7 +49,6 @@ public class EventoModel {
     @Column(name = "evt_imagem")
     private String imagemDivulgacao;
 
-    @JsonIgnoreProperties("eventos")
     @ManyToOne
     @JoinColumn(name = "usu_email")
     private UsuarioModel org;

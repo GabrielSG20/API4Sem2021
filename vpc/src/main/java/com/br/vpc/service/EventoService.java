@@ -5,16 +5,12 @@ import com.br.vpc.model.EventoModel;
 import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
-import com.br.vpc.service.exceptions.DataBaseException;
 import com.br.vpc.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -41,7 +37,7 @@ public class EventoService {
             EventoModel eventoModel = evento.get();
             eventoModel.setStatus(1);
             eventoRepository.save(eventoModel);
-        } catch (NoSuchElementException e){
+        } catch (InvalidDataAccessApiUsageException e){
             throw new ResourceNotFoundException(title);
         }
     }
@@ -49,10 +45,8 @@ public class EventoService {
         Integer id = eventoRepository.findEventoByTitle(title);
         try {
             eventoRepository.deleteById(id);
-        } catch (EmptyResultDataAccessException e){
+        } catch (InvalidDataAccessApiUsageException e){
             throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e){
-            throw new DataBaseException(e.getMessage());
         }
     }
 

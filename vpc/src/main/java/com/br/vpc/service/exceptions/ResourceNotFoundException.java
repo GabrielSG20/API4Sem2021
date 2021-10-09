@@ -1,7 +1,5 @@
 package com.br.vpc.service.exceptions;
 
-import java.util.List;
-
 public class ResourceNotFoundException extends RuntimeException{
 
     public ResourceNotFoundException(Object id){

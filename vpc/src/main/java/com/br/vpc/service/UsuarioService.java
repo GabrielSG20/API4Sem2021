@@ -21,7 +21,13 @@ public class UsuarioService {
     UsuarioRepository usuarioRepository;
 
     public void cadastrar(UsuarioModel usuarioModel) {
-        usuarioRepository.save(usuarioModel);
+        if (usuarioRepository.findUsuarioByEmail(usuarioModel.getEmail()) == null){
+            try {
+                usuarioRepository.save(usuarioModel);
+            } catch (DataIntegrityViolationException e){
+                throw new DataBaseException(e.getMessage());
+            }
+        }
     }
 
     public List<UsuarioModel> listar(){ return usuarioRepository.findAll(); }
