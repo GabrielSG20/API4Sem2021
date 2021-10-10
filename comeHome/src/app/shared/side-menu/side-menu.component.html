@@ -1,0 +1,40 @@
+<div class="side-menu">
+  <mat-sidenav-container class="example-container" >
+    <mat-sidenav class="side-bar" mode="side" opened>
+      <div class="menu-content">
+        <b><h3>#VEMPRACASA</h3></b>
+        <img class="img-avatar" src="/assets/img/user_avatar.png">
+        <p>Gabriel Soares</p>
+        <div class="menu-options">
+          <div class="option-div">
+          <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/icons_schedule.png">Meus eventos</a>
+          </div>
+          <div class="option-div" (click)="openSub()">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/organization.png">Organizar Evento</a>
+          </div>
+          <div *ngIf="submenu == true">
+            <div class="submenu-option" [routerLink]="['/newEvent']">
+              <a>Sou Organizador</a>
+            </div>
+            <div class="submenu-option" [routerLink]="['/resOrg']">
+              <a>Quero ser Organizador</a>
+            </div>
+          </div>
+          <div class="option-div">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/calendar.png">Calendário</a>
+          </div>
+          <div class="option-div">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/report.png">Extrair Relatório</a>
+          </div>
+          <div class="option-div">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/tool-kit.png">Fornecedores</a>
+          </div>
+          <div class="user-edit">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/user-avatar.png">Editar Perfil</a>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav>
+      <ng-content></ng-content>
+  </mat-sidenav-container>
+</div>

@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EventoRepository extends JpaRepository<EventoModel, Integer> {
-    void deleteByTitulo(String titulo);
+    @Query(" select idEvento from EventoModel where titulo = ?1 ")
+    Integer findEventoByTitle(String title);
 }

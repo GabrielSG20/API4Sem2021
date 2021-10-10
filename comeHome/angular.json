@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -94,7 +95,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "src/styles.scss",
+              "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
             ],
             "scripts": []
           }
