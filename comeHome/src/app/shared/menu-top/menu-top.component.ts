@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/view-login/auth.service';
 
 @Component({
   selector: 'app-menu-top',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-top.component.scss']
 })
 export class MenuTopComponent implements OnInit {
-
-  constructor() { }
+  public userName: String
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.userName.subscribe((values: string) => {
+      this.userName = values;
+    });
   }
 
 }

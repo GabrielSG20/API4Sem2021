@@ -36,6 +36,7 @@ import { ViewEventsComponent } from './view-events/view-events.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from './view-login/auth.service';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
     { provide: LOCALE_ID, useValue: 'pt'},
     AppMockedService,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

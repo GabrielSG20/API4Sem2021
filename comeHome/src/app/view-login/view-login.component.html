@@ -2,29 +2,37 @@
     <div id="view-login">
         <h4>Bem-vindo!</h4>
         <h1>Faça login para acessar</h1>
-        <form id="login-form">
+        <form id="login-form" [formGroup]="formGroup" (ngSubmit)="ngSubmit()" #formDirective="ngForm">
             <div class="full-box">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="Digite seu e-mail">
+                <input type="email" 
+                name="email" 
+                id="email"
+                formControlName="email" 
+                placeholder="Digite seu e-mail">
             </div>
             <div class="full-box">
                 <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="Digite sua senha">
+                <input type="password" 
+                formControlName="password"
+                name="password" 
+                id="password" 
+                placeholder="Digite sua senha">
             </div>
-            <div class="check-box">
+            <!--<div class="check-box">
                 <input type="checkbox" name="remember" id="remember">
                 <label for="remember" id="remember-label">Lembrar de mim</label>
             </div>
             <div class="half-box">
                 <label for="rec-password"><a href="#">Esqueci minha senha</a></label>
-            </div>
+            </div>-->
             <div class="full-box">
                 <label for="login"></label>
                 <input type="submit" id="login" value="Login">
             </div>
             <div class="full-box">
                 <label for="request-register"></label>
-                <input type="submit" id="request-register" value="Solicitar cadastro">
+                <input type="submit" id="request-register" value="Solicitar cadastro" [routerLink]="['/resUser']">
             </div>
         </form>
 
