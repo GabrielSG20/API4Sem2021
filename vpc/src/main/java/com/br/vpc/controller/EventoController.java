@@ -1,8 +1,6 @@
 package com.br.vpc.controller;
 
-import com.br.vpc.model.EventoDTO;
 import com.br.vpc.model.EventoModel;
-import com.br.vpc.service.EventoEspacoService;
 import com.br.vpc.service.EventoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,47 +17,31 @@ public class EventoController {
     @Autowired
     EventoService eventoService;
 
-    @Autowired
-    EventoEspacoService eventoEspacoService;
-
     @PostMapping("/create")
-    public ResponseEntity<Void> cadastroEvento(@Valid @RequestBody EventoDTO eventoDTO){
-        try {
-            eventoService.cadastrar(eventoDTO);
-            eventoEspacoService.cadastrar(eventoDTO.getNomeEspaco(), eventoService.findEventByTitle(eventoDTO.getTitulo()));
+    public ResponseEntity<Void> cadastroEvento(@RequestBody @Valid EventoModel eventoModel){
+
+            eventoService.cadastrar(eventoModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @PutMapping("/aprovar/{titulo}")
     public ResponseEntity<Void> aprovarEvento(@PathVariable String titulo){
-        try {
             eventoService.aprovarEvento(titulo);
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @DeleteMapping("/delete/{titulo}")
     public ResponseEntity<Void> deletar(@PathVariable String titulo){
-        try {
             eventoService.deletar(titulo);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
     }
 
     @GetMapping
-    public ResponseEntity<List<EventoModel>> listarEventos(){
+    public ResponseEntity<List<EventoModel>> listarEventos() {
         try {
             List<EventoModel> listEvents = eventoService.listar();
             return new ResponseEntity<>(listEvents, HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }

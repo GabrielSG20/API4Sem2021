@@ -1,8 +1,9 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { ReactiveFormsModule} from '@angular/forms';
-import { registerLocaleData } from '@angular/common';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { registerLocaleData, CommonModule } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 registerLocaleData(localeBr);
 
@@ -28,8 +29,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideMenuComponent } from './shared/side-menu/side-menu.component';
 import { ViewLoginComponent } from './view-login/view-login.component';
 import { ViewRegisterOrgComponent } from './view-register-org/view-register-org.component';
+import { ViewRegisterUserComponent } from './view-register-user/view-register-user.component';
 import { ViewCreateEventComponent } from './view-create-event/view-create-event.component';
 import AppMockedService from './app.mocked.service';
+import { ViewEventsComponent } from './view-events/view-events.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,9 @@ import AppMockedService from './app.mocked.service';
     SideMenuComponent,
     ViewLoginComponent,
     ViewRegisterOrgComponent,
+    ViewRegisterUserComponent,
     ViewCreateEventComponent,
+    ViewEventsComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +66,12 @@ import AppMockedService from './app.mocked.service';
     MatRadioModule,
     MatCheckboxModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory },),
+    CommonModule,
+    FormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'},
