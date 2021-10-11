@@ -44,7 +44,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     SideMenuComponent,
     ViewLoginComponent,
     ViewRegisterOrgComponent,
-    ViewRegisterUserComponent
+    ViewRegisterUserComponent,
     ViewCreateEventComponent,
     ViewEventsComponent,
   ],
