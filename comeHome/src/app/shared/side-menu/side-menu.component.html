@@ -1,10 +1,10 @@
 <div class="side-menu">
   <mat-sidenav-container class="example-container" >
-    <mat-sidenav class="side-bar" mode="side" opened>
+    <mat-sidenav class="side-bar" mode="side" opened *ngIf="sideMenu">
       <div class="menu-content">
         <b><h3>#VEMPRACASA</h3></b>
         <img class="img-avatar" src="/assets/img/user_avatar.png">
-        <p>Gabriel Soares</p>
+        <p>{{userName}}</p>
         <div class="menu-options">
           <div class="option-div">
           <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/icons_schedule.png">Meus eventos</a>

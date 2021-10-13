@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/view-login/auth.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideMenuComponent implements OnInit {
   public submenu: boolean;
-
+  public userName: string;
+  sideMenu: boolean = false;
+  constructor(private authService: AuthService) { }
   ngOnInit(): void {
     this.submenu = false;
+    this.authService.menuSide.subscribe((values: boolean) => {
+      this.sideMenu = values;
+    });
+    this.authService.userName.subscribe((values: string) => {
+      this.userName = values;
+    });
   }
   openSub() {
     if(this.submenu == false) {
