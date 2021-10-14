@@ -44,4 +44,9 @@ export class AppService {
       .put<any>(`${this.url}/usuarios/org`, result, { headers: this.head })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
+  insertUser(result: any): Observable<any> {
+    return this.httpClient
+      .post<any>(`${this.url}/usuarios/create`, result, { headers: this.head })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
 }

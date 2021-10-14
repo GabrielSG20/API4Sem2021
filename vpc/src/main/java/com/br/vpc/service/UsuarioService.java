@@ -32,6 +32,15 @@ public class UsuarioService {
 
     public List<UsuarioModel> listar(){ return usuarioRepository.findAll(); }
 
+    public UsuarioModel listarUser(String email){
+        try {
+            Optional<UsuarioModel> user = usuarioRepository.findById(email);
+            return user.get();
+        } catch (NoSuchElementException e){
+            throw new ResourceNotFoundException(e);
+        }
+    }
+
     public void aprovarOrg(UsuarioModel usuarioModel) {
         try {
             Optional<UsuarioModel> org = usuarioRepository.findById(usuarioModel.getEmail());
