@@ -27,5 +27,6 @@ export class ViewLoginComponent implements OnInit {
   }
   ngSubmit() {
     this.authService.userLogin(this.formGroup.value);
+    console.log(this.authService.userLogin(this.formGroup.value));
   }
 }

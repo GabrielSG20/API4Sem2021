@@ -34,9 +34,9 @@ public class UsuarioController {
 
     }
 
-    @GetMapping("/listar-user")
-    public ResponseEntity<UsuarioModel> listarUsuario(@Valid @RequestBody UsuarioModel usuarioModel){
-        UsuarioModel user = usuarioService.listarUser(usuarioModel.getEmail());
+    @GetMapping("/{email}")
+    public ResponseEntity<UsuarioModel> listarUsuario(@PathVariable String email){
+        UsuarioModel user = usuarioService.listarUser(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
