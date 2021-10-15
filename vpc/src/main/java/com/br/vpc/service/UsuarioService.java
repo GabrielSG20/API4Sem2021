@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -50,14 +48,6 @@ public class UsuarioService {
             usuarioRepository.save(usuario);
         } catch (NoSuchElementException e){
             throw new ResourceNotFoundException(e);
-        }
-    }
-
-    public void listarId(String id){
-        try {
-            usuarioRepository.findById(id);
-        } catch (EntityNotFoundException e){
-            throw new ResourceNotFoundException(id);
         }
     }
 
