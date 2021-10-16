@@ -4,11 +4,16 @@
         <div class="spacer"></div>
         <a mat-button class="nav-item">Nossos Espaços</a>
         <a mat-button class="nav-item" [routerLink]="['/events']">Eventos</a>
-        <a mat-button class="nav-item">Login</a>
-        <a mat-button class="nav-account">
+        <a mat-button class="nav-item" [routerLink]="['/login']">Login</a>
+        <a mat-button class="nav-account" [routerLink]="['/resUser']" *ngIf="!userName">
             <mat-icon class="account-icon">
             account_circle
             </mat-icon>
             Quero me cadastrar</a>
+        <a mat-button class="nav-account" *ngIf="userName" [routerLink]="['/']">
+            <mat-icon class="account-icon">
+            account_circle
+            </mat-icon>
+            Seja bem-vindo, {{userName}}</a>
       </mat-toolbar>
 </div>
