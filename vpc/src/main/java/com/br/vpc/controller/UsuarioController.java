@@ -24,7 +24,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<UsuarioModel>> listarUsuario(){
+    public ResponseEntity<List<UsuarioModel>> listar(){
         try {
             List<UsuarioModel> listOrgs = usuarioService.listar();
             return new ResponseEntity<>(listOrgs, HttpStatus.OK);
@@ -32,6 +32,12 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
 
+    }
+
+    @GetMapping("/{email}")
+    public ResponseEntity<UsuarioModel> listarUsuario(@PathVariable String email){
+        UsuarioModel user = usuarioService.listarUser(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PutMapping("/org")
