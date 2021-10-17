@@ -4,7 +4,8 @@
         <div class="spacer"></div>
         <a mat-button class="nav-item">Nossos Espaços</a>
         <a mat-button class="nav-item" [routerLink]="['/events']">Eventos</a>
-        <a mat-button class="nav-item" [routerLink]="['/login']">Login</a>
+        <a mat-button class="nav-item" [routerLink]="['/login']" *ngIf="!logged">Login</a>
+        <a mat-button class="nav-item" [routerLink]="['/login']" *ngIf="logged" (click)="userLogout()">Logout</a>
         <a mat-button class="nav-account" [routerLink]="['/resUser']" *ngIf="!userName">
             <mat-icon class="account-icon">
             account_circle

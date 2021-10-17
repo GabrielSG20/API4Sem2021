@@ -7,13 +7,18 @@ import { AuthService } from 'src/app/view-login/auth.service';
   styleUrls: ['./menu-top.component.scss']
 })
 export class MenuTopComponent implements OnInit {
-  public userName: String
+  public userName: String;
+  public logged: Boolean;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.userName.subscribe((values: string) => {
       this.userName = values;
     });
+    this.logged = this.authService.userLogged();
+  }
+  userLogout() {
+    this.authService.userLogout();
   }
 
 }

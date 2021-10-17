@@ -34,6 +34,7 @@ export class ViewRegisterOrgComponent implements OnInit {
     this.appService.updateOrg(this.formGroup.value).subscribe((res) => {
       this.formDirective.resetForm();
       this.formGroup.reset();
+      this.showSucss = true;
       setTimeout(() =>{this.showSucss = false;}, 4000);
     });
   }
