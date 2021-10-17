@@ -15,7 +15,10 @@ export class MenuTopComponent implements OnInit {
     this.authService.userName.subscribe((values: string) => {
       this.userName = values;
     });
-    this.logged = this.authService.userLogged();
+    this.authService.userSucess.subscribe((values: boolean) => {
+      this.logged = values;
+    });
+    console.log(this.logged);
   }
   userLogout() {
     this.authService.userLogout();

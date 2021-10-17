@@ -29,22 +29,30 @@ export class ViewRegisterUserComponent implements OnInit {
   }
   createForm(): FormGroup {
     return this.formBuilder.group({
-      name: [this.name, Validators.required],
-      surname: [this.surname, Validators.required],
-      cpf: [this.cpf, Validators.required],
-      oracleId: [this.oracleId, Validators.required],
-      company: [this.company, Validators.required],
-      sector: [this.sector, Validators.required],
-      phone: [this.phone, Validators.required],
-      email: [this.email, Validators.required],
-      password: [this.password, Validators.required],
-      passConfirm: [this.passConfirm, Validators.required],
-
+      name: [this.name],
+      surname: [this.surname],
+      nomeCompleto: "",
+      tipoUsuario: "",
+      cpf: [this.cpf],
+      idOracle: [this.oracleId],
+      nomeEmpresa: [this.company],
+      departamento: [this.sector],
+      telefone: [this.phone],
+      email: [this.email],
+      senhaUsuario: [this.password],
+      passConfirm: [this.passConfirm],
     });
   }
   ngSubmit() {
+    this.fullName();
+    this.functionType();
+    console.log(this.formGroup.valid);
     if (this.formGroup.valid) {
-        this.appService.insertResult(this.formGroup.value).subscribe(response => {
+      console.log(this.formGroup.value);
+        this.appService.insertUser(this.formGroup.value).subscribe(response => {
+          },
+          error => {
+            console.log('chegou');
           },
           () => {
             this.showSucss = true;
@@ -58,6 +66,22 @@ export class ViewRegisterUserComponent implements OnInit {
   }
   userOracle() {
     this.oracleEmployee = true;
+  }
+  fullName() {
+    this.formGroup.patchValue({
+      nomeCompleto: `${this.formGroup.value.name} ${this.formGroup.value.surname}`,
+    });
+  }
+  functionType() {
+    if (this.formGroup.value.oracleId !== null) {
+      this.formGroup.patchValue({
+        tipoUsuario: 'interno',
+      });
+    } else {
+      this.formGroup.patchValue({
+        tipoUsuario: 'externo',
+      });
+    }
   }
 }
 

@@ -35,19 +35,19 @@
                 </div>
                 <div class="third-box spacing" *ngIf="!oracleEmployee">
                     <label for="company">Empresa</label>
-                    <input type="text" name="company" id="company" placeholder="Digite a empresa em que trabalha" formControlName="company">
+                    <input type="text" name="company" id="company" placeholder="Digite a empresa em que trabalha" formControlName="nomeEmpresa">
                 </div>
                 <div class="third-box spacing" *ngIf="oracleEmployee">
                     <label for="company">Oracle ID</label>
-                    <input type="text" name="company" id="company" placeholder="Digite o seu ID Oracle" formControlName="oracleId">
+                    <input type="text" name="company" id="company" placeholder="Digite o seu ID Oracle" formControlName="idOracle">
                 </div>
                 <div class="third-box spacing">
                     <label for="sector">Departamento</label>
-                    <input type="text" name="sector" id="sector" placeholder="Digite o departamento ou setor" formControlName="sector">
+                    <input type="text" name="sector" id="sector" placeholder="Digite o departamento ou setor" formControlName="departamento">
                 </div>
                 <div class="third-box">
                     <label for="phone">Celular</label>
-                    <input type="tel" name="phone" id="phone" placeholder="(99) 99999-9999" formControlName="phone" required>
+                    <input type="tel" name="phone" id="phone" placeholder="(99) 99999-9999" formControlName="telefone" required>
                 </div>
                 <div class="third-box spacing">
                     <label for="email">E-mail</label>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="third-box spacing">
                     <label for="password">Senha</label>
-                    <input type="password" name="password" id="password" placeholder="Digite sua senha" formControlName="password" required>
+                    <input type="password" name="password" id="password" placeholder="Digite sua senha" formControlName="senhaUsuario" required>
                 </div>
                 <div class="third-box">
                     <label for="password-conf">Confirme sua senha</label>

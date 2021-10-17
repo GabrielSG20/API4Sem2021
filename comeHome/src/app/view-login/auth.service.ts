@@ -15,6 +15,7 @@ export class AuthService {
   menuSide = new EventEmitter<boolean>();
   userName = new EventEmitter<string>();
   userEmail = new EventEmitter<string>();
+  userSucess = new EventEmitter<boolean>();
   constructor(private router: Router, 
     private httpClient: HttpClient,) { }
     
@@ -38,6 +39,7 @@ export class AuthService {
         this.menuSide.emit(this.userPermission);
         this.userName.emit(this.userData.nomeCompleto);
         this.userEmail.emit(this.userData.email);
+        this.userSucess.emit(this.userAuth);
         this.router.navigate(['/']);
       } else {
         this.userAuth = false;
@@ -51,6 +53,7 @@ export class AuthService {
     this.menuSide.emit(this.userPermission);
     this.userName.emit('');
     this.userEmail.emit('');
+    this.userSucess.emit(this.userAuth);
     this.router.navigate(['/login']);
   }
   userLogged() {
