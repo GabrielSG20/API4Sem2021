@@ -5,7 +5,6 @@ import com.br.vpc.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -25,7 +24,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/listar")
     public ResponseEntity<List<UsuarioModel>> listar(){
         try {
@@ -37,22 +36,22 @@ public class UsuarioController {
 
     }
 
-    @PreAuthorize("hasRole('ROLE_ORG') or hasRole('ROLE_ADMIN') or hasRole('ROLE_INTERNO')" +
-            " or hasRole('ROlE_EXTERNO')")
+    //@PreAuthorize("hasRole('ROLE_ORG') or hasRole('ROLE_ADMIN') or hasRole('ROLE_INTERNO')" +
+            //" or hasRole('ROlE_EXTERNO')")
     @GetMapping("/{email}")
     public ResponseEntity<UsuarioModel> listarUsuario(@PathVariable String email){
         UsuarioModel user = usuarioService.listarUser(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ROLE_INTERNO')")
+    //@PreAuthorize("hasRole('ROLE_INTERNO')")
     @PutMapping("/org")
     public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody UsuarioModel usuarioModel){
             usuarioService.aprovarOrg(usuarioModel);
             return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deletarUsuario(@Valid @RequestBody UsuarioModel usuarioModel) {
         usuarioService.deletar(usuarioModel.getEmail());

@@ -17,9 +17,11 @@ public class EmailService {
         if (eventoModel != null) {
             for (UsuarioModel endercoEmail : eventoModel.getConvidados()) {
                 String contato = endercoEmail.getEmail();
-                definicoesEmail(contato, EmailConstantes.MENSAGEM_EMAIL_CONFIRMACAO_EVENTO,
+                definicoesEmail(contato, EmailConstantes.MENSAGEM_EMAIL_CONVIDADO,
                         EmailConstantes.ASSUNTO_EMAIL_CONFIRMA_PRESENCA);
             }
+            definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_ENVIADO_CONVIDADOS,
+                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_CRIADO);
         }
     }
 
