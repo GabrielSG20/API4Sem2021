@@ -19,7 +19,6 @@ public class EventoController {
 
     @PostMapping("/create")
     public ResponseEntity<Void> cadastroEvento(@RequestBody @Valid EventoModel eventoModel){
-
             eventoService.cadastrar(eventoModel);
             return new ResponseEntity<>(HttpStatus.CREATED);
     }

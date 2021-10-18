@@ -3,7 +3,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
-import AppMockedService from '../app.mocked.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../view-login/auth.service';
 
@@ -57,9 +56,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       '18:00',
     ]
     this.formGroup = this.createForm();
-    this.authService.userEmail.subscribe((values: string) => {
-      this.orgEmail = values;
-    });
   }
   onClose() {
     this.labelPicker = (formatDate(this.formGroup.value.HOS_DATE_EVENT, 'fullDate', 'pt'));
@@ -94,7 +90,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       convidados: [this.HOS_GUESTS],
       descricao: [this.HOS_DESCRIPTION, Validators.required],
       imagemDivulgacao: this.HOS_EVENT_IMAGE,
-      org: this.orgEmail,
+      org: {email: this.orgEmail},
     });
   }
   checkLocate() {
@@ -120,7 +116,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   }
 
   getImage() {
-    console.log(this.HOS_EVENT_IMAGE);
     this.formGroup.patchValue({
       nomeEspaco: this.HOS_EVENT_IMAGE,
     });
@@ -148,6 +143,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
     this.checkLocate();
     this.getAllEmails();
     this.dateFormat();
+    this.userEmail();
     if (this.formGroup.valid) {
         this.appService.insertResult(this.formGroup.value).subscribe(response => {
           },
@@ -176,5 +172,12 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
         convidados: this.emails,
       });
     }
+  }
+
+  userEmail(){
+    this.orgEmail = this.authService.getEmail();
+    this.formGroup.patchValue({
+      org: {email: this.orgEmail},
+    });
   }
 }

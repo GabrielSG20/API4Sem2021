@@ -2,7 +2,6 @@ package com.br.vpc.service;
 
 import com.br.vpc.model.EspacoModel;
 import com.br.vpc.model.EventoModel;
-import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
 import com.br.vpc.service.exceptions.ResourceNotFoundException;
@@ -23,9 +22,6 @@ public class EventoService {
     EspacoRepository espacoRepository;
 
     public void cadastrar(EventoModel event) {
-        UsuarioModel org = new UsuarioModel();
-        org.setEmail("teste@gmail.com");
-        event.setOrg(org);
         for(EspacoModel espaco:event.getNomeEspaco()){ espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));}
         eventoRepository.save(event);
     }

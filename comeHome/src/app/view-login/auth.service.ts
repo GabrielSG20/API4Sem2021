@@ -14,7 +14,8 @@ export class AuthService {
   menuTop = new EventEmitter<boolean>();
   menuSide = new EventEmitter<boolean>();
   userName = new EventEmitter<string>();
-  userEmail = new EventEmitter<string>();
+  userEmail: string;
+  userType = new EventEmitter<string>();
   userSucess = new EventEmitter<boolean>();
   constructor(private router: Router, 
     private httpClient: HttpClient,) { }
@@ -32,13 +33,14 @@ export class AuthService {
     .subscribe((values) => {
       this.userData = values;
       if (user.password === this.userData.senhaUsuario) {
-        if (this.userData.tipoUsuario === 'interno'){
+        if (this.userData.tipoUsuario === 'interno' || this.userData.tipoUsuario === 'org'){
           this.userPermission = true;
+          this.userType.emit(this.userData.tipoUsuario);
         }
         this.userAuth = true;
         this.menuSide.emit(this.userPermission);
         this.userName.emit(this.userData.nomeCompleto);
-        this.userEmail.emit(this.userData.email);
+        this.userEmail = this.userData.email;
         this.userSucess.emit(this.userAuth);
         this.router.navigate(['/']);
       } else {
@@ -52,7 +54,7 @@ export class AuthService {
     this.userAuth = false;
     this.menuSide.emit(this.userPermission);
     this.userName.emit('');
-    this.userEmail.emit('');
+    this.userEmail = '';
     this.userSucess.emit(this.userAuth);
     this.router.navigate(['/login']);
   }
@@ -61,5 +63,9 @@ export class AuthService {
   }
   userOracle() {
     return this.userPermission;
+  }
+
+  getEmail(){
+    return this.userEmail;
   }
 }

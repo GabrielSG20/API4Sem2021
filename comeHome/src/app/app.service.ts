@@ -41,7 +41,7 @@ export class AppService {
   }
   updateOrg(result: any): Observable<any> {
     return this.httpClient
-      .put<any>(`${this.url}/usuarios/org`, result, { headers: this.head })
+      .put<any>(`${this.url}/usuarios/org/${result.email}/${result.cargoUsuario}`, { headers: this.head })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
   insertUser(result: any): Observable<any> {

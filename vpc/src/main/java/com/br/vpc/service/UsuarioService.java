@@ -39,11 +39,11 @@ public class UsuarioService {
         }
     }
 
-    public void aprovarOrg(UsuarioModel usuarioModel) {
+    public void aprovarOrg(String email, String cargoUsuario) {
         try {
-            Optional<UsuarioModel> org = usuarioRepository.findById(usuarioModel.getEmail());
+            Optional<UsuarioModel> org = usuarioRepository.findById(email);
             UsuarioModel usuario = org.get();
-            usuario.setCargoUsuario(usuarioModel.getCargoUsuario());
+            usuario.setCargoUsuario(cargoUsuario);
             usuario.setTipoUsuario("org");
             usuarioRepository.save(usuario);
         } catch (NoSuchElementException e){

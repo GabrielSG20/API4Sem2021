@@ -28,7 +28,6 @@ export class ViewLoginComponent implements OnInit {
   }
   ngSubmit() {
     this.authService.userLogin(this.formGroup.value);
-    console.log(this.authService.userLogged());
     setTimeout(() =>{this.userValid = this.authService.userLogged()}, 1000);
   }
 }

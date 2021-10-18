@@ -40,9 +40,9 @@ public class UsuarioController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PutMapping("/org")
-    public ResponseEntity<Void> atualizarOrganizador(@Valid @RequestBody UsuarioModel usuarioModel){
-            usuarioService.aprovarOrg(usuarioModel);
+    @PutMapping("/org/{email}/{cargoUsuario}")
+    public ResponseEntity<Void> atualizarOrganizador(@PathVariable String email, @PathVariable String cargoUsuario){
+            usuarioService.aprovarOrg(email, cargoUsuario);
             return new ResponseEntity<>(HttpStatus.OK);
     }
 
