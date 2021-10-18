@@ -21,6 +21,10 @@ public class UsuarioService {
     public void cadastrar(UsuarioModel usuarioModel) {
         if (usuarioRepository.findUsuarioByEmail(usuarioModel.getEmail()) == null){
             try {
+//                String password = usuarioModel.getSenhaUsuario();
+//                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//                String encodedPassword = passwordEncoder.encode(password);
+//                usuarioModel.setSenhaUsuario(encodedPassword);
                 usuarioRepository.save(usuarioModel);
             } catch (DataIntegrityViolationException e){
                 throw new DataBaseException(e.getMessage());
