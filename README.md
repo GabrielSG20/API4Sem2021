@@ -142,7 +142,7 @@
    
 <h2 style="font-family:roboto;"> Como executar o projeto</h2>
 
-   <b> <a href="https://github.com/GabrielSG20/API4Sem2021/tree/VPC-81%22%3E"Clone essa branch</a> para sua máquina por meio do GIT.</b>
+   <b> <a href="https://github.com/GabrielSG20/API4Sem2021/tree/VPC-81">Clone essa branch</a> para sua máquina por meio do GIT.</b>
 
    <b> Criando o usuário Admin no Banco Oracle: </b>
    Rode os seguintes comandos no SQLDeveloper ou SQLPlus conectado ao usuário sys ou system da database padrão (xe):
