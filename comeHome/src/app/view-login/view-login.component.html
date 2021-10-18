@@ -2,14 +2,15 @@
     <div id="view-login">
         <h4>Bem-vindo!</h4>
         <h1>Faça login para acessar</h1>
-        <form id="login-form" [formGroup]="formGroup" (ngSubmit)="ngSubmit()" #formDirective="ngForm">
+        <form ngNativeValidate id="login-form" [formGroup]="formGroup" (ngSubmit)="ngSubmit()" #formDirective="ngForm">
             <div class="full-box">
                 <label for="email">E-mail</label>
                 <input type="email" 
                 name="email" 
                 id="email"
                 formControlName="email" 
-                placeholder="Digite seu e-mail">
+                placeholder="Digite seu e-mail"
+                required>
             </div>
             <div class="full-box">
                 <label for="password">Senha</label>
@@ -17,7 +18,8 @@
                 formControlName="password"
                 name="password" 
                 id="password" 
-                placeholder="Digite sua senha">
+                placeholder="Digite sua senha"
+                required>
             </div>
             <!--<div class="check-box">
                 <input type="checkbox" name="remember" id="remember">
@@ -35,7 +37,6 @@
                 <input type="submit" id="request-register" value="Solicitar cadastro" [routerLink]="['/resUser']">
             </div>
         </form>
-
-
+      <p class="erro-login" *ngIf="!userValid">Usuário ou senha inválidos!</p>
     </div>
 </body>

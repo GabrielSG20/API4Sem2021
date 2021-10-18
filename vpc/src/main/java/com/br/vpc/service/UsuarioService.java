@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -23,6 +21,10 @@ public class UsuarioService {
     public void cadastrar(UsuarioModel usuarioModel) {
         if (usuarioRepository.findUsuarioByEmail(usuarioModel.getEmail()) == null){
             try {
+//                String password = usuarioModel.getSenhaUsuario();
+//                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//                String encodedPassword = passwordEncoder.encode(password);
+//                usuarioModel.setSenhaUsuario(encodedPassword);
                 usuarioRepository.save(usuarioModel);
             } catch (DataIntegrityViolationException e){
                 throw new DataBaseException(e.getMessage());
@@ -32,23 +34,24 @@ public class UsuarioService {
 
     public List<UsuarioModel> listar(){ return usuarioRepository.findAll(); }
 
-    public void aprovarOrg(UsuarioModel usuarioModel) {
+    public UsuarioModel listarUser(String email){
         try {
-            Optional<UsuarioModel> org = usuarioRepository.findById(usuarioModel.getEmail());
-            UsuarioModel usuario = org.get();
-            usuario.setCargoUsuario(usuarioModel.getCargoUsuario());
-            usuario.setTipoUsuario("org");
-            usuarioRepository.save(usuario);
+            Optional<UsuarioModel> user = usuarioRepository.findById(email);
+            return user.get();
         } catch (NoSuchElementException e){
             throw new ResourceNotFoundException(e);
         }
     }
 
-    public void listarId(String id){
+    public void aprovarOrg(String email, String cargoUsuario) {
         try {
-            usuarioRepository.findById(id);
-        } catch (EntityNotFoundException e){
-            throw new ResourceNotFoundException(id);
+            Optional<UsuarioModel> org = usuarioRepository.findById(email);
+            UsuarioModel usuario = org.get();
+            usuario.setCargoUsuario(cargoUsuario);
+            usuario.setTipoUsuario("org");
+            usuarioRepository.save(usuario);
+        } catch (NoSuchElementException e){
+            throw new ResourceNotFoundException(e);
         }
     }
 

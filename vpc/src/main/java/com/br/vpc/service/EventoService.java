@@ -5,13 +5,13 @@ import com.br.vpc.model.EventoModel;
 import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
+import com.br.vpc.repository.UsuarioRepository;
 import com.br.vpc.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EventoService {
@@ -22,12 +22,21 @@ public class EventoService {
     @Autowired
     EspacoRepository espacoRepository;
 
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
     public void cadastrar(EventoModel event) {
-        UsuarioModel org = new UsuarioModel();
-        org.setEmail("teste@gmail.com");
-        event.setOrg(org);
         for(EspacoModel espaco:event.getNomeEspaco()){ espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));}
+        Set<UsuarioModel> convidados = new HashSet<>();
+        for (UsuarioModel usu:event.getConvidados()){
+            if (usuarioRepository.findUsuarioByEmail(usu.getEmail()) == null) {
+                event.getConvidados().remove(usu);
+                convidados.add(usu);
+            }
+            convidados.add(usu);
+        }
         eventoRepository.save(event);
+        event.setConvidados(convidados);
     }
 
     public void aprovarEvento(String title){
