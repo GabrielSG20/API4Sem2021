@@ -5,7 +5,6 @@ import com.br.vpc.model.EventoModel;
 import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
-import com.br.vpc.repository.UsuarioRepository;
 import com.br.vpc.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
@@ -23,20 +22,25 @@ public class EventoService {
     EspacoRepository espacoRepository;
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    UsuarioService usuarioSerice;
 
     public void cadastrar(EventoModel event) {
         for(EspacoModel espaco:event.getNomeEspaco()){ espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));}
-        Set<UsuarioModel> convidados = new HashSet<>();
-        for (UsuarioModel usu:event.getConvidados()){
-            if (usuarioRepository.findUsuarioByEmail(usu.getEmail()) == null) {
-                event.getConvidados().remove(usu);
-                convidados.add(usu);
+        Set<UsuarioModel> convidadosCadastrados = new HashSet<>();
+        Set<UsuarioModel> convidadosTotais = new HashSet<>();
+        if (event.getConvidados().size() > 0){
+            for (UsuarioModel usu:event.getConvidados()){
+                String email =  usuarioSerice.findUsuarioByEmail(usu.getEmail());
+                if (email != null) {
+                    convidadosCadastrados.add(usu);
+                }
+                convidadosTotais.add(usu);
             }
-            convidados.add(usu);
         }
+
+        event.setConvidados(convidadosCadastrados);
         eventoRepository.save(event);
-        event.setConvidados(convidados);
+        event.setConvidados(convidadosTotais);
     }
 
     public void aprovarEvento(String title){
