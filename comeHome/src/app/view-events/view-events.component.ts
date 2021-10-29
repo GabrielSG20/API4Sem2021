@@ -94,7 +94,6 @@ export class ViewEventsComponent implements OnInit {
     element = element.split("/");
     element = element.reverse();
     let number = Number(element[2]);
-    number += 1;
     element[2] = number.toString();
     element = element.join('-');
     return element;

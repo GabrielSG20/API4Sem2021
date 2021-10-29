@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EventoService {
@@ -22,12 +21,26 @@ public class EventoService {
     @Autowired
     EspacoRepository espacoRepository;
 
+    @Autowired
+    UsuarioService usuarioSerice;
+
     public void cadastrar(EventoModel event) {
-        UsuarioModel org = new UsuarioModel();
-        org.setEmail("teste@gmail.com");
-        event.setOrg(org);
         for(EspacoModel espaco:event.getNomeEspaco()){ espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));}
+        Set<UsuarioModel> convidadosCadastrados = new HashSet<>();
+        Set<UsuarioModel> convidadosTotais = new HashSet<>();
+        if (event.getConvidados().size() > 0){
+            for (UsuarioModel usu:event.getConvidados()){
+                String email =  usuarioSerice.findUsuarioByEmail(usu.getEmail());
+                if (email != null) {
+                    convidadosCadastrados.add(usu);
+                }
+                convidadosTotais.add(usu);
+            }
+        }
+
+        event.setConvidados(convidadosCadastrados);
         eventoRepository.save(event);
+        event.setConvidados(convidadosTotais);
     }
 
     public void aprovarEvento(String title){

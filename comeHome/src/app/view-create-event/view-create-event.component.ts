@@ -3,8 +3,8 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
-import AppMockedService from '../app.mocked.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../view-login/auth.service';
 
 @Component({
   selector: 'app-view-create-event',
@@ -15,7 +15,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public labelPicker: String;
   @ViewChild('formDirective') 
   private formDirective: NgForm;
-  public data: any;
   public showSucss: boolean;
   public showError: boolean;
   public formGroup: FormGroup;
@@ -32,16 +31,17 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   public HOS_EVENT_IMAGE: File;
   public HOS_DESCRIPTION: any;
   public emails: Object[];
+  public orgEmail: string;
   constructor(
     public formBuilder: FormBuilder,
     private appService: AppService,
     private http: HttpClient,
+    private authService: AuthService,
     ) { }
 
   ngOnInit(): void {
     this.HOS_OPEN_SPACE = new FormControl();
     this.HOS_PRIVATE_ESPACE = new FormControl();
-    this.getOrgs();
     this.hours = [
       '08:00',
       '09:00',
@@ -90,7 +90,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       convidados: [this.HOS_GUESTS],
       descricao: [this.HOS_DESCRIPTION, Validators.required],
       imagemDivulgacao: this.HOS_EVENT_IMAGE,
-      email: 'teste@gmail.com',
+      org: {email: this.orgEmail},
     });
   }
   checkLocate() {
@@ -116,14 +116,8 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
   }
 
   getImage() {
-    console.log(this.HOS_EVENT_IMAGE);
     this.formGroup.patchValue({
       nomeEspaco: this.HOS_EVENT_IMAGE,
-    });
-  }
-  private getAllResults() {
-    this.appService.getAllResults().subscribe((values) => {
-      this.data = values;
     });
   }
   private closeConnection() {
@@ -140,7 +134,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
       }
       return res;
     });
-    this.getAllResults();
     this.formGroup.reset();
   }
   ngOnDestroy(): void {
@@ -150,6 +143,7 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
     this.checkLocate();
     this.getAllEmails();
     this.dateFormat();
+    this.userEmail();
     if (this.formGroup.valid) {
         this.appService.insertResult(this.formGroup.value).subscribe(response => {
           },
@@ -170,17 +164,20 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
     this.formDirective.resetForm();
     this.formGroup.reset();
   }
-
-  private getOrgs(){
-    this.appService.getOrgs().subscribe((values) => {
-      this.data = values;
-    });
-  }
   private getAllEmails() {
-    this.HOS_GUESTS = this.formGroup.value.convidados.split(", ");
-    this.emails = this.HOS_GUESTS.map((str: string) => ({email: str}));
+    if (this.formGroup.value.convidados !== null) {
+      this.HOS_GUESTS = this.formGroup.value.convidados.split(", ");
+      this.emails = this.HOS_GUESTS.map((str: string) => ({email: str}));
+      this.formGroup.patchValue({
+        convidados: this.emails,
+      });
+    }
+  }
+
+  userEmail(){
+    this.orgEmail = this.authService.getEmail();
     this.formGroup.patchValue({
-      convidados: this.emails,
+      org: {email: this.orgEmail},
     });
   }
 }

@@ -7,14 +7,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "Usuario")
-public class UsuarioModel {
+public class UsuarioModel //implements UserDetails
+{
     @NotBlank(message = "{email.not.blank}")
     @Email(message = "{email.not.valid}")
     @Id
@@ -59,4 +63,41 @@ public class UsuarioModel {
     @JsonIgnore
     @OneToMany(mappedBy = "org", fetch = FetchType.EAGER)
     private List<EventoModel> eventos;
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return Arrays.stream(tipoUsuario.split(","))
+//                .map(SimpleGrantedAuthority::new)
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public String getPassword() {
+//        return this.senhaUsuario;
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return this.email = email;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 }

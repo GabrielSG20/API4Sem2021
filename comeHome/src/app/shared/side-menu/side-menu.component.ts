@@ -10,6 +10,7 @@ export class SideMenuComponent implements OnInit {
   public submenu: boolean;
   public userName: string;
   sideMenu: boolean = false;
+  userPermition: boolean = false;
   constructor(private authService: AuthService) { }
   ngOnInit(): void {
     this.submenu = false;
@@ -19,6 +20,7 @@ export class SideMenuComponent implements OnInit {
     this.authService.userName.subscribe((values: string) => {
       this.userName = values;
     });
+    this.userType();
   }
   openSub() {
     if(this.submenu == false) {
@@ -26,5 +28,13 @@ export class SideMenuComponent implements OnInit {
     } else {
       this.submenu = false;
     }
+  }
+
+  userType(){
+    this.authService.userType.subscribe((values: string) => {
+      if (values === 'org') {
+        this.userPermition = true;
+      }
+    })
   }
 }
