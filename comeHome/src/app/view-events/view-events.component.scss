@@ -27,4 +27,34 @@
       background-color: #197278;
     }
   }
+  .bloco-flex {
+    display: flex;
+    justify-content: space-between;
+  }
+  .eventLegend {
+    display: flex;
+    flex-direction: column;
+    .item {
+      display: flex;
+      margin-bottom: 3%;
+    }
+    .yellow {
+      margin-right: 8px;
+      background-color: #FDF1BA;
+      height: 15px;
+      border-radius: 10px;
+    }
+    .blue {
+      margin-right: 8px;
+      background-color: #1e90ff;
+      height: 15px;
+      border-radius: 10px;
+    }
+    .red {
+      margin-right: 8px;
+      background-color: #ad2121;
+      height: 15px;
+      border-radius: 10px;
+    }
+  }
 }
