@@ -11,6 +11,7 @@ export class SideMenuComponent implements OnInit {
   public userName: string;
   sideMenu: boolean = false;
   userPermition: boolean = false;
+  userAdmin: boolean = false;
   constructor(private authService: AuthService) { }
   ngOnInit(): void {
     this.submenu = false;
@@ -34,6 +35,8 @@ export class SideMenuComponent implements OnInit {
     this.authService.userType.subscribe((values: string) => {
       if (values === 'org') {
         this.userPermition = true;
+      } else if (values === 'admin') {
+        this.userAdmin = true;
       }
     })
   }

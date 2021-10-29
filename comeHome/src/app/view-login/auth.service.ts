@@ -33,7 +33,7 @@ export class AuthService {
     .subscribe((values) => {
       this.userData = values;
       if (user.password === this.userData.senhaUsuario) {
-        if (this.userData.tipoUsuario === 'interno' || this.userData.tipoUsuario === 'org'){
+        if (this.userData.tipoUsuario === 'interno' || this.userData.tipoUsuario === 'org' || this.userData.tipoUsuario === 'admin'){
           this.userPermission = true;
           this.userType.emit(this.userData.tipoUsuario);
         }
