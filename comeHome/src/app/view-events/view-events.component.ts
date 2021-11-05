@@ -94,9 +94,16 @@ export class ViewEventsComponent implements OnInit {
     element = element.split("/");
     element = element.reverse();
     let number = Number(element[2]);
-    element[2] = number.toString();
-    element = element.join('-');
-    return element;
+    if (number < 10){
+      element[2] = number.toString();
+      element = element.join('-');
+      return element;
+    } else {
+      number += 1;
+      element[2] = number.toString();
+      element = element.join('-');
+      return element;
+    }
   }
   eventHour(element: any) {
     element = element.split(" ");
@@ -169,7 +176,7 @@ export class ViewEventsComponent implements OnInit {
   }
 
   private getAllResults() {
-    this.appService.getOrgs().subscribe((values) => {
+    this.appService.getApprovedEvents().subscribe((values) => {
       this.data = values;
       this.eventPlot();
     });

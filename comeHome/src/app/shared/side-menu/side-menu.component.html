@@ -13,10 +13,10 @@
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/organization.png">Organizar Evento</a>
           </div>
           <div *ngIf="submenu == true">
-            <div class="submenu-option" [routerLink]="['/newEvent']" *ngIf="userPermition" routerLinkActive="is-active">
+            <div class="submenu-option" [routerLink]="['/newEvent']" *ngIf="userOrg" routerLinkActive="is-active">
               <a>Sou Organizador</a>
             </div>
-            <div class="submenu-option" [routerLink]="['/resOrg']" *ngIf="!userPermition" routerLinkActive="is-active">
+            <div class="submenu-option" [routerLink]="['/resOrg']" *ngIf="!userOrg" routerLinkActive="is-active">
               <a>Quero ser Organizador</a>
             </div>
           </div>

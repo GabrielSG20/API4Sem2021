@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/view-login/auth.service';
 export class SideMenuComponent implements OnInit {
   public submenu: boolean;
   public userName: string;
+  public userOrg: boolean = false;
   sideMenu: boolean = false;
   userPermition: boolean = false;
   userAdmin: boolean = false;
@@ -35,8 +36,16 @@ export class SideMenuComponent implements OnInit {
     this.authService.userType.subscribe((values: string) => {
       if (values === 'org') {
         this.userPermition = true;
+        this.userOrg = true;
       } else if (values === 'admin') {
         this.userAdmin = true;
+      } else if (values === 'interno') {
+        this.userPermition = true;
+        this.userOrg = false;
+      } else {
+        this.userAdmin = false;
+        this.userPermition = false;
+        this.userOrg = false;
       }
     })
   }

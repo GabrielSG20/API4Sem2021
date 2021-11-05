@@ -10,7 +10,7 @@ import { ViewAproveEventComponent } from './view-aprove-event/view-aprove-event.
 
 const routes: Routes = [
   { path: 'resOrg', component: ViewRegisterOrgComponent,
-    },
+    canActivate: [AuthGuardService]},
   { path: 'newEvent', component: ViewCreateEventComponent,
     canActivate: [AuthGuardService]},
   { path: 'events', component: ViewEventsComponent},

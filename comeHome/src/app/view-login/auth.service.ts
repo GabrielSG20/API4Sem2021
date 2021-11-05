@@ -55,6 +55,7 @@ export class AuthService {
     this.menuSide.emit(this.userPermission);
     this.userName.emit('');
     this.userEmail = '';
+    this.userType.emit('');
     this.userSucess.emit(this.userAuth);
     this.router.navigate(['/login']);
   }

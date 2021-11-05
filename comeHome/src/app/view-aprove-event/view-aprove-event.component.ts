@@ -85,7 +85,7 @@ export class ViewAproveEventComponent implements OnInit {
       return colors.yellow;
     }
     else {
-      if(element.status === 'aprovado') {
+      if(element.status === 1) {
         return colors.blue;
       }
       else {
@@ -99,10 +99,16 @@ export class ViewAproveEventComponent implements OnInit {
     element = element.split("/");
     element = element.reverse();
     let number = Number(element[2]);
-    number += 1;
-    element[2] = number.toString();
-    element = element.join('-');
-    return element;
+    if (number < 10){
+      element[2] = number.toString();
+      element = element.join('-');
+      return element;
+    } else {
+      number += 1;
+      element[2] = number.toString();
+      element = element.join('-');
+      return element;
+    }
   }
   eventHour(element: any) {
     element = element.split(" ");
@@ -181,6 +187,19 @@ export class ViewAproveEventComponent implements OnInit {
   
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result.adminAnwser}, ${result.eventStatus}`);
+        if(result.eventStatus === 'Aprovado') {
+          this.appService.approveEvent(this.event.id).subscribe((values) => {
+            this.events = [];
+            alert('Esse evento aprovado com sucesso!');
+            this.getAllResults();
+          });
+        } else {
+          this.appService.deleteEvent(this.event.id, result.adminAnwser).subscribe((values) => {
+            this.events = [];
+            alert('Esse evento recusado com sucesso!');
+            this.getAllResults();
+          });
+        }
       });
     }
     else {

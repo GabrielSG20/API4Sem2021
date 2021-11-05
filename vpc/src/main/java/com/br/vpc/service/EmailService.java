@@ -13,15 +13,34 @@ public class EmailService {
     @Autowired
     JavaMailSender sender;
 
-    public void envioEmail(EventoModel eventoModel) {
+    public void envioEmailCadastro(EventoModel eventoModel) {
+        if (eventoModel != null) {
+            for (UsuarioModel endercoEmail : eventoModel.getConvidados()) {
+                String contato = endercoEmail.getEmail();
+                definicoesEmail(contato, EmailConstantes.MENSAGEM_EMAIL_CADASTRO,
+                        EmailConstantes.ASSUNTO_EMAIL_CADASTRO);
+            }
+            definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_ENVIADO_CONVIDADOS,
+                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_CRIADO);
+        }
+    }
+
+    public void envioEmailEventoAprovado(EventoModel eventoModel) {
         if (eventoModel != null) {
             for (UsuarioModel endercoEmail : eventoModel.getConvidados()) {
                 String contato = endercoEmail.getEmail();
                 definicoesEmail(contato, EmailConstantes.MENSAGEM_EMAIL_CONVIDADO,
                         EmailConstantes.ASSUNTO_EMAIL_CONFIRMA_PRESENCA);
             }
-            definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_ENVIADO_CONVIDADOS,
-                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_CRIADO);
+            definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_CONFIRMACAO_EVENTO,
+                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_APROVADO);
+        }
+    }
+
+    public void envioEmailEventoReprovado(EventoModel eventoModel, String comentario) {
+        if (eventoModel != null) {
+            definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_EVENTO_NEGADO + comentario,
+                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_NEGADO);
         }
     }
 
