@@ -5,12 +5,10 @@ import com.br.vpc.model.EventoModel;
 import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
-import com.br.vpc.repository.UsuarioRepository;
 import com.br.vpc.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
-import javax.persistence.EntityNotFoundException;
 import java.util.*;
 
 @Service
@@ -23,48 +21,53 @@ public class EventoService {
     EspacoRepository espacoRepository;
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    UsuarioService usuarioSerice;
+
+    @Autowired
+    EmailService emailService;
 
     public void cadastrar(EventoModel event) {
         for(EspacoModel espaco:event.getNomeEspaco()){ espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));}
-        Set<UsuarioModel> convidados = new HashSet<>();
-        for (UsuarioModel usu:event.getConvidados()){
-            if (usuarioRepository.findUsuarioByEmail(usu.getEmail()) == null) {
-                event.getConvidados().remove(usu);
-                convidados.add(usu);
+        Set<UsuarioModel> convidadosCadastrados = new HashSet<>();
+        Set<UsuarioModel> convidadosNaoCad = new HashSet<>();
+        if (event.getConvidados() != null){
+            for (UsuarioModel usu:event.getConvidados()){
+                String email =  usuarioSerice.findUsuarioByEmail(usu.getEmail());
+                if (email != null) {
+                    convidadosCadastrados.add(usu);
+                } else {
+                    convidadosNaoCad.add(usu);
+                }
             }
-            convidados.add(usu);
         }
+
+        event.setConvidados(convidadosCadastrados);
         eventoRepository.save(event);
-        event.setConvidados(convidados);
+        event.setConvidados(convidadosNaoCad);
     }
 
-    public void aprovarEvento(String title){
+    public void aprovarEvento(Integer id){
         try {
-            Integer id = eventoRepository.findEventoByTitle(title);
-            Optional<EventoModel> evento = eventoRepository.findById(id);
-            EventoModel eventoModel = evento.get();
-            eventoModel.setStatus(1);
-            eventoRepository.save(eventoModel);
+            EventoModel evento = eventoRepository.findEventoById(id);
+            evento.setStatus(1);
+            eventoRepository.save(evento);
+            emailService.envioEmailEventoAprovado(evento);
         } catch (InvalidDataAccessApiUsageException e){
-            throw new ResourceNotFoundException(title);
+            throw new ResourceNotFoundException(id);
         }
     }
-    public void deletar(String title){
-        Integer id = eventoRepository.findEventoByTitle(title);
+
+    public void deletar(Integer id, String comentario){
         try {
+            EventoModel evento = eventoRepository.findEventoById(id);
+            emailService.envioEmailEventoReprovado(evento, comentario);
             eventoRepository.deleteById(id);
         } catch (InvalidDataAccessApiUsageException e){
             throw new ResourceNotFoundException(id);
         }
     }
 
-    public void listarId(Integer id){
-        try {
-            eventoRepository.findById(id);
-        } catch (EntityNotFoundException e){
-            throw new ResourceNotFoundException(id);
-        }
-    }
     public List<EventoModel> listar(){ return eventoRepository.findAll(); }
+
+    public List<EventoModel> listarAprovados(){ return eventoRepository.findEventosAprovados(); }
 }

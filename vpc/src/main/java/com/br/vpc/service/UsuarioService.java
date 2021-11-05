@@ -64,4 +64,8 @@ public class UsuarioService {
             throw new DataBaseException(e.getMessage());
         }
     }
+
+    public String findUsuarioByEmail(String email){
+        return usuarioRepository.findUsuarioByEmail(email);
+    }
 }

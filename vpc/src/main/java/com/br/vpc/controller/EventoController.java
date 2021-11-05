@@ -25,27 +25,33 @@ public class EventoController {
     @PostMapping("/create")
     public ResponseEntity<Void> cadastroEvento(@RequestBody @Valid EventoModel eventoModel) {
         eventoService.cadastrar(eventoModel);
-        emailService.envioEmail(eventoModel);
+        emailService.envioEmailCadastro(eventoModel);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping("/aprovar/{titulo}")
-    public ResponseEntity<Void> aprovarEvento(@PathVariable String titulo) {
-        eventoService.aprovarEvento(titulo);
+    @PutMapping("/aprovar/{id}")
+    public ResponseEntity<Void> aprovarEvento(@PathVariable Integer id) {
+        eventoService.aprovarEvento(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     //@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ORG')")
-    @DeleteMapping("/delete/{titulo}")
-    public ResponseEntity<Void> deletar(@PathVariable String titulo) {
-        eventoService.deletar(titulo);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Integer id, @RequestParam String comentario) {
+        eventoService.deletar(id, comentario);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<List<EventoModel>> listarEventos() {
         List<EventoModel> listEvents = eventoService.listar();
+        return new ResponseEntity<>(listEvents, HttpStatus.OK);
+    }
+
+    @GetMapping("/aprovados")
+    public ResponseEntity<List<EventoModel>> listarAprovados() {
+        List<EventoModel> listEvents = eventoService.listarAprovados();
         return new ResponseEntity<>(listEvents, HttpStatus.OK);
     }
 }

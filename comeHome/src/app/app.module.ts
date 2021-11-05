@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,6 +38,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './view-login/auth.service';
+import { ViewAproveEventComponent } from './view-aprove-event/view-aprove-event.component';
+import { DialogAproveEventComponent } from './view-aprove-event/dialog-aprove-event/dialog-aprove-event.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { AuthService } from './view-login/auth.service';
     ViewRegisterUserComponent,
     ViewCreateEventComponent,
     ViewEventsComponent,
+    ViewAproveEventComponent,
+    DialogAproveEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +70,7 @@ import { AuthService } from './view-login/auth.service';
     ReactiveFormsModule,
     MatSelectModule,
     MatRadioModule,
+    MatDialogModule,
     MatCheckboxModule,
     HttpClientModule,
     AppRoutingModule,
