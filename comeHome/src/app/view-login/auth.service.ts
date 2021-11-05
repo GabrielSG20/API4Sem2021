@@ -7,7 +7,7 @@ import { Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  url = 'http://localhost:8081';
+  url = 'http://140.238.179.101:8080';
   private userAuth: boolean = false;
   private userPermission: boolean = false;
   private userData: any;

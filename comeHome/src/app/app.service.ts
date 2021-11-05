@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class AppService {
 
-  url = 'http://localhost:8081';
+  url = 'http://140.238.179.101:8080';
   private mockedUrl = '/api/results';
   protected mockedHead = new HttpHeaders({
     'Content-Type': 'application/json;odata.metadata=minimal',
