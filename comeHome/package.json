@@ -9,6 +9,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "engines": {
+    "node": "14.17.6",
+    "npm": "6.14.15"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.13",
@@ -25,6 +29,7 @@
     "angular-calendar": "^0.28.28",
     "angularx-flatpickr": "^6.6.0",
     "date-fns": "^2.24.0",
+    "express": "^4.17.1",
     "flatpickr": "^4.6.9",
     "miragejs": "^0.1.41",
     "roboto-fontface": "^0.10.0",
