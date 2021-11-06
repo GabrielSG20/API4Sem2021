@@ -22,7 +22,7 @@ public class FornecedorModel {
     private String nomeFornecedor;
 
     @Column(name = "for_telefone",nullable = false)
-    private Integer telefoneFornecedor;
+    private String telefoneFornecedor;
 
     @ManyToMany
     @JoinTable(name = "fornecedor_categoria",joinColumns = @JoinColumn(name = "for_cnpj"),

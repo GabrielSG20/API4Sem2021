@@ -64,7 +64,7 @@ public class EventoModel {
     private Set<FornecedorModel> fornecedores = new HashSet<>();
 
     @ManyToMany
-    @JoinTable(name = "evento_usuario",joinColumns = @JoinColumn(name = "evt_id"),
+    @JoinTable(name = "usuario_evento",joinColumns = @JoinColumn(name = "evt_id"),
             inverseJoinColumns = @JoinColumn(name = "usu_email"))
     private Set<UsuarioModel> convidados = new HashSet<>();
 }
