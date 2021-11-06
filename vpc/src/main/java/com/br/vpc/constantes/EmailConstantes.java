@@ -8,7 +8,7 @@ public class EmailConstantes {
     public static final String MENSAGEM_EMAIL_ENVIADO_CONVIDADOS = "Evento criado com sucesso! Aguarde a confirmação ou recusa do evento pelo admin.";
 
     public static final String MENSAGEM_EMAIL_CADASTRO = "Você foi convidado para um evento organizado pelo sistema #VEMPRACASA." +
-            " Porém primeiramente é necessário estar cadastrado no sistema para confirmar sua presença. Utilize o seguinte link: (link para cadastro).";
+            " Porém primeiramente é necessário estar cadastrado no sistema para confirmar sua presença. Utilize o seguinte link: http://vempracasa.herokuapp.com/.";
 
     public static final String ASSUNTO_EMAIL_CADASTRO = "Cadastro no #VEMPRACASA";
 
