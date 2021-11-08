@@ -15,7 +15,7 @@
  <a href="#-funcionalidades">Funcionalidades</a> •
  <a href="#-backlog-do-produto">Backlog</a> •
  <a href="#-layout">Layout</a> • 
- <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-acesso-ao-projeto">Acesso ao projeto</a> • 
  <a href="#-tecnologias">Tecnologias</a>
 </p>
 
@@ -140,38 +140,8 @@
    
    ---
    
-<h2 style="font-family:roboto;"> Como executar o projeto</h2>
-
-   <b> <a href="https://github.com/GabrielSG20/API4Sem2021/tree/VPC-81">Clone essa branch</a> para sua máquina por meio do GIT.</b>
-
-   <b> Criando o usuário Admin no Banco Oracle: </b>
-   Rode os seguintes comandos no SQLDeveloper ou SQLPlus conectado ao usuário sys ou system da database padrão (xe):
-   * create user admin identified by admin; </br>
-   * grant dba to admin with admin option;
-
-   <b> Instalação das dependências necessárias: </b>
-   Baixar node.js (v14.17.6 LTS): https://nodejs.org/en/
-
-   Abra um prompt de comando no caminho de pastas: C:\YourLocal\API4Sem2021\comeHome.</br>
-
-   E rode os seguintes comandos: </br>
-
-   * npm install -g @angular/cli </br>
-   * npm install
-
-   <b> Uso: </b>
-   No mesmo prompt de comando da instalação dependências, rode o comando: </br>
-   * ng serve
-
-   Abra outro prompt de comando no caminho de pastas: C:\YourLocal\API4Sem2021. </br>
-   E rode o seguinte comando: </br>
-   * java -jar vpc.jar
-
-   Após isso, rode os seguintes comandos novamente no SQLDeveloper ou SQLPlus conectado ao usuário admin (xe):
-   * INSERT INTO Espaco VALUES (ID_CHAVE_SEQ.nextval,50,'Open Space'); </br>
-   * INSERT INTO Espaco VALUES (ID_CHAVE_SEQ.nextval,20,'Lounge on Hall');
-
-   Com esses dois prompts rodando, abra o seguinte link no navegador de sua preferência: http://localhost:4200/
+<h2 style="font-family:roboto;"> Acesso ao projeto</h2>
+   <b> Utilize o seguinte link: http://vempracasa.herokuapp.com/ </b>
    
    ---
    
