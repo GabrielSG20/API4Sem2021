@@ -46,9 +46,6 @@ public class EventoModel {
     @Column(name = "evt_status", columnDefinition = "number default NULL")
     private Integer status;
 
-    @Column(name = "evt_imagem")
-    private String imagemDivulgacao;
-
     @ManyToOne
     @JoinColumn(name = "usu_email")
     private UsuarioModel org;

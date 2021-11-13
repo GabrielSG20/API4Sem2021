@@ -1,5 +1,0 @@
-Arquivo changelog, utilizado para incluir o diretório das migrações
-databaseChangeLog:
-  - include:
-      file: migrations/V1_migration_db.sql
-      relativeToChangelogFile: true
