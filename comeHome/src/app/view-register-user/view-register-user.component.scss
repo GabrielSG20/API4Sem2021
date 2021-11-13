@@ -28,7 +28,7 @@ body {
   padding-bottom: 10vh;
   background-image: url('../view-register-user/img/register_externo.png') !important;
   width:100%;
-  height:100%;
+  height:120%;
   background-size:cover;
   background-position-y: -100px;
 
@@ -39,12 +39,13 @@ body {
       background-color: #D5C5C8;
       border-radius: 10px;
       padding: 25px;
-      opacity: 70%;
+      opacity: 75%;
 
         h1 {
           text-align: center;
           margin-bottom: 35px;
           font-size: 1.8rem;
+          font-weight: bold;
         }
 
           #register-form {
@@ -71,6 +72,26 @@ body {
                     width: auto;
                     margin-right: 10px;
 
+                  }
+
+                  input[type="radio"] {
+                    width: 15px;
+                    height: 15px;
+                    font-size: 1.2rem;
+                    text-align: justify;
+                    margin-bottom: 10px;
+                  }
+              }
+               .vaccine-conf {
+                flex: 1 1 45%;
+                position: relative;
+                margin-bottom: 30px;
+                margin-top: 30px;
+                
+                    input, label{
+                    display: inline-block;
+                    width: 95%;
+                    margin-right: 10px;
                   }
 
                   input[type="radio"] {
@@ -108,12 +129,6 @@ body {
                 font-size: 0.8rem;
                 width: 30%;
                 text-align: justify;
-              }
-
-              label[for="warning"] {
-                font-size: 1rem;
-                text-align: justify;
-                color:#AB3F49;
               }
 
               input {
@@ -178,16 +193,14 @@ body {
                 z-index:-1;
               }
 
-              label[for="radio-box"] {
-                font-size: 1.2rem;
-                text-align: justify;
-                margin-bottom: 10px;
-
+              label[for="warning"] {
+                  flex: 1 1 50%;          
+                  font-size: 1rem;
+                  font-weight: leighter;
+                  text-align: justify;
+                  margin-bottom: 10px;
+                  vertical-align: top;
               }
-
-           
-
-
           }
     }
 }
