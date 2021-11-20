@@ -21,6 +21,8 @@ public class EventoController {
     @Autowired
     EmailService emailService;
 
+
+
     //@PreAuthorize("hasRole('ROLE_ORG')")
     @PostMapping("/create")
     public ResponseEntity<Void> cadastroEvento(@RequestBody @Valid EventoModel eventoModel) {
@@ -53,5 +55,11 @@ public class EventoController {
     public ResponseEntity<List<EventoModel>> listarAprovados() {
         List<EventoModel> listEvents = eventoService.listarAprovados();
         return new ResponseEntity<>(listEvents, HttpStatus.OK);
+    }
+
+    @GetMapping("/teste")
+    public ResponseEntity<List<String>> listar() {
+        eventoService.gerarCsv();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
