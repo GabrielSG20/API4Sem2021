@@ -8,7 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -20,7 +27,6 @@ public class EventoController {
 
     @Autowired
     EmailService emailService;
-
 
 
     //@PreAuthorize("hasRole('ROLE_ORG')")
@@ -57,9 +63,30 @@ public class EventoController {
         return new ResponseEntity<>(listEvents, HttpStatus.OK);
     }
 
-    @GetMapping("/teste")
-    public ResponseEntity<List<String>> listar() {
-        eventoService.gerarCsv();
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/export")
+    public void exportCSV(HttpServletResponse rp) throws IOException {
+        rp.setContentType("text/csv");
+        String arq = "eventos.csv";
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; + filename:" + arq;
+
+        rp.setHeader(headerKey,headerValue);
+
+        List<EventoModel> eventos = eventoService.listar();
+
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(rp.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+
+        String[] csvHeader = {"Id", "Titulo", "Descrição", "Data inicio", "Data fim", "Tipo", "Status"};
+        String[] nameMapping = {"idEvento","titulo","descricao","dataInicio","dataEncerramento","tipoEvento","status"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (EventoModel e : eventos){
+            csvWriter.write(e,nameMapping);
+        }
+
+        csvWriter.close();
+
     }
 }
