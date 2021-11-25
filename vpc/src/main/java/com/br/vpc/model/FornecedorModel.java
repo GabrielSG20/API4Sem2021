@@ -24,6 +24,9 @@ public class FornecedorModel {
     @Column(name = "for_telefone",nullable = false)
     private Integer telefoneFornecedor;
 
+    @Column(name = "for_email",nullable = false,unique = true,length = 100)
+    private String emailFornecedor;
+
     @ManyToMany
     @JoinTable(name = "fornecedor_categoria",joinColumns = @JoinColumn(name = "for_cnpj"),
             inverseJoinColumns = @JoinColumn(name = "cat_id"))

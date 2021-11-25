@@ -25,6 +25,10 @@ export class AppService {
     return this.httpClient.get<any>(`${this.url}/eventos`, {headers: this.head})
     .pipe(catchError((res) => this.handleError(res)));
   }
+  getApprovedEvents(): Observable<any> {
+    return this.httpClient.get<any>(`${this.url}/eventos/aprovados`, {headers: this.head})
+    .pipe(catchError((res) => this.handleError(res)));
+  }
   protected handleError(error: any): Observable<any> {
     return throwError(error);
   }
@@ -41,7 +45,22 @@ export class AppService {
   }
   updateOrg(result: any): Observable<any> {
     return this.httpClient
-      .put<any>(`${this.url}/usuarios/org`, result, { headers: this.head })
+      .put<any>(`${this.url}/usuarios/org/${result.email}/${result.cargoUsuario}`, { headers: this.head })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  insertUser(result: any): Observable<any> {
+    return this.httpClient
+      .post<any>(`${this.url}/usuarios/create`, result, { headers: this.head })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  approveEvent(result: any): Observable<any> {
+    return this.httpClient
+      .put<any>(`${this.url}/eventos/aprovar/${result}`, { headers: this.head })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  deleteEvent(id: any, comentario: any): Observable<any> {
+    return this.httpClient
+      .delete<any>(`${this.url}/eventos/delete/${id}?comentario=${comentario}`, { headers: this.head })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
 }

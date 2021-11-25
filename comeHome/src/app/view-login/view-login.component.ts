@@ -12,6 +12,7 @@ export class ViewLoginComponent implements OnInit {
   public formGroup: FormGroup;
   @ViewChild('formDirective') 
   private formDirective: NgForm;
+  public userValid: boolean = true;
   private email: string;
   private pass: string;
   constructor(private authService: AuthService, public formBuilder: FormBuilder) { }
@@ -27,5 +28,6 @@ export class ViewLoginComponent implements OnInit {
   }
   ngSubmit() {
     this.authService.userLogin(this.formGroup.value);
+    setTimeout(() =>{this.userValid = this.authService.userLogged()}, 1000);
   }
 }
