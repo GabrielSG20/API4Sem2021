@@ -29,7 +29,7 @@ public class EventoModel {
     @Column(name = "evt_descricao", length = 80)
     private String descricao;
 
-    /*@NotBlank(message = "{data_i.not.blank}")*/
+   /* @NotBlank(message = "{data_i.not.blank}")*/
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
     @Column(name = "evt_data_inicio", nullable = false, length = 100)
     private String dataInicio;

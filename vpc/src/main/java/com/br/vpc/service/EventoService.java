@@ -28,9 +28,6 @@ public class EventoService {
     @Autowired
     EmailService emailService;
 
-    /*public static String CSV_PATH = System.getProperty("user.dir")+"/relatorios/";*/
-
-
     public void cadastrar(EventoModel event) {
         for (EspacoModel espaco : event.getNomeEspaco()) {
             espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));
@@ -81,35 +78,5 @@ public class EventoService {
     public List<EventoModel> listarAprovados() {
         return eventoRepository.findEventosAprovados();
     }
-
-   /* public void gerarCsv() {
-
-        try {
-
-            FileWriter fw = new FileWriter(CSV_PATH);
-            CSVWriter cw = new CSVWriter(fw);
-            EventoModel e = new EventoModel();
-
-            String[] headers = {"Id", "Titulo", "Descrição", "Data inicio", "Data fim", "Tipo", "Status"};
-            List<EventoModel> eventos = listar();
-            List<String[]> evt = new ArrayList<String[]>();
-
-            for (EventoModel e : eventos){
-                String[] its = {e.getIdEvento().toString(), e.getTitulo(), e.getDescricao(), e.getDataInicio(), e.getDataEncerramento(), e.getTipoEvento(), e.getStatus().toString(),e.getOrg().getEmail()};
-
-                evt.add(headers);
-                evt.add(its);
-            }
-
-            cw.writeAll(evt);
-            cw.close();
-            fw.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-*/
 
 }

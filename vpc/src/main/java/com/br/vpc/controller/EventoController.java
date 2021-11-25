@@ -3,19 +3,16 @@ package com.br.vpc.controller;
 import com.br.vpc.model.EventoModel;
 import com.br.vpc.service.EmailService;
 import com.br.vpc.service.EventoService;
+import com.opencsv.CSVWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.supercsv.io.CsvBeanWriter;
-import org.supercsv.io.ICsvBeanWriter;
-import org.supercsv.prefs.CsvPreference;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -65,28 +62,29 @@ public class EventoController {
 
     @GetMapping("/export")
     public void exportCSV(HttpServletResponse rp) throws IOException {
-        rp.setContentType("text/csv");
         String arq = "eventos.csv";
+        rp.setContentType("text/csv");
 
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; + filename:" + arq;
 
         rp.setHeader(headerKey,headerValue);
 
+        CSVWriter cw = new CSVWriter(rp.getWriter());
+
+        String[] csvTab = {"Id Evento", "Titulo", "Descrição", "Data/Hora Início", "Data/Hora fim", "Tipo do evento", "Status", "Org"};
         List<EventoModel> eventos = eventoService.listar();
+        List<String[]> listEvt = new ArrayList<String[]>();
 
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(rp.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        listEvt.add(csvTab);
 
-        String[] csvHeader = {"Id", "Titulo", "Descrição", "Data inicio", "Data fim", "Tipo", "Status"};
-        String[] nameMapping = {"idEvento","titulo","descricao","dataInicio","dataEncerramento","tipoEvento","status"};
+        for (EventoModel e : eventos) {
+            String[] csvValue = {e.getIdEvento().toString(), e.getTitulo(), e.getDescricao(), e.getDataInicio(), e.getDataEncerramento(), e.getTipoEvento(), e.getStatus().toString(), e.getOrg().getEmail()};
 
-        csvWriter.writeHeader(csvHeader);
-
-        for (EventoModel e : eventos){
-            csvWriter.write(e,nameMapping);
+            listEvt.add(csvValue);
         }
 
-        csvWriter.close();
-
+        cw.writeAll(listEvt);
+        cw.close();
     }
 }
