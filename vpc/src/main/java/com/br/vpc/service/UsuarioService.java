@@ -18,14 +18,14 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    @Autowired
+    EmailService emailService;
+
     public void cadastrar(UsuarioModel usuarioModel) {
         if (usuarioRepository.findUsuarioByEmail(usuarioModel.getEmail()) == null){
             try {
-//                String password = usuarioModel.getSenhaUsuario();
-//                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//                String encodedPassword = passwordEncoder.encode(password);
-//                usuarioModel.setSenhaUsuario(encodedPassword);
                 usuarioRepository.save(usuarioModel);
+                emailService.envioEmailCadastroUsu(usuarioModel);
             } catch (DataIntegrityViolationException e){
                 throw new DataBaseException(e.getMessage());
             }

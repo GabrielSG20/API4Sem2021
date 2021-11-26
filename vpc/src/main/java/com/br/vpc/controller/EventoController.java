@@ -4,7 +4,6 @@ import com.br.vpc.model.EspacoModel;
 import com.br.vpc.model.EventoModel;
 import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.service.EmailService;
-import com.br.vpc.service.EspacoService;
 import com.br.vpc.service.EventoService;
 import com.opencsv.CSVWriter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +28,6 @@ public class EventoController {
     @Autowired
     EmailService emailService;
 
-
-    //@PreAuthorize("hasRole('ROLE_ORG')")
     @PostMapping("/create")
     public ResponseEntity<Void> cadastroEvento(@RequestBody @Valid EventoModel eventoModel) {
         eventoService.cadastrar(eventoModel);
@@ -38,14 +35,12 @@ public class EventoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/aprovar/{id}")
     public ResponseEntity<Void> aprovarEvento(@PathVariable Integer id) {
         eventoService.aprovarEvento(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ORG')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id, @RequestParam String comentario) {
         eventoService.deletar(id, comentario);
@@ -64,6 +59,18 @@ public class EventoController {
         return new ResponseEntity<>(listEvents, HttpStatus.OK);
     }
 
+    @GetMapping("/conflito-dia")
+    public ResponseEntity<List<String>> mesmaData() {
+        List<String> listEvents = eventoService.eventosMesmaData();
+        return new ResponseEntity<>(listEvents, HttpStatus.OK);
+    }
+
+    @PutMapping("/participar/{id}/{email}")
+    public ResponseEntity<Void> aprovarEvento(@PathVariable Integer id, @PathVariable String email) {
+        eventoService.participar(id, email);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+  
     @GetMapping("/exportaberto")
     public void exportCsvAprovadoAberto(HttpServletResponse rp) throws IOException {
         String arq = "eventos.csv";
