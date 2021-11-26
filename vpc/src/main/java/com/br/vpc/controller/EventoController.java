@@ -1,7 +1,10 @@
 package com.br.vpc.controller;
 
+import com.br.vpc.model.EspacoModel;
 import com.br.vpc.model.EventoModel;
+import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.service.EmailService;
+import com.br.vpc.service.EspacoService;
 import com.br.vpc.service.EventoService;
 import com.opencsv.CSVWriter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ public class EventoController {
 
     @Autowired
     EventoService eventoService;
+
 
     @Autowired
     EmailService emailService;
@@ -60,8 +64,8 @@ public class EventoController {
         return new ResponseEntity<>(listEvents, HttpStatus.OK);
     }
 
-    @GetMapping("/export")
-    public void exportCSV(HttpServletResponse rp) throws IOException {
+    @GetMapping("/exportaberto")
+    public void exportCsvAprovadoAberto(HttpServletResponse rp) throws IOException {
         String arq = "eventos.csv";
         rp.setContentType("text/csv");
 
@@ -72,18 +76,106 @@ public class EventoController {
 
         CSVWriter cw = new CSVWriter(rp.getWriter());
 
-        String[] csvTab = {"Id Evento", "Titulo", "Descrição", "Data/Hora Início", "Data/Hora fim", "Tipo do evento", "Status", "Org"};
-        List<EventoModel> eventos = eventoService.listar();
+        String[] csvTab = {"Id Evento", "Titulo", "Descrição", "Espaço", "Data/Hora Início", "Data/Hora fim", "Organizador","ID Organizador"};
+        List<EventoModel> eventos = eventoService.listarAprovadosAberto();
         List<String[]> listEvt = new ArrayList<String[]>();
 
         listEvt.add(csvTab);
 
         for (EventoModel e : eventos) {
-            String[] csvValue = {e.getIdEvento().toString(), e.getTitulo(), e.getDescricao(), e.getDataInicio(), e.getDataEncerramento(), e.getTipoEvento(), e.getStatus().toString(), e.getOrg().getEmail()};
+            for (EspacoModel esp : e.getNomeEspaco()) {
 
-            listEvt.add(csvValue);
+                String[] csvValue = {e.getIdEvento().toString(), e.getTitulo(), e.getDescricao(), esp.getNomeEspaco(), e.getDataInicio(), e.getDataEncerramento(), e.getOrg().getEmail(), e.getOrg().getIdOracle().toString()};
+                listEvt.add(csvValue);
+            }
         }
+        cw.writeAll(listEvt);
+        cw.close();
+    }
 
+    @GetMapping("/exportfechado")
+    public void exportCsvAprovadoFechado(HttpServletResponse rp) throws IOException {
+        String arq = "eventos.csv";
+        rp.setContentType("text/csv");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; + filename:" + arq;
+
+        rp.setHeader(headerKey,headerValue);
+
+        CSVWriter cw = new CSVWriter(rp.getWriter());
+
+        String[] csvTab = {"Id Evento", "Titulo", "Descrição", "Espaço", "Data/Hora Início", "Data/Hora fim", "Organizador","ID Organizador"};
+        List<EventoModel> eventos = eventoService.listarAprovadosFechado();
+        List<String[]> listEvt = new ArrayList<String[]>();
+
+        listEvt.add(csvTab);
+
+        for (EventoModel e : eventos) {
+            for (EspacoModel esp : e.getNomeEspaco()) {
+
+                String[] csvValue = {e.getIdEvento().toString(), e.getTitulo(), e.getDescricao(), esp.getNomeEspaco(), e.getDataInicio(), e.getDataEncerramento(), e.getOrg().getEmail(), e.getOrg().getIdOracle().toString()};
+                listEvt.add(csvValue);
+            }
+        }
+        cw.writeAll(listEvt);
+        cw.close();
+    }
+
+    @GetMapping("/exportconvidadoaberto")
+    public void exportCsvConvidadoAberto(HttpServletResponse rp) throws IOException {
+        String arq = "eventos.csv";
+        rp.setContentType("text/csv");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; + filename:" + arq;
+
+        rp.setHeader(headerKey,headerValue);
+
+        CSVWriter cw = new CSVWriter(rp.getWriter());
+
+        String[] csvTab = {"Id Evento","Titulo Evento","Nome Convidado","Email convidado","Tipo de usuário"};
+        List<EventoModel> eventos = eventoService.listarAprovadosAberto();
+        List<String[]> listEvt = new ArrayList<String[]>();
+
+        listEvt.add(csvTab);
+
+        for (EventoModel e : eventos) {
+            for (UsuarioModel usu : e.getConvidados()) {
+
+                String[] csvValue = {e.getIdEvento().toString(),e.getTitulo(),usu.getNomeCompleto(),usu.getEmail(),usu.getTipoUsuario()};
+                listEvt.add(csvValue);
+            }
+        }
+        cw.writeAll(listEvt);
+        cw.close();
+    }
+
+    @GetMapping("/exportconvidadofechado")
+    public void exportCsvConvidadoFechado(HttpServletResponse rp) throws IOException {
+        String arq = "eventos.csv";
+        rp.setContentType("text/csv");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; + filename:" + arq;
+
+        rp.setHeader(headerKey,headerValue);
+
+        CSVWriter cw = new CSVWriter(rp.getWriter());
+
+        String[] csvTab = {"Id Evento","Titulo Evento","Nome Convidado","Email convidado","Tipo de usuário"};
+        List<EventoModel> eventos = eventoService.listarAprovadosFechado();
+        List<String[]> listEvt = new ArrayList<String[]>();
+
+        listEvt.add(csvTab);
+
+        for (EventoModel e : eventos) {
+            for (UsuarioModel usu : e.getConvidados()) {
+
+                String[] csvValue = {e.getIdEvento().toString(),e.getTitulo(),usu.getNomeCompleto(),usu.getEmail(),usu.getTipoUsuario()};
+                listEvt.add(csvValue);
+            }
+        }
         cw.writeAll(listEvt);
         cw.close();
     }

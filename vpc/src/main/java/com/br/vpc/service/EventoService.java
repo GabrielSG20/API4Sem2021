@@ -79,4 +79,14 @@ public class EventoService {
         return eventoRepository.findEventosAprovados();
     }
 
+    public List<EventoModel> listarAprovadosAberto() {
+        return eventoRepository.findEventosAprovadosAberto();
+    }
+
+    public List<EventoModel> listarAprovadosFechado() {
+        return eventoRepository.findEventosAprovadosFechado();
+    }
+
+
+
 }

@@ -34,6 +34,7 @@ public class UsuarioService {
 
     public List<UsuarioModel> listar(){ return usuarioRepository.findAll(); }
 
+
     public UsuarioModel listarUser(String email){
         try {
             Optional<UsuarioModel> user = usuarioRepository.findById(email);
@@ -42,6 +43,9 @@ public class UsuarioService {
             throw new ResourceNotFoundException(e);
         }
     }
+
+    public List<UsuarioModel> listarExterno(){ return usuarioRepository.findAll(); }
+
 
     public void aprovarOrg(String email, String cargoUsuario) {
         try {

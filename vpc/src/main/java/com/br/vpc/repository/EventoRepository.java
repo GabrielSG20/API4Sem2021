@@ -14,4 +14,10 @@ public interface EventoRepository extends JpaRepository<EventoModel, Integer> {
 
     @Query(" from EventoModel where status = 1 ")
     List<EventoModel> findEventosAprovados();
+
+    @Query(" from EventoModel where status = 1 and tipoEvento = 'Private'")
+    List<EventoModel> findEventosAprovadosFechado();
+
+    @Query(" from EventoModel where status = 1 and tipoEvento = 'Public'")
+    List<EventoModel> findEventosAprovadosAberto();
 }
