@@ -70,4 +70,19 @@ public class EventoService {
     public List<EventoModel> listar(){ return eventoRepository.findAll(); }
 
     public List<EventoModel> listarAprovados(){ return eventoRepository.findEventosAprovados(); }
+
+    public List<String> eventosMesmaData() { return eventoRepository.findEventosMesmaData(); }
+
+    public void participar(Integer id, String email){
+        try {
+            UsuarioModel usu = new UsuarioModel();
+            usu.setEmail(email);
+            EventoModel evento = eventoRepository.findEventoById(id);
+            evento.getConvidados().add(usu);
+            eventoRepository.save(evento);
+            emailService.envioEmailParticiparEvento(evento);
+        } catch (InvalidDataAccessApiUsageException e){
+            throw new ResourceNotFoundException(id);
+        }
+    }
 }

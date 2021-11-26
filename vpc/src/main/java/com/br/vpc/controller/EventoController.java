@@ -51,4 +51,16 @@ public class EventoController {
         List<EventoModel> listEvents = eventoService.listarAprovados();
         return new ResponseEntity<>(listEvents, HttpStatus.OK);
     }
+
+    @GetMapping("/conflito-dia")
+    public ResponseEntity<List<String>> mesmaData() {
+        List<String> listEvents = eventoService.eventosMesmaData();
+        return new ResponseEntity<>(listEvents, HttpStatus.OK);
+    }
+
+    @PutMapping("/participar/{id}/{email}")
+    public ResponseEntity<Void> aprovarEvento(@PathVariable Integer id, @PathVariable String email) {
+        eventoService.participar(id, email);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 }

@@ -19,6 +19,7 @@ export class ViewRegisterUserComponent implements OnInit {
   public email: string;
   public password: string;
   public passConfirm: string;
+  public vaccine: string;
   public oracleEmployee: boolean = false;
   public showSucss: boolean;
 
@@ -41,6 +42,7 @@ export class ViewRegisterUserComponent implements OnInit {
       email: [this.email],
       senhaUsuario: [this.password],
       passConfirm: [this.passConfirm],
+      comprovanteVacinacao: [this.vaccine],
     });
   }
   ngSubmit() {
@@ -52,7 +54,6 @@ export class ViewRegisterUserComponent implements OnInit {
         this.appService.insertUser(this.formGroup.value).subscribe(response => {
           },
           error => {
-            console.log('chegou');
           },
           () => {
             this.showSucss = true;
