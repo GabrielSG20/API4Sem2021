@@ -1,0 +1,71 @@
+<div class="info-dialog">
+  <h1 class="event-title">{{data.title}}</h1>
+  <div class="bloco-flex">
+    <div class="item">
+      <p class="p-item">
+        <mat-icon class="schedule-icon">
+          location_on
+          </mat-icon>
+          Espaço(s):
+      </p>
+      <mat-checkbox (click)="$event.preventDefault()"
+      class="item" 
+      color="primary" 
+      [checked]= "true"
+      *ngFor="let space of data.space; index as i">{{space.nomeEspaco}}</mat-checkbox>
+    </div>
+    <div class="item">
+      <p class="day-event">
+        <mat-icon class="schedule-icon">
+        schedule
+        </mat-icon>
+        Horário do evento:
+      </p>
+      <mat-form-field class="select-hour">
+        <mat-label>{{data.hourStart}}</mat-label>
+        <mat-select>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="select-hour">
+        <mat-label>{{data.hourEnd}}</mat-label>
+        <mat-select>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="bloco-flex">
+    <div class="item">
+      <p class="p-item">
+        <mat-icon class="schedule-icon">
+          supervisor_account
+          </mat-icon>
+          Tipo de Evento:
+      </p>
+      <mat-checkbox 
+      class="item" 
+      [checked]= "true"
+      color="primary"
+      (click)="$event.preventDefault()">{{data.eventType}}</mat-checkbox>
+    </div>
+  </div>
+  <div class="bloco">
+    <div class="item">
+      <p>
+        <mat-icon class="schedule-icon">
+          article
+          </mat-icon>
+          Descrição do Evento:
+      </p>
+      <mat-form-field class="full-width">
+        <mat-label>Detalhes quanto a descrição do evento</mat-label>
+        <textarea matInput value="{{data.desc}}" readonly></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+  <form [formGroup]="formGroup">
+    <div mat-dialog-actions class="buttons">
+      <button mat-button class="aprove-btn" [mat-dialog-close]="onAprovedClick()" *ngIf="userPermission">Participar do evento</button>
+      <button mat-button class="aprove-btn" [mat-dialog-close]="doLogin()" *ngIf="!userPermission">Logue-se para participar</button>
+    </div>
+  </form>
+</div>
