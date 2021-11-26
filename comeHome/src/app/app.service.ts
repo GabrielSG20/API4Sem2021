@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +61,11 @@ export class AppService {
   deleteEvent(id: any, comentario: any): Observable<any> {
     return this.httpClient
       .delete<any>(`${this.url}/eventos/delete/${id}?comentario=${comentario}`, { headers: this.head })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  getDownload(): Observable<any> {
+    return this.httpClient
+      .get(`${this.url}/eventos/export`, { responseType: 'blob' })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
 }

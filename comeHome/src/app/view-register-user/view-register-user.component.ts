@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-view-register-user',
@@ -83,6 +84,10 @@ export class ViewRegisterUserComponent implements OnInit {
         tipoUsuario: 'externo',
       });
     }
+  }
+
+  downloadFile() {
+    this.appService.getDownload().subscribe(blob => saveAs(blob, 'filename'));
   }
 }
 
