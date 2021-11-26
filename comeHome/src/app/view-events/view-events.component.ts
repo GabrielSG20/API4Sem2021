@@ -214,7 +214,7 @@ export class ViewEventsComponent implements OnInit {
       console.log(`Dialog result: ${result.adminAnwser}, ${result.eventStatus}`);
       if(result.eventStatus === 'Inscrito') {
         //Trocar api aqui
-        this.appService.approveEvent(this.event.id).subscribe((values) => {
+        this.appService.participarEvento(this.event.id, this.userEmail).subscribe((values) => {
           this.events = [];
           alert('Você foi adicionado a lista de participantes com sucesso!');
           this.getAllResults();
