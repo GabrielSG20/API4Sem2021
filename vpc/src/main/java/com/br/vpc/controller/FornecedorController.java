@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/fornecedor")
 public class FornecedorController {
 
     @Autowired
@@ -32,7 +33,7 @@ public class FornecedorController {
         }
     }
 
-    @PutMapping("/{cnpj")
+    @PutMapping("/{cnpj}")
     public void atualizar(@PathVariable String cnpj, String email, Integer telefone){
         service.update(cnpj, email, telefone);
     }

@@ -8,9 +8,4 @@ import java.util.Optional;
 
 @Repository
 public interface FornecedorRepository extends JpaRepository<FornecedorModel, String> {
-
-
-    Optional<FornecedorModel> findByCnpj(String cnpj);
-
-    void deleteByCnpj(String cnpj);
 }

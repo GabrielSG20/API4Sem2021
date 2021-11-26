@@ -23,7 +23,7 @@ public class FornecedorService {
     }
 
     public void update(String cnpj, String email, Integer telefone) {
-       Optional<FornecedorModel> fornecedor = repository.findByCnpj(cnpj);
+       Optional<FornecedorModel> fornecedor = repository.findById(cnpj);
        FornecedorModel model = fornecedor.get();
        if (fornecedor != null){
            if (email != null){
@@ -38,6 +38,6 @@ public class FornecedorService {
     }
 
     public void delete(String cnpj) {
-        repository.deleteByCnpj(cnpj);
+        repository.deleteById(cnpj);
     }
 }
