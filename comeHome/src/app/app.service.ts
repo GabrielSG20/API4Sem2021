@@ -63,4 +63,32 @@ export class AppService {
       .delete<any>(`${this.url}/eventos/delete/${id}?comentario=${comentario}`, { headers: this.head })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
+  participarEvento(id: any, email: any): Observable<any> {
+    return this.httpClient.put<any>(`${this.url}/participar/${id}/${email}`, {headers: this.head})
+    .pipe(catchError((res) => this.handleError(res)));
+  }
+  getConflitoEventos(): Observable<any> {
+    return this.httpClient.get<any>(`${this.url}/conflito-dia`, {headers: this.head})
+    .pipe(catchError((res) => this.handleError(res)));
+  }
+  getDownloadEventoAberto(): Observable<any> {
+    return this.httpClient
+      .get(`${this.url}/exportaberto`, { responseType: 'blob' })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  getDownloadEventoFechado(): Observable<any> {
+    return this.httpClient
+      .get(`${this.url}/exportfechado`, { responseType: 'blob' })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  getDownloadConvidadosAberto(): Observable<any> {
+    return this.httpClient
+      .get(`${this.url}/exportconvidadoaberto`, { responseType: 'blob' })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  getDownloadConvidadosFechado(): Observable<any> {
+    return this.httpClient
+      .get(`${this.url}/exportconvidadofechado`, { responseType: 'blob' })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
 }
