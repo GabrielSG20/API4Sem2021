@@ -57,4 +57,6 @@ public class UsuarioController {
         usuarioService.deletar(usuarioModel.getEmail());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 }
