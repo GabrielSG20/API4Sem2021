@@ -21,7 +21,6 @@ public class EventoController {
     @Autowired
     EmailService emailService;
 
-    //@PreAuthorize("hasRole('ROLE_ORG')")
     @PostMapping("/create")
     public ResponseEntity<Void> cadastroEvento(@RequestBody @Valid EventoModel eventoModel) {
         eventoService.cadastrar(eventoModel);
@@ -29,14 +28,12 @@ public class EventoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/aprovar/{id}")
     public ResponseEntity<Void> aprovarEvento(@PathVariable Integer id) {
         eventoService.aprovarEvento(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
-    //@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ORG')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id, @RequestParam String comentario) {
         eventoService.deletar(id, comentario);
