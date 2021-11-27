@@ -1,0 +1,33 @@
+<body>
+    <h1>Alterar capacidade dos espaços</h1>
+    <div class="duas-colunas">
+        <div class="lounge">
+            <form id="lounge-form">
+                <div class="half-box">
+                    <img src='/assets/img/LoungeOnHall.png' alt='image' height="300px">
+                    <div class="cap-lounge">
+                        <label for="lounge">Capacidade Máxima </label>
+                        <input type="number" name="lounge" id="lounge" placeholder="XXXX" formControlName="lounge" required>
+                        <label for="lounge"> pessoas.</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="openSpace">
+            <form id="openSpace-form">
+                <div class="half-box">
+                    <img src='/assets/img/OpenSpace.png' alt='image' height="300px">
+                    <div class="cap-open">
+                        <label for="openspace">Capacidade Máxima </label>
+                        <input type="number" name="openspace" id="openspace" placeholder="XXXX" formControlName="openspace" required>
+                        <label for="lounge"> pessoas.</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="third-box">
+        <label for="confirmCapacity"></label>
+        <input type="submit" id="confirmCapacity" value="Confirmar" style="float: right;">
+     </div>
+</body>
