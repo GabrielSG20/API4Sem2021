@@ -161,31 +161,11 @@ export class ViewEventsComponent implements OnInit {
       }
       this.viewDate = date;
       this.date = new FormControl(new Date(date));
-      
     }
   }
-
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd,
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map((iEvent) => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd,
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
-
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    this.openDialog();
   }
 
   setView(view: CalendarView) {
@@ -207,14 +187,12 @@ export class ViewEventsComponent implements OnInit {
   }
   openDialog() {
     const dialogRef = this.dialog.open(DialogInfoEventComponent, {
-      data: this.event,
+      data: this.modalData.event,
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result.adminAnwser}, ${result.eventStatus}`);
       if(result.eventStatus === 'Inscrito') {
-        //Trocar api aqui
-        this.appService.participarEvento(this.event.id, this.userEmail).subscribe((values) => {
+        this.appService.participarEvento(this.modalData.event.id, this.userEmail).subscribe((values) => {
           this.events = [];
           alert('Você foi adicionado a lista de participantes com sucesso!');
           this.getAllResults();

@@ -65,7 +65,7 @@
   <form [formGroup]="formGroup">
     <div mat-dialog-actions class="buttons">
       <button mat-button class="aprove-btn" [mat-dialog-close]="onAprovedClick()" *ngIf="userPermission">Participar do evento</button>
-      <button mat-button class="aprove-btn" [mat-dialog-close]="doLogin()" *ngIf="!userPermission">Logue-se para participar</button>
+      <button mat-button class="aprove-btn" (click)="doLogin()" *ngIf="!userPermission">Logue-se para participar</button>
     </div>
   </form>
 </div>

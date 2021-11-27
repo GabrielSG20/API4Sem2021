@@ -42,6 +42,10 @@ export class DialogInfoEventComponent implements OnInit {
     return this.formGroup.value
   }
   doLogin() {
+    this.formGroup.patchValue({
+      eventStatus: 'Login',
+    });
+    this.dialogRef.close();
     this.router.navigate(['/login']);
   }
 }
