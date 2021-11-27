@@ -44,9 +44,9 @@ public class EmailService {
         }
     }
 
-    public void envioEmailParticiparEvento(EventoModel eventoModel) {
-        if (eventoModel != null) {
-            definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_PARTICIPAR_EVENTO,
+    public void envioEmailParticiparEvento(UsuarioModel usu, EventoModel eventoModel) {
+        if (usu != null) {
+            definicoesEmail(usu.getEmail(), EmailConstantes.MENSAGEM_EMAIL_PARTICIPAR_EVENTO,
                     EmailConstantes.ASSUNTO_EMAIL_PARTICIPAR_EVENTO+eventoModel.getTitulo());
         }
     }

@@ -64,30 +64,30 @@ export class AppService {
       .pipe(catchError(async (res) => this.handleError(res)));
   }
   participarEvento(id: any, email: any): Observable<any> {
-    return this.httpClient.put<any>(`${this.url}/participar/${id}/${email}`, {headers: this.head})
+    return this.httpClient.put<any>(`${this.url}/eventos/participar/${id}/${email}`, {headers: this.head})
     .pipe(catchError((res) => this.handleError(res)));
   }
   getConflitoEventos(): Observable<any> {
-    return this.httpClient.get<any>(`${this.url}/conflito-dia`, {headers: this.head})
+    return this.httpClient.get<any>(`${this.url}/eventos/conflito-dia`, {headers: this.head})
     .pipe(catchError((res) => this.handleError(res)));
   }
   getDownloadEventoAberto(): Observable<any> {
     return this.httpClient
-      .get(`${this.url}/exportaberto`, { responseType: 'blob' })
+      .get(`${this.url}/eventos/exportaberto`, { responseType: 'blob' })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
   getDownloadEventoFechado(): Observable<any> {
     return this.httpClient
-      .get(`${this.url}/exportfechado`, { responseType: 'blob' })
+      .get(`${this.url}/eventos/exportfechado`, { responseType: 'blob' })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
   getDownloadConvidadosAberto(): Observable<any> {
     return this.httpClient
-      .get(`${this.url}/exportconvidadoaberto`, { responseType: 'blob' })
+      .get(`${this.url}/eventos/exportconvidadoaberto`, { responseType: 'blob' })
       .pipe(catchError(async (res) => this.handleError(res)));
   }
   getDownloadConvidadosFechado(): Observable<any> {
     return this.httpClient
-      .get(`${this.url}/exportconvidadofechado`, { responseType: 'blob' })
+      .get(`${this.url}/eventos/exportconvidadofechado`, { responseType: 'blob' })
   }
 }

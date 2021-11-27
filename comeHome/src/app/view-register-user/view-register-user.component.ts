@@ -85,9 +85,5 @@ export class ViewRegisterUserComponent implements OnInit {
       });
     }
   }
-
-  downloadFile() {
-    //this.appService.getDownload().subscribe(blob => saveAs(blob, 'filename'));
-  }
 }
 

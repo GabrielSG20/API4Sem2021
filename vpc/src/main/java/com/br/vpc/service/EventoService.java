@@ -94,7 +94,7 @@ public class EventoService {
             EventoModel evento = eventoRepository.findEventoById(id);
             evento.getConvidados().add(usu);
             eventoRepository.save(evento);
-            emailService.envioEmailParticiparEvento(evento);
+            emailService.envioEmailParticiparEvento(usu, evento);
         } catch (InvalidDataAccessApiUsageException e){
             throw new ResourceNotFoundException(id);
         }

@@ -28,6 +28,9 @@ import {
 import { formatDate } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AppService } from '../app.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogInfoEventComponent } from './dialog-info-event/dialog-info-event.component';
+import { AuthService } from '../view-login/auth.service';
 
 const colors: any = {
   red: {
@@ -63,15 +66,24 @@ export class ViewEventsComponent implements OnInit {
   public elemento: any;
   refresh: Subject<any> = new Subject();
   public data: any;
+  public event: any;
   public events: CalendarEvent[];
+  public userEmail: string;
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private modal: NgbModal, public formBuilder: FormBuilder, private appService: AppService,) {}
+  constructor(
+    private modal: NgbModal, 
+    public formBuilder: FormBuilder, 
+    private appService: AppService, 
+    public dialog: MatDialog,
+    private authService: AuthService,) {}
 
   ngOnInit(): void {
     this.events = [];
     this.getAllResults();
+    this.userEmail = this.authService.getEmail();
+    console.log(this.userEmail != '' && this.userEmail != null && this.userEmail != undefined);
   }
 
   colorEvent(element: any) {
@@ -112,10 +124,22 @@ export class ViewEventsComponent implements OnInit {
     let number = Number(element[0]);
     return number
   }
+  eventHourString(element: any) {
+    element = element.split(" ");
+    element = element[1];
+    return element;
+  }
   eventPlot() {
     for (var element of this.data) {
       this.elemento = element;
       var newEvent = {
+        id: this.elemento.idEvento,
+        space: this.elemento.nomeEspaco,
+        desc: this.elemento.descricao,
+        hourStart: this.eventHourString(this.elemento.dataInicio),
+        hourEnd: this.eventHourString(this.elemento.dataEncerramento),
+        eventType: this.elemento.tipoEvento,
+        status: this.elemento.status,
         start: setHours(new Date(this.eventDate(this.elemento.dataInicio)), this.eventHour(this.elemento.dataInicio)),
         end: setHours(new Date(this.eventDate(this.elemento.dataEncerramento)), this.eventHour(this.elemento.dataEncerramento)),
         title: this.elemento.titulo,
@@ -137,31 +161,11 @@ export class ViewEventsComponent implements OnInit {
       }
       this.viewDate = date;
       this.date = new FormControl(new Date(date));
-      
     }
   }
-
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd,
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map((iEvent) => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd,
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
-
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    this.openDialog();
   }
 
   setView(view: CalendarView) {
@@ -179,6 +183,21 @@ export class ViewEventsComponent implements OnInit {
     this.appService.getApprovedEvents().subscribe((values) => {
       this.data = values;
       this.eventPlot();
+    });
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogInfoEventComponent, {
+      data: this.modalData.event,
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.eventStatus === 'Inscrito') {
+        this.appService.participarEvento(this.modalData.event.id, this.userEmail).subscribe((values) => {
+          this.events = [];
+          alert('Você foi adicionado a lista de participantes com sucesso!');
+          this.getAllResults();
+        });
+      }
     });
   }
 }
