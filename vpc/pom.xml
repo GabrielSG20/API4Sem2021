@@ -11,18 +11,15 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-
 	<groupId>com.br</groupId>
 	<artifactId>vpc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>vpc</name>
 	<description>Agenda eventos Oracle</description>
 
-
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-
 
 	<dependencies>
 		<dependency>
@@ -63,6 +60,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.2</version>
 		</dependency>
 
 	</dependencies>
