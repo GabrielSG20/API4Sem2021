@@ -56,20 +56,31 @@
             </div>
           </div>
           <div class="option-div">
-            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/organization.png">Comprovante de Vacinação</a>
-          </div>
-          <div class="option-div">
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/calendar.png">Espaços</a>
           </div>
           <div class="option-div">
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/report.png">Fornecedores</a>
           </div>
-          <div class="option-div">
+          <div class="option-div" (click)="openReports()">
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/tool-kit.png">Extrair Relatório</a>
           </div>
-          <div class="user-edit">
-            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/user-avatar.png">Editar Perfil</a>
+          <div *ngIf="subReports == true">
+            <div class="submenu-option" routerLinkActive="is-active" (click)="downloadFileEventoAberto()">
+              <a>Eventos Públicos</a>
+            </div>
+            <div class="submenu-option" routerLinkActive="is-active" (click)="downloadFileEventoFechado()">
+              <a>Eventos Privados</a>
+            </div>
+            <div class="submenu-option" routerLinkActive="is-active" (click)="downloadFileConvidadoPublico()">
+              <a>Convidados (Público)</a>
+            </div>
+            <div class="submenu-option" routerLinkActive="is-active" (click)="downloadFileConvidadoPrivado()">
+              <a>Convidados (Privado)</a>
+            </div>
           </div>
+          <!--<div class="user-edit">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/user-avatar.png">Editar Perfil</a>
+          </div>-->
         </div>
       </div>
     </mat-sidenav>
