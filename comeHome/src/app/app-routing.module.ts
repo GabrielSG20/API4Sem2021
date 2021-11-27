@@ -7,6 +7,8 @@ import { ViewEventsComponent } from './view-events/view-events.component';
 import { ViewLoginComponent } from './view-login/view-login.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { ViewAproveEventComponent } from './view-aprove-event/view-aprove-event.component';
+import { ViewRegisterSupplierComponent } from './view-register-supplier/view-register-supplier.component';
+
 
 const routes: Routes = [
   { path: 'resOrg', component: ViewRegisterOrgComponent,
@@ -18,6 +20,7 @@ const routes: Routes = [
   { path: 'login', component: ViewLoginComponent},
   { path: 'eventSettings', component: ViewAproveEventComponent,
     canActivate: [AuthGuardService]},
+    { path: 'resSup', component: ViewRegisterSupplierComponent},
 ];
 
 @NgModule({
