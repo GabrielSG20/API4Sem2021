@@ -18,14 +18,14 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+    @Autowired
+    EmailService emailService;
+
     public void cadastrar(UsuarioModel usuarioModel) {
         if (usuarioRepository.findUsuarioByEmail(usuarioModel.getEmail()) == null){
             try {
-//                String password = usuarioModel.getSenhaUsuario();
-//                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//                String encodedPassword = passwordEncoder.encode(password);
-//                usuarioModel.setSenhaUsuario(encodedPassword);
                 usuarioRepository.save(usuarioModel);
+                emailService.envioEmailCadastroUsu(usuarioModel);
             } catch (DataIntegrityViolationException e){
                 throw new DataBaseException(e.getMessage());
             }
@@ -33,6 +33,7 @@ public class UsuarioService {
     }
 
     public List<UsuarioModel> listar(){ return usuarioRepository.findAll(); }
+
 
     public UsuarioModel listarUser(String email){
         try {
@@ -42,6 +43,9 @@ public class UsuarioService {
             throw new ResourceNotFoundException(e);
         }
     }
+
+    public List<UsuarioModel> listarExterno(){ return usuarioRepository.findAll(); }
+
 
     public void aprovarOrg(String email, String cargoUsuario) {
         try {

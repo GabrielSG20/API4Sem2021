@@ -18,7 +18,7 @@ public class EmailService {
             for (UsuarioModel endercoEmail : eventoModel.getConvidados()) {
                 String contato = endercoEmail.getEmail();
                 definicoesEmail(contato, EmailConstantes.MENSAGEM_EMAIL_CADASTRO,
-                        EmailConstantes.ASSUNTO_EMAIL_CADASTRO);
+                        EmailConstantes.ASSUNTO_EMAIL_CADASTRO+eventoModel.getTitulo());
             }
             definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_ENVIADO_CONVIDADOS,
                     EmailConstantes.ASSUNTO_EMAIL_EVENTO_CRIADO);
@@ -30,7 +30,7 @@ public class EmailService {
             for (UsuarioModel endercoEmail : eventoModel.getConvidados()) {
                 String contato = endercoEmail.getEmail();
                 definicoesEmail(contato, EmailConstantes.MENSAGEM_EMAIL_CONVIDADO,
-                        EmailConstantes.ASSUNTO_EMAIL_CONFIRMA_PRESENCA);
+                        EmailConstantes.ASSUNTO_EMAIL_CONFIRMA_PRESENCA+eventoModel.getTitulo());
             }
             definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_CONFIRMACAO_EVENTO,
                     EmailConstantes.ASSUNTO_EMAIL_EVENTO_APROVADO);
@@ -40,7 +40,21 @@ public class EmailService {
     public void envioEmailEventoReprovado(EventoModel eventoModel, String comentario) {
         if (eventoModel != null) {
             definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_EVENTO_NEGADO + comentario,
-                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_NEGADO);
+                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_NEGADO+eventoModel.getTitulo());
+        }
+    }
+
+    public void envioEmailParticiparEvento(UsuarioModel usu, EventoModel eventoModel) {
+        if (usu != null) {
+            definicoesEmail(usu.getEmail(), EmailConstantes.MENSAGEM_EMAIL_PARTICIPAR_EVENTO,
+                    EmailConstantes.ASSUNTO_EMAIL_PARTICIPAR_EVENTO+eventoModel.getTitulo());
+        }
+    }
+
+    public void envioEmailCadastroUsu(UsuarioModel usu) {
+        if (usu != null) {
+            definicoesEmail(usu.getEmail(), EmailConstantes.MENSAGEM_EMAIL_CADASTRO_REALIZADO,
+                    EmailConstantes.ASSUNTO_EMAIL_CADASTRO_REALIZADO+usu.getNomeCompleto());
         }
     }
 
