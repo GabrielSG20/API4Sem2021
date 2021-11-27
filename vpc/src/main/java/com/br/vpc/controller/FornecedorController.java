@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/fornecedor")
@@ -26,15 +27,17 @@ public class FornecedorController {
     @GetMapping
     public ResponseEntity<List<FornecedorModel>> lista(){
         List<FornecedorModel> fornecedores = service.findAll();
-        if (fornecedores != null){
-            return new ResponseEntity<>(fornecedores, HttpStatus.FOUND);
-        }else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(fornecedores,HttpStatus.OK);
+    }
+
+    @GetMapping("/cnpj/{cnpj}")
+    public Optional<FornecedorModel> listaPorCnpj(@PathVariable String cnpj){
+        return service.listaCnpj(cnpj);
     }
 
     @PutMapping("/{cnpj}")
-    public void atualizar(@PathVariable String cnpj, String email, Integer telefone){
+    public void atualizar(@PathVariable String cnpj, @RequestParam String email,
+                          @RequestParam String telefone){
         service.update(cnpj, email, telefone);
     }
 

@@ -24,6 +24,4 @@ public class CategoriaModel {
     @Column(name = "cat_descricao", length = 30)
     private String descCategoria;
 
-    @ManyToMany(mappedBy = "categorias")
-    private List<FornecedorModel> fornecedores;
 }
