@@ -6,6 +6,7 @@ import com.br.vpc.model.UsuarioModel;
 import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.repository.EventoRepository;
 import com.br.vpc.service.exceptions.ResourceNotFoundException;
+import com.opencsv.CSVWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,9 @@ public class EventoService {
 
     @Autowired
     EmailService emailService;
+
+    public static String CSV_PATH = System.getProperty("user.dir")+"/relatorios/";
+
 
     public void cadastrar(EventoModel event) {
         for (EspacoModel espaco : event.getNomeEspaco()) {
@@ -75,6 +79,7 @@ public class EventoService {
         return eventoRepository.findAll();
     }
 
+
     public List<EventoModel> listarAprovadosAberto() {
         return eventoRepository.findEventosAprovadosAberto();
     }
@@ -99,4 +104,5 @@ public class EventoService {
             throw new ResourceNotFoundException(id);
         }
     }
+
 }

@@ -22,7 +22,7 @@ public class FornecedorModel {
     private String nomeFornecedor;
 
     @Column(name = "for_telefone",nullable = false)
-    private Integer telefoneFornecedor;
+    private String telefoneFornecedor;
 
     @Column(name = "for_email",nullable = false,unique = true,length = 100)
     private String emailFornecedor;
