@@ -1,0 +1,50 @@
+
+.info-dialog {
+  .event-title {
+    font-size: xx-large !important;
+    margin-bottom: 8%;
+  }
+  .bloco {
+    margin-top: 5%;
+  }
+  .bloco-flex {
+    margin-top: 5%;
+    display: flex;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  .flex-item-1 {
+    flex: 1;
+  }
+  .buttons {
+    align-items: center;
+    margin-top: 5%;
+    justify-content: center !important;
+  }
+  .aprove-btn {
+    color: white;
+    width: 45%;
+    background-color: #197278;
+  }
+  .full-width{
+    font-size: 90% !important;
+    margin-top: 2%;
+    width: 100% !important;
+  }
+  .item {
+    margin-left: 3%;
+  }
+  .p-item {
+    margin-bottom: 3%;
+  }
+  .select-hour {
+    margin-left: 2%;
+    width: 35%;
+    font-size: 85%;
+  }
+  .schedule-icon {
+    vertical-align: middle;
+  }
+}
