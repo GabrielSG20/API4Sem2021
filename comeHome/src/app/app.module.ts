@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { registerLocaleData, CommonModule } from '@angular/common';
+import { registerLocaleData, CommonModule, DatePipe } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 registerLocaleData(localeBr);
 
@@ -89,6 +89,7 @@ import { ViewRegisterSupplierComponent } from './view-register-supplier/view-reg
     { provide: LOCALE_ID, useValue: 'pt'},
     AppMockedService,
     AuthService,
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

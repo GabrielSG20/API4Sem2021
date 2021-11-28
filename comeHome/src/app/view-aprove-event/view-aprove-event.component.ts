@@ -4,6 +4,7 @@ import {
   ViewChild,
   TemplateRef,
   OnInit,
+  EventEmitter,
 } from '@angular/core';
 import {
   startOfDay,
@@ -26,7 +27,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AppService } from '../app.service';
 import { DialogAproveEventComponent } from './dialog-aprove-event/dialog-aprove-event.component';
@@ -65,7 +66,8 @@ export class ViewAproveEventComponent implements OnInit {
   refresh: Subject<any> = new Subject();
   public data: any;
   public event: any;
-  public events: CalendarEvent[];
+  public events: any;
+  eventConflit: boolean = false;
 
   activeDayIsOpen: boolean = false;
 
@@ -73,7 +75,8 @@ export class ViewAproveEventComponent implements OnInit {
     private modal: NgbModal, 
     public formBuilder: FormBuilder, 
     private appService: AppService,
-    public dialog: MatDialog) {}
+    public dialog: MatDialog,
+    public datepipe: DatePipe) {}
 
   ngOnInit(): void {
     this.events = [];
@@ -180,13 +183,23 @@ export class ViewAproveEventComponent implements OnInit {
     });
   }
   openDialog() {
+    let eventCount = 0;
+    for (var element of this.events) {
+      if (this.datepipe.transform(this.event.start, 'yyyy-MM-dd') == this.datepipe.transform(element.start, 'yyyy-MM-dd')
+      && this.event.space.toString() == element.space.toString()) {
+        eventCount += 1;
+      }
+    }
     if (this.event.status === null) {
+      if (eventCount > 1) {
+        this.eventConflit = true;
+        alert('Existe mais de um evento para o mesmo espaço no mesmo dia. Por favor recuse um evento, antes de realizar a aprovação.');
+      }
       const dialogRef = this.dialog.open(DialogAproveEventComponent, {
-        data: this.event,
+        data: [this.event, this.eventConflit],
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result.adminAnwser}, ${result.eventStatus}`);
         if(result.eventStatus === 'Aprovado') {
           this.appService.approveEvent(this.event.id).subscribe((values) => {
             this.events = [];
