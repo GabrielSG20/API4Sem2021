@@ -1,0 +1,46 @@
+<body>
+    <div id="view-supplier-register">
+        <h1>Cadastrar Fornecedor</h1>
+        <form id="register-form">
+            <div class="third-box spacing">
+                <label for="name">Nome Fantasia</label>
+                <input type="text" name="name" id="name" placeholder="Nome da Empresa" formControlName="ciaName" required>
+            </div>
+            <div class="third-box spacing">
+                <label for="proprietario">Proprietário</label>
+                <input type="text" name="proprietario" id="name" placeholder="Nome do Proprietário" formControlName="ownerName" required>
+            </div>
+            <div class="third-box">
+                <label for="cnpj">CNPJ</label>
+                <input type="text" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" data-mask="00.000.000/0000-00" formControlName="cnpj" required>
+            </div>
+            <div class="third-box spacing">
+                <label for="emailSup">E-mail</label>
+                <input type="emailSup" name="emailSup" id="emailSup" placeholder="Digite o e-mail" formControlName="emailSup" required>
+            </div>
+            <div class="third-box spacing">
+                <label for="phoneSup">Telefone para contato</label>
+                <input type="tel" name="phoneSup" id="phoneSup" placeholder="(99) 99999-9999" formControlName="phoneSup" required>
+            </div>
+            <div class="third-box">
+                <label for="service">Tipo de Serviço</label>
+                <input type="text" name="service" id="service" placeholder="Principais serviços prestados" formControlName="supServices">
+            </div>
+            <div class="half-box spacing">
+                <label for="dataList">Categoria</label>
+                <input list="categoria" formControlName="supCategory" required/>
+                <datalist id="categoria">
+                    <option value="Serviços Gerais">
+                    <option value="Alimentação">
+                    <option value="Equipamentos de Som">
+                    <option value="Imagem e Gravação">
+                    <option value="Outros">     
+                </datalist>
+            </div>
+            <div class="third-box">
+                <label for="createSupplier"></label>
+                <input type="submit" id="createSupplier" value="Confirmar">
+             </div>
+        </form>
+    </div>
+</body>

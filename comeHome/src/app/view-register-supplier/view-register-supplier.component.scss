@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, sans-serif;
+    color: #1A202C;
+    border: none;
+  }
+  .sucess {
+    background-color: rgb(131, 214, 49);
+    text-align: center;
+  }
+  input, label {
+    display: block;
+    width:100%;
+  }
+  
+  input:focus, label:focus {
+    outline: none;
+  }
+  
+  a {
+    color: #197278;
+  }
+
+  body {
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+      
+      #view-supplier-register {
+        width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #D5C5C8;
+        border-radius: 10px;
+        padding: 25px;
+        opacity: 75%;
+  
+          h1 {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 1.8rem;
+            font-weight: bold;
+          }
+  
+            #register-form {
+  
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+
+              .half-box {
+                flex: 1 1 65%;
+                position: relative;
+      
+              }
+
+              .third-box {
+                flex: 1 1 30%;
+                position: relative;
+              }
+
+              .spacing {
+                margin-right: 1.5%;
+              }
+
+              label {
+                font-weight: bold;
+                font-size: 1rem;
+              }
+
+              input {
+                border-bottom: 2px solid #323232;
+                padding: 10px;
+                font-size: .9rem;
+                margin-bottom: 20px;
+              }
+
+              input:focus {
+                border-color: #197278;
+              }
+
+              #createSupplier {
+                background-color: #197278;
+                color: #FFF;
+                border: none;
+                border-radius: 10px;
+                width: 100%;
+                height: 50px;
+                cursor: pointer;
+              }
+
+              #createSupplier:hover {
+                background-color: #10484d;
+              }
+            }
+      }
+    }

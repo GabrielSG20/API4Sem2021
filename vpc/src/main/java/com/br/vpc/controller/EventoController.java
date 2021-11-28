@@ -28,6 +28,7 @@ public class EventoController {
     @Autowired
     EmailService emailService;
 
+
     @PostMapping("/create")
     public ResponseEntity<Void> cadastroEvento(@RequestBody @Valid EventoModel eventoModel) {
         eventoService.cadastrar(eventoModel);
@@ -58,6 +59,7 @@ public class EventoController {
         List<EventoModel> listEvents = eventoService.listarAprovados();
         return new ResponseEntity<>(listEvents, HttpStatus.OK);
     }
+
 
     @GetMapping("/conflito-dia")
     public ResponseEntity<List<String>> mesmaData() {
@@ -185,5 +187,6 @@ public class EventoController {
         }
         cw.writeAll(listEvt);
         cw.close();
+
     }
 }
