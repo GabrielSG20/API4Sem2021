@@ -44,6 +44,7 @@ import { DialogInfoEventComponent } from './view-events/dialog-info-event/dialog
 import { ViewRegisterSupplierComponent } from './view-register-supplier/view-register-supplier.component';
 import { ViewSpaceControlComponent } from './view-space-control/view-space-control.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { ViewSpaceControlComponent } from './view-space-control/view-space-contr
     DialogInfoEventComponent,
     ViewRegisterSupplierComponent,
     ViewSpaceControlComponent,
+
   ],
   imports: [
     BrowserModule,

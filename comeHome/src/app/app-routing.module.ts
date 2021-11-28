@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'eventSettings', component: ViewAproveEventComponent,
     canActivate: [AuthGuardService]},
   { path: 'resSup', component: ViewRegisterSupplierComponent},
-  {path: 'spaceCont', component: ViewSpaceControlComponent},
+  { path: 'spaceCont', component: ViewSpaceControlComponent},
 ];
 
 @NgModule({
