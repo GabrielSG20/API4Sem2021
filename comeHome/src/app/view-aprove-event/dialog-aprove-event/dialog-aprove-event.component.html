@@ -1,5 +1,5 @@
 <div class="aprove-dialog">
-  <h1 class="event-title">{{data.title}}</h1>
+  <h1 class="event-title">{{data[0].title}}</h1>
   <div class="bloco-flex">
     <div class="item">
       <p class="p-item">
@@ -12,7 +12,7 @@
       class="item" 
       color="primary" 
       [checked]= "true"
-      *ngFor="let space of data.space; index as i">{{space.nomeEspaco}}</mat-checkbox>
+      *ngFor="let space of data[0].space; index as i">{{space.nomeEspaco}}</mat-checkbox>
     </div>
     <div class="item">
       <p class="day-event">
@@ -22,12 +22,12 @@
         Horário do evento:
       </p>
       <mat-form-field class="select-hour">
-        <mat-label>{{data.hourStart}}</mat-label>
+        <mat-label>{{data[0].hourStart}}</mat-label>
         <mat-select>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="select-hour">
-        <mat-label>{{data.hourEnd}}</mat-label>
+        <mat-label>{{data[0].hourEnd}}</mat-label>
         <mat-select>
         </mat-select>
       </mat-form-field>
@@ -45,7 +45,7 @@
       class="item" 
       [checked]= "true"
       color="primary"
-      (click)="$event.preventDefault()">{{data.eventType}}</mat-checkbox>
+      (click)="$event.preventDefault()">{{data[0].eventType}}</mat-checkbox>
     </div>
   </div>
   <div class="bloco">
@@ -58,14 +58,14 @@
       </p>
       <mat-form-field class="full-width">
         <mat-label>Detalhes quanto a descrição do evento</mat-label>
-        <textarea matInput value="{{data.desc}}" readonly></textarea>
+        <textarea matInput value="{{data[0].desc}}" readonly></textarea>
       </mat-form-field>
     </div>
   </div>
   <form [formGroup]="formGroup">
     <div mat-dialog-actions class="buttons">
       <button mat-button cdkFocusInitial class="refuse-btn" [mat-dialog-close]="onRefusedClick()">Recusar Evento</button>
-      <button mat-button class="aprove-btn" [mat-dialog-close]="onAprovedClick()">Aprovar Evento</button>
+      <button mat-button class="aprove-btn" [mat-dialog-close]="onAprovedClick()" *ngIf="data[1]==false">Aprovar Evento</button>
     </div>
     <div class="bloco">
       <div class="item">

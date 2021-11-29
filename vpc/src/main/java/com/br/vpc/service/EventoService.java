@@ -29,9 +29,6 @@ public class EventoService {
     @Autowired
     EmailService emailService;
 
-    public static String CSV_PATH = System.getProperty("user.dir")+"/relatorios/";
-
-
     public void cadastrar(EventoModel event) {
         for (EspacoModel espaco : event.getNomeEspaco()) {
             espaco.setIdEspaco(espacoRepository.findEspacoByName(espaco.getNomeEspaco()));

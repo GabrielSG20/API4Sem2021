@@ -1,0 +1,53 @@
+.view-supplier {
+  margin: 3%;
+  .title {
+    font-size: x-large;
+    margin-bottom: 10px;
+  }
+  .search {
+    width: 600px !important;
+    font-size: 80%;
+  }
+  .btn-submit{
+    color: white;
+    margin: 5px;
+    height: 60%;
+    background-color: #197278;
+  }
+  .suppliers {
+    background-color: #D5C5C8;
+    border-radius: 15px;
+    width: 90%;
+  }
+  h3 {
+    margin: 0 0 10px;
+  }
+  .text-center {
+    text-align: center;
+    h3 {
+      font-weight: bold;
+    }
+    .float-right {
+      display: flex;
+    }
+  }
+  .bloco-flex {
+    display: flex;
+  }
+  .bloco-supplier {
+    display: flex;
+    justify-content:flex-start;
+  }
+  .section-supplier {
+    margin-top: 3%;
+  }
+  .firstP {
+    margin-right: 50%;
+    margin-top: 1%;
+    margin-left: 4%;
+  }
+  .secondP {
+    margin-top: 1%;
+    margin-bottom: 2%;
+  }
+}
