@@ -28,7 +28,7 @@
     padding-bottom: 10vh;
       
       #view-supplier-register {
-        width: 1000px;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
         background-color: #D5C5C8;
@@ -56,7 +56,7 @@
               }
 
               .third-box {
-                flex: 1 1 30%;
+                flex: 1 1 35%;
                 position: relative;
               }
 
@@ -74,6 +74,7 @@
                 padding: 10px;
                 font-size: .9rem;
                 margin-bottom: 20px;
+                width: 100%;
               }
 
               input:focus {
