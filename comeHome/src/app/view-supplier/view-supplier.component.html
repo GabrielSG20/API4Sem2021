@@ -3,28 +3,32 @@
     <h2 class="title">Selecione a categoria de fornecedor:</h2>
     <div class="bloco-flex">
       <div>
-        <mat-form-field class="search" appearance="fill">
-        <mat-label>Selecione o tipo de fornecedor que deseja</mat-label>
-        <mat-select>
-          <mat-option  *ngFor="let category of categories" value="{{category}}">{{category}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <form class="form-event" [formGroup]="formGroup" #formDirective="ngForm">
+          <mat-form-field class="search" appearance="fill">
+            <mat-label>Selecione o tipo de fornecedor que deseja</mat-label>
+            <mat-select formControlName="nomeCategoria">
+              <mat-option *ngFor="let category of categories" value="{{category}}">{{category}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
       </div>
     <div>
-      <button mat-button type="submit" color="primary" class="btn-submit">Buscar</button>
+      <button mat-button type="submit" color="primary" class="btn-submit" (click)="searchSupplier()">Buscar</button>
       </div>
     </div>
   </section>
-  <section class="section-supplier">
+  <section class="section-supplier" *ngFor="let element of data">
+    <div >
     <div class="suppliers">
       <div class="bloco-supplier">
-      <p class="firstP">NOME DA EMPRESA</p>
-      <p class="secondP">TIPO DE SERVIÇO</p>
+      <p class="firstP">Empresa: {{element.nomeFornecedor}}</p>
+      <p class="secondP">Categoria: {{element.categorias[0].nomeCategoria}}</p>
       </div>
       <div class="bloco-supplier">
-        <p class="firstP">CNPJ: 999999999</p>
-        <p class="secondP">CONTATO: 99999999999</p>
+        <p class="firstP">CNPJ: {{element.cnpj}}</p>
+        <p class="secondP">Contato: {{element.telefoneFornecedor}}</p>
       </div>
+    </div>
     </div>
   </section>
 </section>

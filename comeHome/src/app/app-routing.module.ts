@@ -24,8 +24,7 @@ const routes: Routes = [
   { path: 'resSup', component: ViewRegisterSupplierComponent,
     canActivate: [AuthGuardService]},
   { path: 'suppliers', component: ViewSupplierComponent,
-    //canActivate: [AuthGuardService]
-  },
+    canActivate: [AuthGuardService]},
 ];
 
 @NgModule({
