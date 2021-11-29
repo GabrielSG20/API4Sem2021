@@ -12,6 +12,7 @@ export class ViewSupplierComponent implements OnInit {
   public data: any;
   public formGroup: FormGroup;
   public category: any;
+  public initialData: any;
   constructor(
     public formBuilder: FormBuilder,
     private appService: AppService,) { }
@@ -19,31 +20,7 @@ export class ViewSupplierComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = this.createForm();
     this.categories= ["Serviços Gerais","Alimentação","Equipamentos de Som","Imagem e Gravação","Outros"]   
-    this.data = [{
-      "cnpj":"999999999999",
-      "nomeFornecedor":"ramonzinbeats",
-      "telefoneFornecedor":129820506054,
-      "emailFornecedor":"Ramon",
-      "categorias":[
-          {
-          "idCategoria":1,
-          "nomeCategoria":"Outros",
-          "descCategoria":"TESTE1"
-          }]
-      },
-      {
-        "cnpj":"11111111111111",
-        "nomeFornecedor":"ramonzinbeats",
-        "telefoneFornecedor":129820506054,
-        "emailFornecedor":"Ramon",
-        "categorias":[
-            {
-            "idCategoria":1,
-            "nomeCategoria":"Alimentação",
-            "descCategoria":"TESTE1"
-            }]
-        },
-    ]
+    this.getSuppliers();
   }
   createForm(): FormGroup {
     return this.formBuilder.group({
@@ -53,7 +30,7 @@ export class ViewSupplierComponent implements OnInit {
   searchSupplier() {
     console.log(this.formGroup.value.nomeCategoria);
     let filter = []
-    for (var element of this.data) {
+    for (var element of this.initialData) {
      if (element.categorias[0].nomeCategoria == this.formGroup.value.nomeCategoria) {
        filter.push(element);
      } 
@@ -61,8 +38,9 @@ export class ViewSupplierComponent implements OnInit {
     this.data = filter;
   }
   getSuppliers() {
-    this.appService.getApprovedEvents().subscribe((values) => {
+    this.appService.getFornecedor().subscribe((values) => {
       this.data = values;
+      this.initialData = values;
     });
   }
 }

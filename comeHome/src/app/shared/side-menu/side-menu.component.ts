@@ -21,6 +21,7 @@ export class SideMenuComponent implements OnInit {
   ngOnInit(): void {
     this.submenu = false;
     this.subReports = false;
+    this.subFornecedores = false;
     this.authService.menuSide.subscribe((values: boolean) => {
       this.sideMenu = values;
     });
@@ -53,7 +54,7 @@ export class SideMenuComponent implements OnInit {
       this.submenu = false;
       this.subReports = false;
     } else {
-      this.subReports = false;
+      this.subFornecedores = false;
     }
   }
   downloadFileEventoAberto() {

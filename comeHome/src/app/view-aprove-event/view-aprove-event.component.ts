@@ -185,9 +185,16 @@ export class ViewAproveEventComponent implements OnInit {
   openDialog() {
     let eventCount = 0;
     for (var element of this.events) {
-      if (this.datepipe.transform(this.event.start, 'yyyy-MM-dd') == this.datepipe.transform(element.start, 'yyyy-MM-dd')
-      && this.event.space.toString() == element.space.toString()) {
-        eventCount += 1;
+      console.log(this.event.space);
+      if (element.space.length>1){
+        if (this.datepipe.transform(this.event.start, 'yyyy-MM-dd') == this.datepipe.transform(element.start, 'yyyy-MM-dd')) {
+          eventCount += 1;
+        }
+      } else {
+        if (this.datepipe.transform(this.event.start, 'yyyy-MM-dd') == this.datepipe.transform(element.start, 'yyyy-MM-dd')
+        && this.event.space[0].nomeEspaco == element.space[0].nomeEspaco) {
+          eventCount += 1;
+        }
       }
     }
     if (this.event.status === null) {
@@ -213,6 +220,7 @@ export class ViewAproveEventComponent implements OnInit {
             this.getAllResults();
           });
         }
+        this.eventConflit = false;
       });
     }
     else {

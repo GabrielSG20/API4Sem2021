@@ -148,7 +148,6 @@ export class ViewCreateEventComponent implements OnInit, OnDestroy {
         this.appService.insertResult(this.formGroup.value).subscribe(response => {
           },
           error => {
-            console.log('chegou');
             this.showError = true;
             this.showSucss = false;
           }, 

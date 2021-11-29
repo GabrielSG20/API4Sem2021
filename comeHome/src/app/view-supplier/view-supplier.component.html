@@ -18,14 +18,14 @@
     </div>
   </section>
   <section class="section-supplier" *ngFor="let element of data">
-    <div >
+    <div>
     <div class="suppliers">
       <div class="bloco-supplier">
       <p class="firstP">Empresa: {{element.nomeFornecedor}}</p>
       <p class="secondP">Categoria: {{element.categorias[0].nomeCategoria}}</p>
       </div>
       <div class="bloco-supplier">
-        <p class="firstP">CNPJ: {{element.cnpj}}</p>
+        <p class="firstP">CNPJ: {{element.cnpjFornecedor}}</p>
         <p class="secondP">Contato: {{element.telefoneFornecedor}}</p>
       </div>
     </div>

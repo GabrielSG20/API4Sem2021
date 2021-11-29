@@ -26,13 +26,13 @@ export class ViewRegisterSupplierComponent implements OnInit {
       cnpjFornecedor: [this.cnpjFornecedor],
       emailFornecedor: [this.emailFornecedor],
       telefoneFornecedor: [this.telefoneFornecedor],
-      categorias: [this.categorias],
+      categorias: this.categorias,
     });
   }
   ngSubmit() {
+    this.categoriaNome();
     if (this.formGroup.valid) {
-      //trocar pelo serviço de cadastrar fornecedor
-        this.appService.insertUser(this.formGroup.value).subscribe(response => {
+        this.appService.createFornecedor(this.formGroup.value).subscribe(response => {
           },
           error => {
           },
@@ -42,5 +42,12 @@ export class ViewRegisterSupplierComponent implements OnInit {
           });
     }
     this.formGroup.reset();
+  }
+
+  categoriaNome(){
+    const nome = this.formGroup.value.categorias;
+    this.formGroup.patchValue({
+      categorias: [{nomeCategoria: nome}],
+    });
   }
 }
