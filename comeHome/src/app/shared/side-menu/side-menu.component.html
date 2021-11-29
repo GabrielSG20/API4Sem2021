@@ -27,7 +27,12 @@
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/report.png">Extrair Relatório</a>
           </div>
           <div class="option-div">
-            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/tool-kit.png">Fornecedores</a>
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/tool-kit.png" (click)="openFornecedores()">Fornecedores</a>
+          </div>
+          <div *ngIf="subFornecedores == true">
+            <div class="submenu-option" routerLinkActive="is-active" [routerLink]="['/eventSettings']">
+              <a>Consultar Fornecedores</a>
+            </div>
           </div>
           <div class="user-edit">
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/user-avatar.png">Editar Perfil</a>
@@ -48,18 +53,20 @@
             <div class="submenu-option" [routerLink]="['/eventSettings']" routerLinkActive="is-active">
               <a>Aprovar Eventos</a>
             </div>
-            <div class="submenu-option" routerLinkActive="is-active">
-              <a>Priorizar Eventos</a>
-            </div>
-            <div class="submenu-option" routerLinkActive="is-active">
-              <a>Consultar Eventos</a>
-            </div>
           </div>
           <div class="option-div">
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/calendar.png">Espaços</a>
           </div>
           <div class="option-div">
-            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/report.png">Fornecedores</a>
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/report.png" (click)="openFornecedores()">Fornecedores</a>
+          </div>
+          <div *ngIf="subFornecedores == true">
+            <div class="submenu-option" routerLinkActive="is-active" [routerLink]="['/resSup']">
+              <a>Cadastrar Fornecedor</a>
+            </div>
+            <div class="submenu-option" routerLinkActive="is-active" [routerLink]="['/eventSettings']">
+              <a>Consultar Fornecedores</a>
+            </div>
           </div>
           <div class="option-div" (click)="openReports()">
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/tool-kit.png">Extrair Relatório</a>

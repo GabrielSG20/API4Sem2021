@@ -1,0 +1,30 @@
+<section class="view-supplier">
+  <section class="header">
+    <h2 class="title">Selecione a categoria de fornecedor:</h2>
+    <div class="bloco-flex">
+      <div>
+        <mat-form-field class="search" appearance="fill">
+        <mat-label>Selecione o tipo de fornecedor que deseja</mat-label>
+        <mat-select>
+          <mat-option  *ngFor="let category of categories" value="{{category}}">{{category}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+    <div>
+      <button mat-button type="submit" color="primary" class="btn-submit">Buscar</button>
+      </div>
+    </div>
+  </section>
+  <section class="section-supplier">
+    <div class="suppliers">
+      <div class="bloco-supplier">
+      <p class="firstP">NOME DA EMPRESA</p>
+      <p class="secondP">TIPO DE SERVIÇO</p>
+      </div>
+      <div class="bloco-supplier">
+        <p class="firstP">CNPJ: 999999999</p>
+        <p class="secondP">CONTATO: 99999999999</p>
+      </div>
+    </div>
+  </section>
+</section>
