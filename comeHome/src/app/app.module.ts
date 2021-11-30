@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { registerLocaleData, CommonModule } from '@angular/common';
+import { registerLocaleData, CommonModule, DatePipe } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 registerLocaleData(localeBr);
 
@@ -43,7 +43,8 @@ import { DialogAproveEventComponent } from './view-aprove-event/dialog-aprove-ev
 import { DialogInfoEventComponent } from './view-events/dialog-info-event/dialog-info-event.component';
 import { ViewRegisterSupplierComponent } from './view-register-supplier/view-register-supplier.component';
 import { ViewSpaceControlComponent } from './view-space-control/view-space-control.component';
-
+import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
+import { ViewHomeComponent } from './view-home/view-home.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,8 @@ import { ViewSpaceControlComponent } from './view-space-control/view-space-contr
     DialogInfoEventComponent,
     ViewRegisterSupplierComponent,
     ViewSpaceControlComponent,
+    ViewSupplierComponent,
+    ViewHomeComponent,
 
   ],
   imports: [
@@ -93,6 +96,7 @@ import { ViewSpaceControlComponent } from './view-space-control/view-space-contr
     { provide: LOCALE_ID, useValue: 'pt'},
     AppMockedService,
     AuthService,
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })

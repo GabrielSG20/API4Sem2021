@@ -11,6 +11,7 @@ import { saveAs } from 'file-saver';
 export class SideMenuComponent implements OnInit {
   public submenu: boolean;
   public subReports: boolean;
+  public subFornecedores: boolean;
   public userName: string;
   public userOrg: boolean = false;
   sideMenu: boolean = false;
@@ -20,6 +21,7 @@ export class SideMenuComponent implements OnInit {
   ngOnInit(): void {
     this.submenu = false;
     this.subReports = false;
+    this.subFornecedores = false;
     this.authService.menuSide.subscribe((values: boolean) => {
       this.sideMenu = values;
     });
@@ -32,6 +34,7 @@ export class SideMenuComponent implements OnInit {
     if(this.submenu == false) {
       this.submenu = true;
       this.subReports = false;
+      this.subFornecedores = false
     } else {
       this.submenu = false;
     }
@@ -40,8 +43,18 @@ export class SideMenuComponent implements OnInit {
     if(this.subReports == false) {
       this.subReports = true;
       this.submenu = false;
+      this.subFornecedores = false
     } else {
       this.subReports = false;
+    }
+  }
+  openFornecedores() {
+    if(this.subFornecedores == false) {
+      this.subFornecedores = true;
+      this.submenu = false;
+      this.subReports = false;
+    } else {
+      this.subFornecedores = false;
     }
   }
   downloadFileEventoAberto() {

@@ -18,7 +18,7 @@ public class FornecedorController {
     private FornecedorService service;
 
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Void> cadastrar(@RequestBody FornecedorModel model){
         service.save(model);
         return new ResponseEntity<>(HttpStatus.CREATED);

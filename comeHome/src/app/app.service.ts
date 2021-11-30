@@ -89,5 +89,16 @@ export class AppService {
   getDownloadConvidadosFechado(): Observable<any> {
     return this.httpClient
       .get(`${this.url}/eventos/exportconvidadofechado`, { responseType: 'blob' })
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  getFornecedor(): Observable<any> {
+    return this.httpClient
+      .get(`${this.url}/fornecedor`, {headers: this.head})
+      .pipe(catchError(async (res) => this.handleError(res)));
+  }
+  createFornecedor(result: any): Observable<any> {
+    return this.httpClient
+      .post<any>(`${this.url}/fornecedor/create`, result, { headers: this.head })
+      .pipe(catchError(async (res) => this.handleError(res)));
   }
 }
