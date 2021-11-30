@@ -43,6 +43,7 @@ import { DialogAproveEventComponent } from './view-aprove-event/dialog-aprove-ev
 import { DialogInfoEventComponent } from './view-events/dialog-info-event/dialog-info-event.component';
 import { ViewRegisterSupplierComponent } from './view-register-supplier/view-register-supplier.component';
 import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
+import { ViewHomeComponent } from './view-home/view-home.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
     DialogInfoEventComponent,
     ViewRegisterSupplierComponent,
     ViewSupplierComponent,
+    ViewHomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { ViewAproveEventComponent } from './view-aprove-event/view-aprove-event.component';
 import { ViewRegisterSupplierComponent } from './view-register-supplier/view-register-supplier.component';
 import { ViewSupplierComponent } from './view-supplier/view-supplier.component';
+import { ViewHomeComponent } from './view-home/view-home.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService]},
   { path: 'suppliers', component: ViewSupplierComponent,
     canActivate: [AuthGuardService]},
+  { path: 'home', component: ViewHomeComponent},
 ];
 
 @NgModule({
