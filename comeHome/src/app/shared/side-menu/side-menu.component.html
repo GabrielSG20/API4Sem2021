@@ -20,7 +20,7 @@
               <a>Quero ser Organizador</a>
             </div>
           </div>
-          <div class="option-div">
+          <div class="option-div" [routerLink]="['/events']" routerLinkActive="is-active">
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/calendar.png">Calendário</a>
           </div>
           <div class="option-div">
@@ -54,7 +54,7 @@
               <a>Aprovar Eventos</a>
             </div>
           </div>
-          <div class="option-div">
+          <div class="option-div" routerLinkActive="is-active" [routerLink]="['/spaceCont']">
             <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/calendar.png">Espaços</a>
           </div>
           <div class="option-div" (click)="openFornecedores()">

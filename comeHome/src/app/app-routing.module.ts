@@ -30,7 +30,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService]},
   { path: 'suppliers', component: ViewSupplierComponent,
     canActivate: [AuthGuardService]},
-  { path: 'home', component: ViewHomeComponent},
+  { path: '', component: ViewHomeComponent},
 ];
 
 @NgModule({
