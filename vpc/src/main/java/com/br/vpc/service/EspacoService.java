@@ -14,12 +14,12 @@ public class EspacoService {
     @Autowired
     EspacoRepository espacoRepository;
 
-    public void atualizarEspaco(Integer cap, Integer cap2){
+    public void atualizarEspaco(Integer cap1, Integer cap2){
         try {
             EspacoModel esp1 = espacoRepository.findEspaco("Open Space");
             EspacoModel esp2 = espacoRepository.findEspaco("Lounge on Hall");
 
-            esp1.setCapEspaco(cap);
+            esp1.setCapEspaco(cap1);
             esp2.setCapEspaco(cap2);
             espacoRepository.save(esp1);
             espacoRepository.save(esp2);
@@ -29,10 +29,9 @@ public class EspacoService {
         }
     }
 
-    public Integer listarEspaco(String nomeEspaco){
+    public List<Integer> listarEspaco(){
         try{
-            EspacoModel esp = espacoRepository.findEspaco(nomeEspaco);
-            return esp.getCapEspaco();
+            return espacoRepository.findCaps();
         }catch (DataIntegrityViolationException e){
             throw new DataBaseException(e.getMessage());
         }

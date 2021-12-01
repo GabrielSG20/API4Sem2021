@@ -1,8 +1,5 @@
 package com.br.vpc.controller;
 
-import com.br.vpc.model.EspacoModel;
-import com.br.vpc.model.EventoModel;
-import com.br.vpc.repository.EspacoRepository;
 import com.br.vpc.service.EspacoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,16 +19,16 @@ public class EspacoController {
     @Autowired
     EspacoService espacoService;
 
-    @PutMapping("/atualizar")
+    @PutMapping("/update/{cap1}/{cap2}")
     public ResponseEntity<Void> atualizarCap(@PathVariable Integer cap1, @PathVariable Integer cap2) {
         espacoService.atualizarEspaco(cap1,cap2);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/espacos")
-    public ResponseEntity<Void> listarespacos(@PathVariable String nome) {
-        Integer capEsp = espacoService.listarEspaco(nome);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping
+    public ResponseEntity<List<Integer>> listarespacos() {
+        List<Integer> capEsp = espacoService.listarEspaco();
+        return new ResponseEntity<>(capEsp, HttpStatus.OK);
     }
 
 }

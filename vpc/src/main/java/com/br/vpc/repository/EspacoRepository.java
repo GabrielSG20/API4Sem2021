@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface EspacoRepository extends JpaRepository<EspacoModel, Integer> {
     @Query(" select idEspaco from EspacoModel where nomeEspaco = ?1 ")
@@ -12,4 +14,7 @@ public interface EspacoRepository extends JpaRepository<EspacoModel, Integer> {
 
     @Query(" from EspacoModel where nomeEspaco = ?1 ")
     EspacoModel findEspaco(String nomeEspaco);
+
+    @Query(" select capEspaco from EspacoModel ")
+    List<Integer> findCaps();
 }
