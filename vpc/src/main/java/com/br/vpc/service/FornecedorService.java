@@ -1,6 +1,8 @@
 package com.br.vpc.service;
 
+import com.br.vpc.model.CategoriaModel;
 import com.br.vpc.model.FornecedorModel;
+import com.br.vpc.repository.CategoriaRepository;
 import com.br.vpc.repository.FornecedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,14 @@ public class FornecedorService {
     @Autowired
     private FornecedorRepository repository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
     public void save(FornecedorModel model) {
+        for(CategoriaModel cat:model.getCategorias()) {
+            Integer id = categoriaRepository.findCategoriaByName(cat.getNomeCategoria());
+            cat.setIdCategoria(id);
+        }
         repository.save(model);
     }
 
