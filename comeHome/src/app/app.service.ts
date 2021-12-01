@@ -102,11 +102,11 @@ export class AppService {
       .pipe(catchError(async (res) => this.handleError(res)));
   }
   updateSpace(result: any): Observable<any> {
-    return this.httpClient.put<any>(`${this.url}/espacos/update/${result.openspace}/${result.lounge}`, {headers: this.head})
+    return this.httpClient.put<any>(`${this.url}/espaco/update/${result.openspace}/${result.lounge}`, {headers: this.head})
     .pipe(catchError((res) => this.handleError(res)));
   }
   getSpace(): Observable<any> {
-    return this.httpClient.get(`${this.url}/espacos`, {headers: this.head})
+    return this.httpClient.get(`${this.url}/espaco`, {headers: this.head})
     .pipe(catchError((res) => this.handleError(res)));
   }
 }

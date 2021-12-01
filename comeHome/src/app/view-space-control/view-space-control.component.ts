@@ -39,12 +39,16 @@ export class ViewSpaceControlComponent implements OnInit {
             setTimeout(() =>{this.showSucss = false;}, 4000);
           });
     }
-    this.formGroup.reset();
   }
 
   getEspaco(){
     this.appService.getSpace().subscribe(response => {
-      this.data = response.value;
+      this.data = response;
+
+      this.formGroup.patchValue({
+        openspace: response[0],
+        lounge: response[1],
+      });
     })
   }
 }
