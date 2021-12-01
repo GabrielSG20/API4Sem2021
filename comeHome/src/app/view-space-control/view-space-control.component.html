@@ -7,7 +7,7 @@
                     <img src='/assets/img/LoungeOnHall.png' alt='image' height="200px">
                     <div class="cap-lounge">
                         <label for="lounge">Capacidade Máxima: </label>
-                        <input type="number" name="lounge" id="lounge" placeholder="XXXX" formControlName="lounge" required>
+                        <input type="number" name="lounge" id="lounge" value="{{data[1]}}" formControlName="lounge" required>
                     </div>
                 </div>
             </form>
@@ -18,7 +18,7 @@
                     <img src='/assets/img/OpenSpace.png' alt='image' height="200px">
                     <div class="cap-open">
                         <label for="openspace">Capacidade Máxima: </label>
-                        <input type="number" name="openspace" id="openspace" placeholder="XXXX" formControlName="openspace" required>
+                        <input type="number" name="openspace" id="openspace" value="{{data[0]}}" formControlName="openspace" required>
                     </div>
                 </div>
             </form>
