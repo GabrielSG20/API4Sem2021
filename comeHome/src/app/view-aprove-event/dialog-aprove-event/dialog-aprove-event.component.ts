@@ -33,6 +33,7 @@ export class DialogAproveEventComponent implements OnInit{
     return this.formGroup.value
   }
   onRefusedClick() {
+    console.log('teste');
     this.formGroup.patchValue({
       eventStatus: 'Recusado',
     });
