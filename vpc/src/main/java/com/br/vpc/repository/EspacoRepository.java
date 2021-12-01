@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface EspacoRepository extends JpaRepository<EspacoModel, Integer> {
     @Query(" select idEspaco from EspacoModel where nomeEspaco = ?1 ")
     Integer findEspacoByName(String nomeEspaco);
+
+    @Query(" from EspacoModel where nomeEspaco = ?1 ")
+    EspacoModel findEspaco(String nomeEspaco);
 }
