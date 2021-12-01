@@ -1,33 +1,41 @@
+<div class="container">
+    <div class="sucess"  *ngIf="showSucss">
+      <div class="col-xs-12">
+        <p class="alert alert-success">
+            <strong>Registro salvo com sucesso!</strong>
+        </p>
+      </div>
+    </div>
 <body>
     <h1>Alterar capacidade dos espaços</h1>
+    <form [formGroup]="formGroup" #formDirective="ngForm" (ngSubmit)="ngSubmit()">
     <div class="duas-colunas">
         <div class="lounge">
-            <form id="lounge-form">
+            <div id="lounge-form">
                 <div class="half-box">
-                    <img src='/assets/img/LoungeOnHall.png' alt='image' height="300px">
+                    <img src='/assets/img/LoungeOnHall.png' alt='image' height="200px">
                     <div class="cap-lounge">
-                        <label for="lounge">Capacidade Máxima </label>
-                        <input type="number" name="lounge" id="lounge" placeholder="XXXX" formControlName="lounge" required>
-                        <label for="lounge"> pessoas.</label>
+                        <label for="lounge">Capacidade Máxima: </label>
+                        <input type="number" name="lounge" id="lounge" formControlName="lounge" required>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
         <div class="openSpace">
-            <form id="openSpace-form">
+            <div id="openSpace-form">
                 <div class="half-box">
-                    <img src='/assets/img/OpenSpace.png' alt='image' height="300px">
+                    <img src='/assets/img/OpenSpace.png' alt='image' height="200px">
                     <div class="cap-open">
-                        <label for="openspace">Capacidade Máxima </label>
-                        <input type="number" name="openspace" id="openspace" placeholder="XXXX" formControlName="openspace" required>
-                        <label for="lounge"> pessoas.</label>
+                        <label for="openspace">Capacidade Máxima: </label>
+                        <input type="number" name="openspace" id="openspace" formControlName="openspace" required>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <div class="third-box">
         <label for="confirmCapacity"></label>
         <input type="submit" id="confirmCapacity" value="Confirmar" style="float: right;">
      </div>
+    </form>
 </body>

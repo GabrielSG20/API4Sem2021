@@ -38,11 +38,24 @@ body {
         &.menu2{
             grid-row: span 3;
             grid-column: span 2;
+            cursor: pointer;
         }
 
         &.menu3{
             grid-row: span 3;
             grid-column: span 2;
+        }
+        &.menu1:hover{
+            cursor: pointer;
+            -webkit-filter: brightness(50%);
+        }
+        &.menu2:hover{
+            cursor: pointer;
+            -webkit-filter: brightness(50%);
+        }
+        &.menu3:hover{
+            cursor: pointer;
+            -webkit-filter: brightness(50%);
         }
     }
 

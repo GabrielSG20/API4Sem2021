@@ -21,7 +21,7 @@ public class EmailService {
                         EmailConstantes.ASSUNTO_EMAIL_CADASTRO+eventoModel.getTitulo());
             }
             definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_ENVIADO_CONVIDADOS,
-                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_CRIADO);
+                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_CRIADO+eventoModel.getTitulo());
         }
     }
 
@@ -33,7 +33,7 @@ public class EmailService {
                         EmailConstantes.ASSUNTO_EMAIL_CONFIRMA_PRESENCA+eventoModel.getTitulo());
             }
             definicoesEmail(eventoModel.getOrg().getEmail(), EmailConstantes.MENSAGEM_EMAIL_CONFIRMACAO_EVENTO,
-                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_APROVADO);
+                    EmailConstantes.ASSUNTO_EMAIL_EVENTO_APROVADO+eventoModel.getTitulo());
         }
     }
 
