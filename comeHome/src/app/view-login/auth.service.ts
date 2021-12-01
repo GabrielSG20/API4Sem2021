@@ -42,7 +42,7 @@ export class AuthService {
         this.userName.emit(this.userData.nomeCompleto);
         this.userEmail = this.userData.email;
         this.userSucess.emit(this.userAuth);
-        this.router.navigate(['/']);
+        this.router.navigate(['/events']);
       } else {
         this.userAuth = false;
         this.userPermission = false;

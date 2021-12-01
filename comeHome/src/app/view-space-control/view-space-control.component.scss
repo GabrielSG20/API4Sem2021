@@ -10,29 +10,28 @@
 
   
   body {
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    overflow: hidden;
 
     h1 {
         text-align: justify;
-        margin-bottom: 5%;
-        margin-top: 5%;
+        margin-top: 3%;
         font-size: 1.4rem;
-        margin-left: 10%;
+        margin-left: 3%;
       }
 
       .duas-colunas{
           display:grid;
           grid-auto-flow: column;
+          margin-top: 10% !important;
           gap:1em;
-          margin: 5rem auto;
+          margin: 3%;
       }
 
       .lounge{
         width: 100%;
         background-color: #FAFAFA;
         border-radius: 10px;
-        margin-left:30%;
+        margin-left:15%;
 
 
         input, label {
@@ -66,7 +65,7 @@
             width: 100%;
             background-color: #FAFAFA;
             border-radius: 10px;
-            margin-left:20%;
+            margin-left:3%;
     
     
             input, label {
@@ -109,12 +108,10 @@
             }
 
             .third-box {
-              flex: 1 1 100%;
-              position: relative;
 
               input[type="submit"]{
-                margin-bottom: 90%;
-                margin-right: 5%
+                margin-right: 5%;
+                margin-top: 8%;
               }
 
               #confirmCapacity {
