@@ -1,34 +1,41 @@
 <body>
+    <div class="sucess"  *ngIf="showSucss">
+        <div class="col-xs-12">
+          <p class="alert alert-success">
+              <strong>Registro salvo com sucesso!</strong>
+          </p>
+        </div>
+    </div>
     <div id="view-supplier-register">
         <h1>Cadastrar Fornecedor</h1>
-        <form id="register-form">
+        <form id="register-form" [formGroup]="formGroup" (ngSubmit)="ngSubmit()" ngNativeValidate>
             <div class="third-box spacing">
                 <label for="name">Nome Fantasia</label>
-                <input type="text" name="name" id="name" placeholder="Nome da Empresa" formControlName="ciaName" required>
+                <input type="text" name="name" id="name" placeholder="Nome da Empresa" formControlName="nomeFornecedor" required>
             </div>
-            <div class="third-box spacing">
+            <!--<div class="third-box spacing">
                 <label for="proprietario">Proprietário</label>
                 <input type="text" name="proprietario" id="name" placeholder="Nome do Proprietário" formControlName="ownerName" required>
-            </div>
-            <div class="third-box">
+            </div>-->
+            <div class="third-box spacing">
                 <label for="cnpj">CNPJ</label>
-                <input type="text" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" data-mask="00.000.000/0000-00" formControlName="cnpj" required>
+                <input type="text" name="cnpj" id="cnpj" placeholder="99.999.999/9999-99" data-mask="00.000.000/0000-00" formControlName="cnpjFornecedor" required>
             </div>
             <div class="third-box spacing">
                 <label for="emailSup">E-mail</label>
-                <input type="emailSup" name="emailSup" id="emailSup" placeholder="Digite o e-mail" formControlName="emailSup" required>
+                <input type="emailSup" name="emailSup" id="emailSup" placeholder="Digite o e-mail" formControlName="emailFornecedor" required>
             </div>
             <div class="third-box spacing">
                 <label for="phoneSup">Telefone para contato</label>
-                <input type="tel" name="phoneSup" id="phoneSup" placeholder="(99) 99999-9999" formControlName="phoneSup" required>
+                <input type="tel" name="phoneSup" id="phoneSup" placeholder="(99) 99999-9999" formControlName="telefoneFornecedor" required>
             </div>
-            <div class="third-box">
+            <!--<div class="third-box">
                 <label for="service">Tipo de Serviço</label>
                 <input type="text" name="service" id="service" placeholder="Principais serviços prestados" formControlName="supServices">
-            </div>
+            </div>-->
             <div class="half-box spacing">
                 <label for="dataList">Categoria</label>
-                <input list="categoria" formControlName="supCategory" required/>
+                <input list="categoria" formControlName="categorias" required/>
                 <datalist id="categoria">
                     <option value="Serviços Gerais">
                     <option value="Alimentação">
