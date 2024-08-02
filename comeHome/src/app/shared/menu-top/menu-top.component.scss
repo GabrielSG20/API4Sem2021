@@ -1,0 +1,26 @@
+.container {
+  .menu-top {
+    background-color: #3A3632;
+  }
+  .logo {
+    height: 100%;
+    margin-left: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .nav-item {
+    color: white;
+  }
+  .nav-account {
+    color: white;
+    background-color: #1D1A19;
+  }
+  .account-icon {
+    transform: scale(1.2);
+    padding-right: 5px;
+  }
+}

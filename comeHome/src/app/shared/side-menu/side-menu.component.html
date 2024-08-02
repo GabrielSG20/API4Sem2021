@@ -1,0 +1,96 @@
+<div class="side-menu">
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav class="side-bar" mode="side" opened *ngIf="userPermition">
+      <div class="menu-content">
+        <b><h3>#VEMPRACASA</h3></b>
+        <img class="img-avatar" src="/assets/img/user_avatar.png">
+        <p>{{userName}}</p>
+        <div class="menu-options">
+          <div class="option-div">
+          <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/icons_schedule.png">Meus eventos</a>
+          </div>
+          <div class="option-div" (click)="openSub()">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/organization.png">Organizar Evento</a>
+          </div>
+          <div *ngIf="submenu == true">
+            <div class="submenu-option" [routerLink]="['/newEvent']" *ngIf="userOrg" routerLinkActive="is-active">
+              <a>Sou Organizador</a>
+            </div>
+            <div class="submenu-option" [routerLink]="['/resOrg']" *ngIf="!userOrg" routerLinkActive="is-active">
+              <a>Quero ser Organizador</a>
+            </div>
+          </div>
+          <div class="option-div" [routerLink]="['/events']" routerLinkActive="is-active">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/calendar.png">Calendário</a>
+          </div>
+          <div class="option-div">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/report.png">Extrair Relatório</a>
+          </div>
+          <div class="option-div" (click)="openFornecedores()">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/tool-kit.png">Fornecedores</a>
+          </div>
+          <div *ngIf="subFornecedores == true">
+            <div class="submenu-option" routerLinkActive="is-active" [routerLink]="['/suppliers']">
+              <a>Consultar Fornecedores</a>
+            </div>
+          </div>
+          <div class="user-edit">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/user-avatar.png">Editar Perfil</a>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav class="side-bar" mode="side" opened *ngIf="userAdmin">
+      <div class="menu-content">
+        <b><h3>#VEMPRACASA</h3></b>
+        <img class="img-avatar" src="/assets/img/user_avatar.png">
+        <p>{{userName}}</p>
+        <div class="menu-options">
+          <div class="option-div" (click)="openSub()">
+          <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/icons_schedule.png">Eventos</a>
+          </div>
+          <div *ngIf="submenu == true">
+            <div class="submenu-option" [routerLink]="['/eventSettings']" routerLinkActive="is-active">
+              <a>Aprovar Eventos</a>
+            </div>
+          </div>
+          <div class="option-div" routerLinkActive="is-active" [routerLink]="['/spaceCont']">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/calendar.png">Espaços</a>
+          </div>
+          <div class="option-div" (click)="openFornecedores()">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/report.png">Fornecedores</a>
+          </div>
+          <div *ngIf="subFornecedores == true">
+            <div class="submenu-option" routerLinkActive="is-active" [routerLink]="['/resSup']">
+              <a>Cadastrar Fornecedor</a>
+            </div>
+            <div class="submenu-option" routerLinkActive="is-active" [routerLink]="['/suppliers']">
+              <a>Consultar Fornecedores</a>
+            </div>
+          </div>
+          <div class="option-div" (click)="openReports()">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/tool-kit.png">Extrair Relatório</a>
+          </div>
+          <div *ngIf="subReports == true">
+            <div class="submenu-option" routerLinkActive="is-active" (click)="downloadFileEventoAberto()">
+              <a>Eventos Públicos</a>
+            </div>
+            <div class="submenu-option" routerLinkActive="is-active" (click)="downloadFileEventoFechado()">
+              <a>Eventos Privados</a>
+            </div>
+            <div class="submenu-option" routerLinkActive="is-active" (click)="downloadFileConvidadoPublico()">
+              <a>Convidados (Público)</a>
+            </div>
+            <div class="submenu-option" routerLinkActive="is-active" (click)="downloadFileConvidadoPrivado()">
+              <a>Convidados (Privado)</a>
+            </div>
+          </div>
+          <!--<div class="user-edit">
+            <a class="menu-option"><img class="img-avatar" src="/assets/img/icons/user-avatar.png">Editar Perfil</a>
+          </div>-->
+        </div>
+      </div>
+    </mat-sidenav>
+      <ng-content></ng-content>
+  </mat-sidenav-container>
+</div>
